@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Component/main.qml</file>
+        <file>Component/SettingPage.qml</file>
+    </qresource>
+    <qresource prefix="/QML_RESOUCES"/>
+</RCC>
