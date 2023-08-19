@@ -8,7 +8,6 @@ LIBS += -L$$PWD/../Executable \
 INCLUDEPATH += $$PWD/../ServiceWrapper/include \
                $$PWD/../ServiceWrapper/include/Common \
                $$PWD/../ServiceWrapper/include/SystemSetting \
-               $$PWD/../ServiceWrapper/include/SmartPhone \
                $$PWD/../Common
 
 SOURCES += \
