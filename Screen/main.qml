@@ -4,12 +4,12 @@ import QtQuick.VirtualKeyboard
 
 Item {
     id: window
-    width: 700; height: 900
+    width: 600; height: 900
     visible: true
 
     Loader {
         id: homePage
         anchors.fill: parent
-        source: "qrc:/Component/SettingPage.qml"
+        source: "qrc:/Screen/SettingPage.qml"
     }
 }

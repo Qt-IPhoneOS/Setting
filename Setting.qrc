@@ -1,7 +1,14 @@
 <RCC>
     <qresource prefix="/">
-        <file>Component/main.qml</file>
-        <file>Component/SettingPage.qml</file>
+        <file>Screen/main.qml</file>
+        <file>Screen/SettingPage.qml</file>
+        <file>Screen/Common/Components/SwitchButton.qml</file>
+        <file>Screen/Common/Components/Icon.qml</file>
+        <file>Screen/Common/Components/LoadingAnimation.qml</file>
+        <file>Screen/Common/Components/Underline.qml</file>
+        <file>Screen/Common/Items/SwitchItem.qml</file>
+        <file>Screen/Common/Items/DeviceItem.qml</file>
+        <file>Screen/Common/Components/ListItemsContainer.qml</file>
     </qresource>
     <qresource prefix="/QML_RESOUCES"/>
 </RCC>

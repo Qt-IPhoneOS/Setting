@@ -1,5 +1,4 @@
 #include "AppMain.h"
-#include "Common/Enums.h"
 #include <QDebug>
 
 AppMain::AppMain(QObject *parent) : QObject(parent)
@@ -51,5 +50,5 @@ void AppMain::registerContextProperty()
 
 void AppMain::registerEnumType()
 {
-    qmlRegisterType<Enums>("Enums", 1, 0, "Enums");
+//    qmlRegisterType<Enums>("Enums", 1, 0, "Enums");
 }

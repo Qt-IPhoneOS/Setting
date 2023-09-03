@@ -2,16 +2,14 @@
     <qresource prefix="/">
         <file>Assets/message.png</file>
         <file>Assets/setting.png</file>
-        <file>Assets/background.jpg</file>
         <file>Assets/phone.png</file>
-        <file>Assets/wifi_full.png</file>
-        <file>Assets/soon_full_battery.png</file>
-        <file>Assets/low_battery.png</file>
-        <file>Assets/half_battery.png</file>
-        <file>Assets/full_battery.png</file>
-        <file>Assets/empty_battery.png</file>
         <file>Assets/safari.png</file>
         <file>Assets/face_time.png</file>
         <file>Assets/gallery.png</file>
+        <file>Assets/loading-img.png</file>
+        <file>Assets/connected.png</file>
+        <file>Assets/circle-i.png</file>
+        <file>Assets/lock.png</file>
+        <file>Assets/wifi-strong.png</file>
     </qresource>
 </RCC>

@@ -3,7 +3,7 @@
 
 #include <QObject>
 #include <memory>
-#include "Interface/Wifi/WifiInterface.h"
+#include <WifiInterface.h>
 
 class WifiController : public QObject {
     Q_OBJECT
