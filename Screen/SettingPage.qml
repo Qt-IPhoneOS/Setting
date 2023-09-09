@@ -66,12 +66,13 @@ Rectangle {
             anchors.fill: parent
             interactive: false
             delegate: Rectangle {
+
                 width: parent.width
                 height: 55
                 color: "transparent"
                 DeviceItem {
                     anchors.fill: parent
-                    underlineVisible: model.index !== model.count - 1
+                    underlineVisible: model.index !== wifiDeviceModel.count - 1
                     marginLeft: 50
                     textStr: model.name
                 }
@@ -100,7 +101,7 @@ Rectangle {
                 color: "transparent"
                 DeviceItem {
                     anchors.fill: parent
-                    underlineVisible: model.index !== 4
+                    underlineVisible: model.index !== 1
                     marginLeft: 50
                     textStr: "Anh Ha"
                 }
