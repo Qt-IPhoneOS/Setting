@@ -6,7 +6,7 @@ AppWindow::AppWindow()
 
 AppWindow::~AppWindow()
 {
-    m_view = nullptr;
+    mView = nullptr;
 }
 
 void AppWindow::createWindow(QQuickView *view)

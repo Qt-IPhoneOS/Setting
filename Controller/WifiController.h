@@ -4,6 +4,7 @@
 #include <QObject>
 #include <memory>
 #include <WifiInterface.h>
+#include <Model/WifiDeviceModel.h>
 
 class WifiController : public QObject {
     Q_OBJECT
@@ -11,13 +12,25 @@ class WifiController : public QObject {
 public:
     WifiController();
     ~WifiController();
-    void initWifiController();
+    void init();
+
+    WifiDeviceModel* getWifiDeviceModel()
+    {
+        return mWifiDeviceModel;
+    }
 
 private:
+    void updatePairedDeviceList(std::vector<WifiDevice*>);
+    void updateConnectedDevice(WifiDevice *);
+
+    signal::Connect mUpdatePairedListSignal;
+    signal::Connect mUpdateConnectedDeviceSignal;
 
 private:
-    WifiInterface* m_wifiIf {nullptr};
-    QVector<AbstractInterface*> m_interfaces;
+    WifiInterface* mWifiIF {nullptr};
+    WifiDeviceModel* mWifiDeviceModel {nullptr};
+    WifiDevice* mConnectedDevice {nullptr};
+    QVector<AbstractInterface*> mInterfaces;
 };
 
 #endif // WIFICONTROLLER

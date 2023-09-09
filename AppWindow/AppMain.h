@@ -24,9 +24,9 @@ private:
     ~AppMain();
 
 private:
-    std::shared_ptr<AppWindow> m_appWindow;
-    std::shared_ptr<WifiController> mController;
-    QQuickView* m_view {nullptr};
+    std::shared_ptr<AppWindow> mAppWindow;
+    std::shared_ptr<WifiController> mWifiController;
+    QQuickView* mView {nullptr};
 };
 
 #endif // APPMAIN_H

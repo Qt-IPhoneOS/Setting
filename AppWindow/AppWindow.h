@@ -14,7 +14,7 @@ public:
 
 private:
 
-    QQuickView* m_view {nullptr};
+    QQuickView* mView {nullptr};
 };
 
 #endif // APPWINDOW_H

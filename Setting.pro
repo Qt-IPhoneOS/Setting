@@ -19,6 +19,7 @@ SOURCES += \
         AppWindow/AppMain.cpp \
         AppWindow/AppWindow.cpp \
         Controller/WifiController.cpp \
+        Model/WifiDeviceModel.cpp \
         main.cpp
 
 resources.prefix = /$${TARGET}
@@ -32,6 +33,7 @@ HEADERS += \
     AppWindow/AppMain.h \
     AppWindow/AppWindow.h \
     Controller/WifiController.h \
+    Model/WifiDeviceModel.h
 
 DISTFILES +=
 

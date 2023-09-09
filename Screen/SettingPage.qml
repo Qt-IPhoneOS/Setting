@@ -57,12 +57,12 @@ Rectangle {
     ListItemsContainer {
         id: pairedList
         y: 260
-        sizeOfModel: 5
+        sizeOfModel: wifiDeviceModel.count
         anchors.horizontalCenter: parent.horizontalCenter
         headerText: "MY NETWORKS"
 
         listContainer: ListView {
-            model: 5
+            model: wifiDeviceModel
             anchors.fill: parent
             interactive: false
             delegate: Rectangle {
@@ -71,9 +71,9 @@ Rectangle {
                 color: "transparent"
                 DeviceItem {
                     anchors.fill: parent
-                    underlineVisible: model.index !== 4
+                    underlineVisible: model.index !== model.count - 1
                     marginLeft: 50
-                    textStr: "Anh Ha"
+                    textStr: model.name
                 }
             }
         }
