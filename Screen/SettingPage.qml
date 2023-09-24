@@ -66,7 +66,6 @@ Rectangle {
             anchors.fill: parent
             interactive: false
             delegate: Rectangle {
-
                 width: parent.width
                 height: 55
                 color: "transparent"
