@@ -75,6 +75,13 @@ Rectangle {
                     marginLeft: 50
                     textStr: model.name
                 }
+
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        console.log(model.index)
+                    }
+                }
             }
         }
     }

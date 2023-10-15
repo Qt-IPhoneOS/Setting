@@ -5,8 +5,8 @@
 #include <QQuickView>
 #include <QQmlContext>
 #include <memory>
-#include "AppWindow.h"
-#include "Controller/WifiController.h"
+#include "../AppWindow/AppWindow.h"
+#include "Wifi/WifiController.h"
 
 class AppMain : public QObject
 {
