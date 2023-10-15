@@ -10,10 +10,10 @@ INCLUDEPATH += $$PWD/../MiddlewareLayer \
                $$PWD/../MiddlewareLayer/Common \
                $$PWD/../MiddlewareLayer/Wifi \
                $$PWD/../UICommon \
-               $$PWD/../ServiceWrapper/include
-               $$PWD/../ServiceWrapper/include/Common
-               $$PWD/../ServiceWrapper/include/Wifi
-               $$PWD/../ServiceWrapper/include/SystemSetting
+               $$PWD/../Services/include
+               $$PWD/../Services/include/Common
+               $$PWD/../Services/include/Wifi
+               $$PWD/../Services/include/SystemSetting
 
 SOURCES += \
         AppWindow/AppMain.cpp \
