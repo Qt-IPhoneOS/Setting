@@ -1,19 +1,19 @@
 QT += quick virtualkeyboard
 CONFIG += c++20
 
-LIBS += -L$$PWD/../Executable \
+LIBS += -L$$PWD/../../Executable \
         -lmiddlewarelayer \
         -luicommon \
         -lservice
 
-INCLUDEPATH += $$PWD/../MiddlewareLayer \
-               $$PWD/../MiddlewareLayer/Common \
-               $$PWD/../MiddlewareLayer/Wifi \
+INCLUDEPATH += $$PWD/../../MiddlewareLayer \
+               $$PWD/../../MiddlewareLayer/Common \
+               $$PWD/../../MiddlewareLayer/Wifi \
                $$PWD/../UICommon \
-               $$PWD/../Services/include
-               $$PWD/../Services/include/Common
-               $$PWD/../Services/include/Wifi
-               $$PWD/../Services/include/SystemSetting
+               $$PWD/../../Services/include
+               $$PWD/../../Services/include/Common
+               $$PWD/../../Services/include/Wifi
+               $$PWD/../../Services/include/SystemSetting
 
 SOURCES += \
         AppWindow/AppMain.cpp \
