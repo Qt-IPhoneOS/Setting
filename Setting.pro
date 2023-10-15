@@ -2,13 +2,13 @@ QT += quick virtualkeyboard
 CONFIG += c++20
 
 LIBS += -L$$PWD/../Executable \
-        -linterfacelayer \
+        -lmiddlewarelayer \
         -luicommon \
         -lservice
 
-INCLUDEPATH += $$PWD/../InterfaceLayer \
-               $$PWD/../InterfaceLayer/Common \
-               $$PWD/../InterfaceLayer/Wifi \
+INCLUDEPATH += $$PWD/../MiddlewareLayer \
+               $$PWD/../MiddlewareLayer/Common \
+               $$PWD/../MiddlewareLayer/Wifi \
                $$PWD/../UICommon \
                $$PWD/../ServiceWrapper/include
                $$PWD/../ServiceWrapper/include/Common
