@@ -4,7 +4,7 @@
 #include <QAbstractListModel>
 #include <QVariant>
 #include <QVector>
-#include <WifiInterface.h>
+#include <WifiAdapter.h>
 
 class WifiDeviceModel : public QAbstractListModel {
     Q_OBJECT

@@ -1,5 +1,5 @@
-#ifndef APPMAIN_H
-#define APPMAIN_H
+#ifndef SETTINGCONTROLLER_H
+#define SETTINGCONTROLLER_H
 
 #include <QObject>
 #include <QQuickView>
@@ -8,25 +8,24 @@
 #include "../AppWindow/AppWindow.h"
 #include "Wifi/WifiController.h"
 
-class AppMain : public QObject
+class SettingController : public QObject
 {
     Q_OBJECT
 
 public:
-    static AppMain *instance();
+    explicit SettingController(QObject *parent = nullptr);
+    ~SettingController();
+
     bool createWindow();
-    void initAppMain();
+    void initSettingController();
     void registerContextProperty();
     void registerEnumType();
 
 private:
-    explicit AppMain(QObject *parent = nullptr);
-    ~AppMain();
-
-private:
-    std::shared_ptr<AppWindow> mAppWindow;
-    std::shared_ptr<WifiController> mWifiController;
     QQuickView* mView {nullptr};
+    AppWindow* mAppWindow {nullptr};
+    WifiController* mWifiController {nullptr};
+    std::shared_ptr<WifiDeviceModel> mWifiDeviceModel;
 };
 
-#endif // APPMAIN_H
+#endif // SETTINGCONTROLLER_H

@@ -1,24 +1,20 @@
-#include "AppMain.h"
+#include "SettingController.h"
 #include <QDebug>
 
-AppMain::AppMain(QObject *parent) : QObject(parent)
+SettingController::SettingController(QObject *parent) : QObject(parent)
 {
-    mAppWindow = std::shared_ptr<AppWindow>(new AppWindow());
-    mWifiController = std::shared_ptr<WifiController>(new WifiController());
+    mAppWindow = new AppWindow();
+    mWifiDeviceModel = std::make_shared<WifiDeviceModel>(new WifiDeviceModel());
+    mWifiController = new WifiController(mWifiDeviceModel);
 }
 
-AppMain::~AppMain()
+SettingController::~SettingController()
 {
-
+    delete mAppWindow;
+    delete mWifiController;
 }
 
-AppMain *AppMain::instance()
-{
-    static AppMain* ins = new AppMain();
-    return ins;
-}
-
-bool AppMain::createWindow()
+bool SettingController::createWindow()
 {
     if (nullptr == mView) {
         mView = new QQuickView();
@@ -34,7 +30,7 @@ bool AppMain::createWindow()
     return true;
 }
 
-void AppMain::initAppMain()
+void SettingController::initSettingController()
 {
     if (createWindow())
     {
@@ -42,14 +38,14 @@ void AppMain::initAppMain()
     }
 }
 
-void AppMain::registerContextProperty()
+void SettingController::registerContextProperty()
 {
-    mView->rootContext()->setContextProperty("myAppMain", this);
-    mView->rootContext()->setContextProperty("wifiController", mWifiController.get());
-    mView->rootContext()->setContextProperty("wifiDeviceModel", mWifiController->getWifiDeviceModel());
+    mView->rootContext()->setContextProperty("settingController", this);
+    mView->rootContext()->setContextProperty("wifiController", mWifiController);
+    mView->rootContext()->setContextProperty("wifiDeviceModel", mWifiDeviceModel.get());
 }
 
-void AppMain::registerEnumType()
+void SettingController::registerEnumType()
 {
 //    qmlRegisterType<Enums>("Enums", 1, 0, "Enums");
 }

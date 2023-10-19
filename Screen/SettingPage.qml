@@ -24,7 +24,7 @@ Rectangle {
     Rectangle {
         id: connectedArea
         width: 500
-        height: 110
+        height: wifiController.wifiOn ? 110 : 55
         radius: 15
         y: 100
         anchors.horizontalCenter: parent.horizontalCenter
@@ -36,11 +36,14 @@ Rectangle {
             SwitchItem {
                 id: wifiSwitch
                 width: parent.width
-                height: parent.height / 2
+                height: wifiController.wifiOn ? parent.height / 2 : parent.height
                 textStr: "Wi-Fi"
-                switchOn: false
-                underlineVisible: true
-                marginLeft: 50
+                switchOn: wifiController.wifiOn
+                underlineVisible: wifiController.wifiOn
+
+                onSwitchClicked: {
+                    wifiController.setEnableWifi(!switchOn)
+                }
             }
 
             DeviceItem {
@@ -50,6 +53,7 @@ Rectangle {
                 marginLeft: 50
                 textStr: "Anh Ha"
                 isConnected: true
+                visible: wifiController.wifiOn
             }
         }
     }
@@ -60,6 +64,7 @@ Rectangle {
         sizeOfModel: wifiDeviceModel.count
         anchors.horizontalCenter: parent.horizontalCenter
         headerText: "MY NETWORKS"
+        visible: wifiController.wifiOn
 
         listContainer: ListView {
             model: wifiDeviceModel
@@ -90,6 +95,7 @@ Rectangle {
         id: discoveryList
         sizeOfModel: 2
         headerText: "OTHER NETWORKS"
+        visible: wifiController.wifiOn
 
         anchors {
             horizontalCenter: parent.horizontalCenter

@@ -8,6 +8,8 @@ Rectangle {
     color: "transparent"
     property bool switchOn: false
 
+    signal switchClicked()
+
     Rectangle {
         width: parent.width
         height: parent.height
@@ -15,15 +17,13 @@ Rectangle {
         anchors.verticalCenter: parent.verticalCenter
         anchors.left: parent.left
         clip: true
-        color: switchOn ? "#4CD964" : "#E5E5E5"
+        color: switchContainer.switchOn ? "#4CD964" : "#E5E5E5"
 
         MouseArea {
             id: switchArea
             width: parent.width
             height: parent.height
-            onClicked: {
-                switchOn = !switchOn
-            }
+            onClicked: switchContainer.switchClicked()
         }
 
         Rectangle {
@@ -33,7 +33,7 @@ Rectangle {
             color: "white"
             border.color: "#E5E5E5"
             anchors.verticalCenter: parent.verticalCenter
-            x: switchOn ? parent.width - width - 2 : 2
+            x: switchContainer.switchOn ? parent.width - width - 2 : 2
             Behavior on x {
                 NumberAnimation { duration: 200 }
             }

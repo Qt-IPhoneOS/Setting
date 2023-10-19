@@ -3,34 +3,41 @@
 
 #include <QObject>
 #include <memory>
-#include <WifiInterface.h>
+#include <WifiAdapter.h>
 #include <Model/WifiDeviceModel.h>
 
 class WifiController : public QObject {
     Q_OBJECT
+    Q_PROPERTY(bool wifiOn READ wifiOn WRITE setWifiOn NOTIFY wifiOnChanged)
 
 public:
-    WifiController();
+    WifiController(const std::shared_ptr<WifiDeviceModel>&);
     ~WifiController();
     void init();
 
-    WifiDeviceModel* getWifiDeviceModel()
-    {
-        return mWifiDeviceModel;
-    }
+    Q_INVOKABLE void setEnableWifi(const bool& enable);
+
+    bool wifiOn() const;
+    void setWifiOn(bool newWifiOn);
+
+signals:
+    void wifiOnChanged();
 
 private:
     void updatePairedDeviceList(std::vector<WifiDevice*>);
     void updateConnectedDevice(WifiDevice *);
+    void updateEnableWifi(bool);
 
-    signal::Connect mUpdatePairedListSignal;
-    signal::Connect mUpdateConnectedDeviceSignal;
+    signal::Connect mUpdatePairedList;
+    signal::Connect mUpdateConnectedDevice;
+    signal::Connect mUpdateEnableWifi;
 
 private:
-    WifiInterface* mWifiIF {nullptr};
-    WifiDeviceModel* mWifiDeviceModel {nullptr};
+    WifiAdapter* mWifiAdapter {nullptr};
     WifiDevice* mConnectedDevice {nullptr};
+    std::shared_ptr<WifiDeviceModel> mWifiDeviceModel;
     QVector<AbstractInterface*> mInterfaces;
+    bool m_wifiOn {false};
 };
 
 #endif // WIFICONTROLLER
