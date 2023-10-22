@@ -9,6 +9,8 @@ Item {
     property bool underlineVisible: false
     property string textStr: ""
 
+    signal switchClicked()
+
     Rectangle {
         id: rect
         width: parent.width - marginLeft
@@ -31,13 +33,15 @@ Item {
             id: switchBtn
             width: 70
             height: 40
-            switchOn: root.switchOn
+            switchOn: switchItem.switchOn
 
             anchors {
                 verticalCenter: parent.verticalCenter
                 right: parent.right
                 rightMargin: 25
             }
+
+            onSwitchClicked: switchItem.switchClicked()
         }
     }
 
