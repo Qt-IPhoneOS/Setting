@@ -11,6 +11,8 @@ Item {
     property int sizeOfModel
     property string headerText: ""
 
+    property bool isVisibleLoadingAnimation: false
+
     Text {
         id: text
         x: 15
@@ -28,7 +30,7 @@ Item {
             left: text.right
             leftMargin: 10
         }
-        visible: true
+        visible: container.isVisibleLoadingAnimation
     }
 
     Rectangle {

@@ -10,8 +10,8 @@
         <file>Screen/Common/Items/DeviceItem.qml</file>
         <file>Screen/Common/Components/ListItemsContainer.qml</file>
         <file>Screen/SettingMain.qml</file>
-        <file>Screen/Common/Components/ElementComponent.qml</file>
         <file>Screen/Common/Components/CMouseArea.qml</file>
+        <file>Screen/Common/Items/SettingItem.qml</file>
     </qresource>
     <qresource prefix="/QML_RESOUCES"/>
 </RCC>

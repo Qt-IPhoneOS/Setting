@@ -10,6 +10,6 @@ Item {
     Loader {
         id: homePage
         anchors.fill: parent
-        source: "qrc:/Screen/SettingMain.qml"
+        source: "qrc:/Screen/SettingPage.qml"
     }
 }
