@@ -65,6 +65,7 @@ Rectangle {
         anchors.horizontalCenter: parent.horizontalCenter
         headerText: "MY NETWORKS"
         visible: wifiController.wifiOn
+        isVisibleLoadingAnimation: true
 
         listContainer: ListView {
             model: wifiDeviceModel
@@ -96,6 +97,7 @@ Rectangle {
         sizeOfModel: 2
         headerText: "OTHER NETWORKS"
         visible: wifiController.wifiOn
+        isVisibleLoadingAnimation: true
 
         anchors {
             horizontalCenter: parent.horizontalCenter

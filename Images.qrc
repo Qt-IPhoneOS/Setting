@@ -11,5 +11,13 @@
         <file>Assets/circle-i.png</file>
         <file>Assets/lock.png</file>
         <file>Assets/wifi-strong.png</file>
+        <file>Assets/avartarUser.jpg</file>
+        <file>Assets/airplane.png</file>
+        <file>Assets/bluetooth.png</file>
+        <file>Assets/cellular.png</file>
+        <file>Assets/personalhotspot.png</file>
+        <file>Assets/wifi.png</file>
+        <file>Assets/arrow_right.png</file>
+        <file>Assets/search_image.png</file>
     </qresource>
 </RCC>
