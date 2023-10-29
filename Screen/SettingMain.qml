@@ -1,6 +1,6 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
-import Qt5Compat.GraphicalEffects
+//import Qt5Compat.GraphicalEffects
 import QtQuick.Layouts 1.15
 import './Common/Components'
 import './Common/Items'
@@ -98,15 +98,15 @@ Rectangle {
                         Layout.preferredHeight: 65
                         source: "qrc:/Assets/avartarUser.jpg"
                         layer.enabled: true
-                        layer.effect: OpacityMask {
-                            id: mask
-                            maskSource: Rectangle {
-                                width: avatarUser.width
-                                height: avatarUser.height
-                                anchors.centerIn: parent
-                                radius: avatarUser.width/2
-                            }
-                        }
+//                        layer.effect: OpacityMask {
+//                            id: mask
+//                            maskSource: Rectangle {
+//                                width: avatarUser.width
+//                                height: avatarUser.height
+//                                anchors.centerIn: parent
+//                                radius: avatarUser.width/2
+//                            }
+//                        }
                     }
                     Item {
                         Layout.preferredWidth: 360

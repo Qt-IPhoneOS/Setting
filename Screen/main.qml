@@ -7,9 +7,18 @@ Item {
     width: 600; height: 900
     visible: true
 
+    Connections {
+        target: ScreenNavigator
+
+        function onChangeScreen(screenId, screenStr) {
+            console.log("change screen to ", screenId)
+            settingPage.source = screenStr
+        }
+    }
+
     Loader {
-        id: homePage
+        id: settingPage
         anchors.fill: parent
-        source: "qrc:/Screen/SettingPage.qml"
+        source: "qrc:/Screen/SettingMain.qml"
     }
 }

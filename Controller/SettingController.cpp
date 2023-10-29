@@ -6,6 +6,7 @@ SettingController::SettingController(QObject *parent) : QObject(parent)
     mAppWindow = new AppWindow();
     mWifiDeviceModel = std::make_shared<WifiDeviceModel>(new WifiDeviceModel());
     mWifiController = new WifiController(mWifiDeviceModel);
+    mScreens = ScreenNavigator::instance();
 }
 
 SettingController::~SettingController()
@@ -27,6 +28,10 @@ bool SettingController::createWindow()
     registerEnumType();
 
     mAppWindow->createWindow(mView);
+
+    mScreens->showNextScreen(Enums::WifiMainScreen);
+    mScreens->showPreviousScreen();
+
     return true;
 }
 
@@ -42,7 +47,9 @@ void SettingController::registerContextProperty()
 {
     mView->rootContext()->setContextProperty("settingController", this);
     mView->rootContext()->setContextProperty("wifiController", mWifiController);
+    mView->rootContext()->setContextProperty("ScreenNavigator", mScreens);
     mView->rootContext()->setContextProperty("wifiDeviceModel", mWifiDeviceModel.get());
+
 }
 
 void SettingController::registerEnumType()

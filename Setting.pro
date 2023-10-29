@@ -19,6 +19,7 @@ SOURCES += \
         AppWindow/AppWindow.cpp \
         Controller/SettingController.cpp \
         Controller/Wifi/WifiController.cpp \
+        Controller/ScreenNavigator/ScreenNavigator.cpp \
         Model/WifiDeviceModel.cpp \
         main.cpp
 
@@ -31,8 +32,10 @@ resources.files = Screen/main.qml
 
 HEADERS += \
     AppWindow/AppWindow.h \
+    Controller/Enums.h \
     Controller/SettingController.h \
     Controller/Wifi/WifiController.h \
+    Controller/ScreenNavigator/ScreenNavigator.h \
     Model/WifiDeviceModel.h
 
 DISTFILES +=
