@@ -8,10 +8,9 @@ Item {
     visible: true
 
     Connections {
-        target: ScreenNavigator
+        target: screenNavigator
 
         function onChangeScreen(screenId, screenStr) {
-            console.log("change screen to ", screenId)
             settingPage.source = screenStr
         }
     }
@@ -19,6 +18,6 @@ Item {
     Loader {
         id: settingPage
         anchors.fill: parent
-        source: "qrc:/Screen/SettingMain.qml"
+        source: "qrc:/Screen/MainSetting.qml"
     }
 }

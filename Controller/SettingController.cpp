@@ -29,9 +29,6 @@ bool SettingController::createWindow()
 
     mAppWindow->createWindow(mView);
 
-    mScreens->showNextScreen(Enums::WifiMainScreen);
-    mScreens->showPreviousScreen();
-
     return true;
 }
 
@@ -47,12 +44,12 @@ void SettingController::registerContextProperty()
 {
     mView->rootContext()->setContextProperty("settingController", this);
     mView->rootContext()->setContextProperty("wifiController", mWifiController);
-    mView->rootContext()->setContextProperty("ScreenNavigator", mScreens);
+    mView->rootContext()->setContextProperty("screenNavigator", mScreens);
     mView->rootContext()->setContextProperty("wifiDeviceModel", mWifiDeviceModel.get());
 
 }
 
 void SettingController::registerEnumType()
 {
-//    qmlRegisterType<Enums>("Enums", 1, 0, "Enums");
+    qmlRegisterType<Enums>("Enums", 1, 0, "Enums");
 }

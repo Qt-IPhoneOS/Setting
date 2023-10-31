@@ -41,8 +41,8 @@ public:
 
     void insertChildrens(ScreenNode*, std::vector<ScreenNode*>);
 
-    void showNextScreen(const Enums::ScreenID&);
-    void showPreviousScreen();
+    Q_INVOKABLE void showNextScreen(const Enums::ScreenID&);
+    Q_INVOKABLE void showPreviousScreen();
 
 signals:
     void changeScreen(Enums::ScreenID screenId, QString screen);

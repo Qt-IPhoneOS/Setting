@@ -1,8 +1,9 @@
 #include "ScreenNavigator.h"
 #include <QDebug>
+#include <Feature/Log.h>
 
 ScreenNavigator::ScreenNavigator(QObject *parent) : QObject(parent), mCurrentScreenNode(nullptr),
-    mScreenID(Enums::MainScreen), mScreenStr("qrc:/Screen/SettingMain.qml")
+    mScreenID(Enums::MainScreen), mScreenStr("qrc:/Screen/MainSetting.qml")
 {
     /*
     * Init main screen (root node)
@@ -12,7 +13,7 @@ ScreenNavigator::ScreenNavigator(QObject *parent) : QObject(parent), mCurrentScr
 
     mCurrentScreenNode = mRoot;
 
-    auto wifiMain = new ScreenNode(std::make_pair(Enums::WifiMainScreen, "qrc:/Screen/SettingPage.qml"));
+    auto wifiMain = new ScreenNode(std::make_pair(Enums::WifiMainScreen, "qrc:/Screen/Wifi/WifiMainSetting.qml"));
     std::vector<ScreenNode*> mainChilds;
     mainChilds.push_back(wifiMain);
     insertChildrens(mCurrentScreenNode, mainChilds);
@@ -48,6 +49,7 @@ void ScreenNavigator::showNextScreen(const Enums::ScreenID& screen)
             mCurrentScreenNode = child;
             mScreenID = screenNode.first;
             mScreenStr = screenNode.second;
+            LogEnum("Show Screen:", mScreenID);
             emit changeScreen(mScreenID, mScreenStr);
         }
     }
@@ -63,6 +65,7 @@ void ScreenNavigator::showPreviousScreen()
     mScreenID = mCurrentScreenNode->mScreens.first;
     mScreenStr = mCurrentScreenNode->mScreens.second;
 
+    LogEnum("Show Screen:", mScreenID);
     emit changeScreen(mScreenID, mScreenStr);
 }
 

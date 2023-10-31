@@ -26,6 +26,8 @@ Rectangle {
 
     property bool isEnableSeparateLine: true
 
+    signal clicked()
+
     RowLayout {
         anchors.fill: parent
         spacing: 18
@@ -96,5 +98,10 @@ Rectangle {
 
     }
 
+    MouseArea {
+        id: mouseArea
+        anchors.fill: parent
 
+        onClicked: rootItem.clicked()
+    }
 }

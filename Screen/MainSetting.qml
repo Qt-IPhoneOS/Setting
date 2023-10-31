@@ -2,6 +2,7 @@ import QtQuick 2.15
 import QtQuick.Controls 2.15
 //import Qt5Compat.GraphicalEffects
 import QtQuick.Layouts 1.15
+import Enums 1.0
 import './Common/Components'
 import './Common/Items'
 
@@ -147,16 +148,17 @@ Rectangle {
         ListModel {
             id: myModel
             ListElement { beginIconSrc: "qrc:/Assets/wifi.png";       titleText: "Airplane Model";    brgColor: "#FF9400";  labelText: "";  switchBtn: true }
-            ListElement { beginIconSrc: "qrc:/Assets/bluetooth.png";  titleText: "Wi-Fi";             brgColor: "#007BFF";  labelText: "SH3 P303";  switchBtn: false }
-            ListElement { beginIconSrc: "qrc:/Assets/wifi.png";       titleText: "Bluetooth";         brgColor: "#0370F9";  labelText: "Off";  switchBtn: false }
+            ListElement { beginIconSrc: "qrc:/Assets/wifi.png";       titleText: "Wi-Fi";             brgColor: "#007BFF";  labelText: "SH3 P303";  switchBtn: false }
+            ListElement { beginIconSrc: "qrc:/Assets/bluetooth.png";  titleText: "Bluetooth";         brgColor: "#0370F9";  labelText: "Off";  switchBtn: false }
             ListElement { beginIconSrc: "qrc:/Assets/bluetooth.png";  titleText: "Cellular";          brgColor: "#34C55F";  labelText: "On";  switchBtn: false }
             ListElement { beginIconSrc: "qrc:/Assets/bluetooth.png";  titleText: "Personal Hotspot";  brgColor: "#007BFF";  labelText: "Off";  switchBtn: false }
-
         }
 
         ListItemsContainer {
             id: itemsContainer1
             sizeOfModel: myModel.count
+
+            property int wifiType: 1
 
             anchors {
                 horizontalCenter: parent.horizontalCenter
@@ -174,6 +176,13 @@ Rectangle {
                     backgrBeginIconColor: model.brgColor
                     labelItemText: model.labelText
                     isHasSwitchButton: model.switchBtn
+
+                    onClicked: {
+                        if (model.index === itemsContainer1.wifiType)
+                        {
+                            screenNavigator.showNextScreen(Enums.WifiMainScreen)
+                        }
+                    }
                 }
             }
         }

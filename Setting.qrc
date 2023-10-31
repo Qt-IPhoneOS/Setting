@@ -1,7 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>Screen/main.qml</file>
-        <file>Screen/SettingPage.qml</file>
         <file>Screen/Common/Components/SwitchButton.qml</file>
         <file>Screen/Common/Components/Icon.qml</file>
         <file>Screen/Common/Components/LoadingAnimation.qml</file>
@@ -9,9 +8,10 @@
         <file>Screen/Common/Items/SwitchItem.qml</file>
         <file>Screen/Common/Items/DeviceItem.qml</file>
         <file>Screen/Common/Components/ListItemsContainer.qml</file>
-        <file>Screen/SettingMain.qml</file>
+        <file>Screen/MainSetting.qml</file>
         <file>Screen/Common/Components/CMouseArea.qml</file>
         <file>Screen/Common/Items/SettingItem.qml</file>
+        <file>Screen/Wifi/WifiMainSetting.qml</file>
     </qresource>
     <qresource prefix="/QML_RESOUCES"/>
 </RCC>

@@ -43,6 +43,7 @@ void WifiController::updatePairedDeviceList(std::vector<WifiDevice*> devices)
 void WifiController::updateConnectedDevice(WifiDevice *device)
 {
 //    mConnectedDevice = device;
+    Q_UNUSED(device);
 }
 
 void WifiController::updateEnableWifi(bool enable)

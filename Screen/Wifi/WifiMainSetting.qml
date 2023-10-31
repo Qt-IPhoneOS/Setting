@@ -1,7 +1,7 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
-import './Common/Components'
-import './Common/Items'
+import '../Common/Components'
+import '../Common/Items'
 
 Rectangle {
     id: root
