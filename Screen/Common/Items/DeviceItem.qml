@@ -1,15 +1,13 @@
 import QtQuick 2.15
+import QtQuick.Layouts 1.15
 import QtQuick.Controls 2.15
 import '../Components'
 
-Item {
+Rectangle {
     id: deviceItem
 
-    /**
-      This property defines the type of a device
-      true: Wifi
-      false: Bluetooth
-    */
+    color: "transparent"
+
     property bool isWifi: true
     property bool isConnected: false
     property bool isConnecting: false
@@ -32,18 +30,24 @@ Item {
         visible: isConnecting
     }
 
-    Rectangle {
+    RowLayout {
         id: area
         width: parent.width - marginLeft
         height: parent.height - (underlineVisible ? 1 : 0)
-        x: marginLeft
-        color: "transparent"
+        spacing: 18
+
+        anchors {
+            left: parent.left
+            leftMargin: marginLeft
+        }
 
         Text {
             id: text
             color: "#000"
+            Layout.fillHeight: true
+            Layout.fillWidth: true
             text: textStr
-            anchors.verticalCenter: parent.verticalCenter
+            verticalAlignment: Text.AlignVCenter
             font {
                 pixelSize: 20
                 weight: Font.Light
@@ -52,44 +56,31 @@ Item {
 
         Icon {
             id: circle
-            width: 25
-            height: 25
+            Layout.preferredHeight: 25
+            Layout.preferredWidth: 25
             visible: isWifi
             source: "qrc:/Assets/circle-i.png"
-
-            anchors {
-                verticalCenter: parent.verticalCenter
-                right: parent.right
-                rightMargin: 25
-            }
         }
 
         Icon {
             id: wifi
-            width: 45
-            height: 45
+            Layout.preferredHeight: 45
+            Layout.preferredWidth: 45
             visible: isWifi
             source: "qrc:/Assets/wifi-strong.png"
-
-            anchors {
-                verticalCenter: parent.verticalCenter
-                right: circle.left
-                rightMargin: 7
-            }
         }
 
         Icon {
             id: lock
-            width: 20
-            height: 20
+            Layout.preferredHeight: 20
+            Layout.preferredWidth: 20
             visible: isWifi
             source: "qrc:/Assets/lock.png"
+        }
 
-            anchors {
-                verticalCenter: parent.verticalCenter
-                right: wifi.left
-                rightMargin: 7
-            }
+        Item {
+            Layout.preferredHeight: 5
+            Layout.preferredWidth: 5
         }
     }
 
