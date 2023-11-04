@@ -1,21 +1,19 @@
-#include "SettingController.h"
+#include "SettingEngine.h"
 #include <QDebug>
 
-SettingController::SettingController(QObject *parent) : QObject(parent)
+SettingEngine::SettingEngine(QObject *parent) : QObject(parent)
 {
-    mAppWindow = new AppWindow();
     mWifiDeviceModel = std::make_shared<WifiDeviceModel>(new WifiDeviceModel());
     mWifiController = new WifiController(mWifiDeviceModel);
     mScreens = ScreenNavigator::instance();
 }
 
-SettingController::~SettingController()
+SettingEngine::~SettingEngine()
 {
-    delete mAppWindow;
     delete mWifiController;
 }
 
-bool SettingController::createWindow()
+bool SettingEngine::createWindow()
 {
     if (nullptr == mView) {
         mView = new QQuickView();
@@ -27,29 +25,33 @@ bool SettingController::createWindow()
     registerContextProperty();
     registerEnumType();
 
-    mAppWindow->createWindow(mView);
+    mView->setWidth(700);
+    mView->setHeight(1100);
+    mView->setSource(QUrl("qrc:/Setting/Screen/main.qml"));
+    mView->show();
 
     return true;
 }
 
-void SettingController::initSettingController()
+void SettingEngine::init()
 {
+
     if (createWindow())
     {
         mWifiController->init();
     }
 }
 
-void SettingController::registerContextProperty()
+void SettingEngine::registerContextProperty()
 {
-    mView->rootContext()->setContextProperty("settingController", this);
+    mView->rootContext()->setContextProperty("SettingEngine", this);
     mView->rootContext()->setContextProperty("wifiController", mWifiController);
     mView->rootContext()->setContextProperty("screenNavigator", mScreens);
     mView->rootContext()->setContextProperty("wifiDeviceModel", mWifiDeviceModel.get());
 
 }
 
-void SettingController::registerEnumType()
+void SettingEngine::registerEnumType()
 {
     qmlRegisterType<Enums>("Enums", 1, 0, "Enums");
 }

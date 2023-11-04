@@ -1,9 +1,9 @@
 import QtQuick 2.15
 
-Rectangle {
+Item {
     id: backButton
     x: 8
-    width: 26 + previousText.width
+    width: 26 + previousText.width + 8
     height: 26
 
     property alias previousText: previousText

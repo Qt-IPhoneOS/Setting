@@ -1,33 +1,31 @@
-#ifndef SETTINGCONTROLLER_H
-#define SETTINGCONTROLLER_H
+#ifndef SETTINGENGINE_H
+#define SETTINGENGINE_H
 
 #include <QObject>
 #include <QQuickView>
 #include <QQmlContext>
 #include <memory>
-#include "../AppWindow/AppWindow.h"
 #include "Wifi/WifiController.h"
 #include "ScreenNavigator/ScreenNavigator.h"
 
-class SettingController : public QObject
+class SettingEngine : public QObject
 {
     Q_OBJECT
 
 public:
-    explicit SettingController(QObject *parent = nullptr);
-    ~SettingController();
+    explicit SettingEngine(QObject *parent = nullptr);
+    ~SettingEngine();
 
     bool createWindow();
-    void initSettingController();
+    void init();
     void registerContextProperty();
     void registerEnumType();
 
 private:
     QQuickView* mView {nullptr};
-    AppWindow* mAppWindow {nullptr};
     WifiController* mWifiController {nullptr};
     ScreenNavigator* mScreens;
     std::shared_ptr<WifiDeviceModel> mWifiDeviceModel;
 };
 
-#endif // SETTINGCONTROLLER_H
+#endif // SETTINGENGINE_H

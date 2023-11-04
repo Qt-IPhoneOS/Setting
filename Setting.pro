@@ -16,8 +16,7 @@ INCLUDEPATH += $$PWD/../../MiddlewareLayer \
                $$PWD/../../Services/include/SystemSetting
 
 SOURCES += \
-        AppWindow/AppWindow.cpp \
-        Controller/SettingController.cpp \
+        Controller/SettingEngine.cpp \
         Controller/Wifi/WifiController.cpp \
         Controller/ScreenNavigator/ScreenNavigator.cpp \
         Model/WifiDeviceModel.cpp \
@@ -31,9 +30,8 @@ RESOURCES += resources \
 resources.files = Screen/main.qml
 
 HEADERS += \
-    AppWindow/AppWindow.h \
     Controller/Enums.h \
-    Controller/SettingController.h \
+    Controller/SettingEngine.h \
     Controller/Wifi/WifiController.h \
     Controller/ScreenNavigator/ScreenNavigator.h \
     Model/WifiDeviceModel.h

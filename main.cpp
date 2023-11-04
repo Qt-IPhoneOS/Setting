@@ -1,6 +1,6 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
-#include "Controller/SettingController.h"
+#include "Controller/SettingEngine.h"
 
 
 int main(int argc, char *argv[])
@@ -8,8 +8,8 @@ int main(int argc, char *argv[])
     qputenv("QT_IM_MODULE", QByteArray("qtvirtualkeyboard"));
 
     QGuiApplication app(argc, argv);
-    SettingController *controller = new SettingController();
-    controller->initSettingController();
+    SettingEngine *engine = new SettingEngine();
+    engine->init();
 
     return app.exec();
 }
