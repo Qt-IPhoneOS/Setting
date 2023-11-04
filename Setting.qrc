@@ -12,6 +12,8 @@
         <file>Screen/Common/Components/CMouseArea.qml</file>
         <file>Screen/Common/Items/SettingItem.qml</file>
         <file>Screen/Wifi/WifiMainSetting.qml</file>
+        <file>Screen/Common/Components/BackButton.qml</file>
+        <file>Screen/Common/Components/HeaderSetting.qml</file>
     </qresource>
     <qresource prefix="/QML_RESOUCES"/>
 </RCC>

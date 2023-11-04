@@ -9,16 +9,12 @@ Rectangle {
     color: "#f0f2f5"
     property bool switchOn: false
 
-    Text {
-        id: header
-        text: "Wi-Fi"
-        y: 30
+    HeaderSetting {
         width: parent.width
-        horizontalAlignment: Text.AlignHCenter
-        font {
-            pixelSize: 20
-            weight: Font.Bold
-        }
+        backBtnText: "Setting"
+        headerText: "Wi-Fi"
+
+        onBack: screenNavigator.showPreviousScreen()
     }
 
     Rectangle {
