@@ -17,7 +17,7 @@ Rectangle {
         width: parent.width
         height: parent.height
         contentWidth: parent.width
-        contentHeight: itemsContainer1.height
+        contentHeight: networkService.height
 
         Text {
             id: settingTitle
@@ -145,17 +145,8 @@ Rectangle {
             }
         }
 
-        ListModel {
-            id: myModel
-            ListElement { beginIconSrc: "qrc:/Assets/wifi.png";       titleText: "Airplane Model";    brgColor: "#FF9400";  labelText: "";  switchBtn: true }
-            ListElement { beginIconSrc: "qrc:/Assets/wifi.png";       titleText: "Wi-Fi";             brgColor: "#007BFF";  labelText: "SH3 P303";  switchBtn: false }
-            ListElement { beginIconSrc: "qrc:/Assets/bluetooth.png";  titleText: "Bluetooth";         brgColor: "#0370F9";  labelText: "Off";  switchBtn: false }
-            ListElement { beginIconSrc: "qrc:/Assets/bluetooth.png";  titleText: "Cellular";          brgColor: "#34C55F";  labelText: "On";  switchBtn: false }
-            ListElement { beginIconSrc: "qrc:/Assets/bluetooth.png";  titleText: "Personal Hotspot";  brgColor: "#007BFF";  labelText: "Off";  switchBtn: false }
-        }
-
         ListItemsContainer {
-            id: itemsContainer1
+            id: networkService
             sizeOfModel: myModel.count
 
             property int wifiType: 1
@@ -169,8 +160,8 @@ Rectangle {
                 anchors.fill: parent
                 spacing: 0
                 model: myModel
+                interactive: false
                 delegate: SettingItem {
-                    isHasIconBeginItem: true
                     beginIconSource: model.beginIconSrc
                     titleItemText: model.titleText
                     backgrBeginIconColor: model.brgColor
@@ -178,13 +169,22 @@ Rectangle {
                     isHasSwitchButton: model.switchBtn
 
                     onClicked: {
-                        if (model.index === itemsContainer1.wifiType)
+                        if (model.index === networkService.wifiType)
                         {
                             screenNavigator.showNextScreen(Enums.WifiMainScreen)
                         }
                     }
                 }
             }
+        }
+
+        ListModel {
+            id: myModel
+            ListElement { beginIconSrc: "qrc:/Assets/wifi.png";       titleText: "Airplane Model";    brgColor: "#FF9400";  labelText: "";  switchBtn: true }
+            ListElement { beginIconSrc: "qrc:/Assets/wifi.png";       titleText: "Wi-Fi";             brgColor: "#007BFF";  labelText: "SH3 P303";  switchBtn: false }
+            ListElement { beginIconSrc: "qrc:/Assets/bluetooth.png";  titleText: "Bluetooth";         brgColor: "#0370F9";  labelText: "Off";  switchBtn: false }
+            ListElement { beginIconSrc: "qrc:/Assets/bluetooth.png";  titleText: "Cellular";          brgColor: "#34C55F";  labelText: "On";  switchBtn: false }
+            ListElement { beginIconSrc: "qrc:/Assets/bluetooth.png";  titleText: "Personal Hotspot";  brgColor: "#007BFF";  labelText: "Off";  switchBtn: false }
         }
     }
 }

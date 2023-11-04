@@ -11,9 +11,6 @@ Rectangle {
 
     anchors.horizontalCenter: parent.horizontalCenter
 
-    // The property to set either visibility of beginning icon or not
-    property bool isHasIconBeginItem: false
-
     property string beginIconSource: ""
 
     property string titleItemText: ""
@@ -42,7 +39,7 @@ Rectangle {
             Layout.preferredHeight: 30
             Layout.preferredWidth: 30
             radius: 5
-            visible: rootItem.isHasIconBeginItem
+            visible: rootItem.beginIconSource !== ""
             color: rootItem.backgrBeginIconColor
             Image {
                 id: iconImage
@@ -61,6 +58,7 @@ Rectangle {
             text: rootItem.titleItemText
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignLeft
+            font.weight: Font.Light
         }
 
         Text {
@@ -71,6 +69,7 @@ Rectangle {
             text: rootItem.labelItemText
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignRight
+            font.weight: Font.Light
         }
 
         SwitchButton {
