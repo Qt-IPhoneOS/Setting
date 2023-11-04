@@ -8,46 +8,53 @@ Rectangle {
 
     width: 500
     height: 55
-
     anchors.horizontalCenter: parent.horizontalCenter
+    color: "transparent"
 
     property string beginIconSource: ""
-
     property string titleItemText: ""
-
     property string labelItemText: ""
-
     property string backgrBeginIconColor: ""
-
     property bool isHasSwitchButton: false
-
     property bool isEnableSeparateLine: true
+    property bool switchOn: false
+    property bool underlineVisible: false
+    property int marginLeft: 50
 
     signal clicked()
+    signal switchBtn()
 
-    RowLayout {
-        anchors.fill: parent
-        spacing: 18
-
-        Item {
-            Layout.preferredHeight: 5
-            Layout.preferredWidth: 5
+    Rectangle {
+        id: iconBeginItem
+        width: 30
+        height: 30
+        radius: 5
+        visible: rootItem.beginIconSource !== ""
+        color: rootItem.backgrBeginIconColor
+        anchors {
+            left: rootItem.left
+            leftMargin: (marginLeft - width) / 2
+            verticalCenter: rootItem.verticalCenter
         }
 
-        Rectangle {
-            id: iconBeginItem
-            Layout.preferredHeight: 30
-            Layout.preferredWidth: 30
-            radius: 5
-            visible: rootItem.beginIconSource !== ""
-            color: rootItem.backgrBeginIconColor
-            Image {
-                id: iconImage
-                width: 20
-                height: 20
-                source: rootItem.beginIconSource
-                anchors.centerIn: parent
-            }
+        Image {
+            id: iconImage
+            width: 20
+            height: 20
+            source: rootItem.beginIconSource
+            anchors.centerIn: parent
+        }
+    }
+
+    RowLayout {
+        id: row
+        width: parent.width - marginLeft
+        height: parent.height - (underlineVisible ? 1 : 0)
+        spacing: 18
+
+        anchors {
+            left: parent.left
+            leftMargin: marginLeft
         }
 
         Text {
@@ -58,11 +65,14 @@ Rectangle {
             text: rootItem.titleItemText
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignLeft
-            font.weight: Font.Light
+            font {
+                pixelSize: 20
+                weight: Font.Light
+            }
         }
 
         Text {
-            id: labelItemText
+            id: label
             Layout.fillHeight: true
             Layout.fillWidth: true
             visible: rootItem.labelItemText != ""
@@ -75,11 +85,10 @@ Rectangle {
         SwitchButton {
             id: switchButton
             visible: isHasSwitchButton
-            Layout.preferredHeight: 40
+            Layout.preferredHeight: 36
             Layout.preferredWidth: 70
-            onSwitchClicked: {
-                switchButton.switchOn = !switchButton.switchOn
-            }
+            switchOn: rootItem.switchOn
+            onSwitchClicked: switchBtn()
         }
 
         Icon {
@@ -94,12 +103,19 @@ Rectangle {
             Layout.preferredHeight: 5
             Layout.preferredWidth: 5
         }
+    }
 
+    Underline {
+        marginValue: marginLeft
+        visible: underlineVisible
+
+        anchors.top: row.bottom
     }
 
     MouseArea {
         id: mouseArea
         anchors.fill: parent
+        enabled: !isHasSwitchButton
 
         onClicked: rootItem.clicked()
     }

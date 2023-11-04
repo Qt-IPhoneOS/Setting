@@ -79,6 +79,7 @@ Rectangle {
                 topMargin: 10
             }
             color: "white"
+            radius: 15
 
             Item {
                 height: 100
@@ -148,6 +149,7 @@ Rectangle {
         ListItemsContainer {
             id: networkService
             sizeOfModel: myModel.count
+            width: 500
 
             property int wifiType: 1
 
@@ -167,6 +169,8 @@ Rectangle {
                     backgrBeginIconColor: model.brgColor
                     labelItemText: model.labelText
                     isHasSwitchButton: model.switchBtn
+                    marginLeft: 80
+                    underlineVisible: model.index < myModel.count - 1
 
                     onClicked: {
                         if (model.index === networkService.wifiType)

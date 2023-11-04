@@ -29,15 +29,16 @@ Rectangle {
             width: parent.width
             height: parent.height
 
-            SwitchItem {
+            SettingItem {
                 id: wifiSwitch
                 width: parent.width
                 height: wifiController.wifiOn ? parent.height / 2 : parent.height
-                textStr: "Wi-Fi"
+                isHasSwitchButton: true
+                titleItemText: "Wi-Fi"
                 switchOn: wifiController.wifiOn
-                underlineVisible: wifiController.wifiOn
+                underlineVisible: true
 
-                onSwitchClicked: {
+                onSwitchBtn: {
                     wifiController.setEnableWifi(!switchOn)
                 }
             }
@@ -67,23 +68,11 @@ Rectangle {
             model: wifiDeviceModel
             anchors.fill: parent
             interactive: false
-            delegate: Rectangle {
+            delegate: DeviceItem {
                 width: parent.width
                 height: 55
-                color: "transparent"
-                DeviceItem {
-                    anchors.fill: parent
-                    underlineVisible: model.index !== wifiDeviceModel.count - 1
-                    marginLeft: 50
-                    textStr: model.name
-                }
-
-                MouseArea {
-                    anchors.fill: parent
-                    onClicked: {
-                        console.log(model.index)
-                    }
-                }
+                underlineVisible: model.index !== wifiDeviceModel.count - 1
+                textStr: model.name
             }
         }
     }

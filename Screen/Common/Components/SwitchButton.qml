@@ -4,7 +4,7 @@ import QtQuick.Controls 2.15
 Rectangle {
     id: switchContainer
     width: 70
-    height: 40
+    height: 36
     color: "transparent"
     property bool switchOn: false
 
@@ -19,16 +19,9 @@ Rectangle {
         clip: true
         color: switchContainer.switchOn ? "#4CD964" : "#E5E5E5"
 
-        MouseArea {
-            id: switchArea
-            width: parent.width
-            height: parent.height
-            onClicked: switchContainer.switchClicked()
-        }
-
         Rectangle {
-            width: 38
-            height: 38
+            width: 34
+            height: 34
             radius: width / 2
             color: "white"
             border.color: "#E5E5E5"
@@ -37,6 +30,13 @@ Rectangle {
             Behavior on x {
                 NumberAnimation { duration: 200 }
             }
+        }
+
+        MouseArea {
+            id: switchArea
+            width: parent.width
+            height: parent.height
+            onClicked: switchContainer.switchClicked()
         }
     }
 }
