@@ -86,7 +86,7 @@ Rectangle {
             id: switchButton
             visible: isHasSwitchButton
             Layout.preferredHeight: 36
-            Layout.preferredWidth: 70
+            Layout.preferredWidth: 66
             switchOn: rootItem.switchOn
             onSwitchClicked: switchBtn()
         }

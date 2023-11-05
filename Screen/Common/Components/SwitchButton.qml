@@ -3,7 +3,7 @@ import QtQuick.Controls 2.15
 
 Rectangle {
     id: switchContainer
-    width: 70
+    width: 66
     height: 36
     color: "transparent"
     property bool switchOn: false

@@ -16,6 +16,7 @@ public:
     void init();
 
     Q_INVOKABLE void setEnableWifi(const bool& enable);
+    Q_INVOKABLE void connectDevice(const QString& addr);
 
     bool wifiOn() const;
     void setWifiOn(bool newWifiOn);
@@ -26,7 +27,6 @@ signals:
 private:
     void updatePairedDeviceList(std::vector<WifiDevice*>);
     void updateConnectedDevice(WifiDevice *);
-    void updateEnableWifi(bool);
 
     signal::Connect mUpdatePairedList;
     signal::Connect mUpdateConnectedDevice;

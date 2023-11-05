@@ -7,7 +7,10 @@ WifiController::WifiController(const std::shared_ptr<WifiDeviceModel>& model) : 
 
     mUpdatePairedList = mWifiAdapter->onPairedDeviceChanged.connect(std::bind(&WifiController::updatePairedDeviceList, this, std::placeholders::_1));
     mUpdateConnectedDevice = mWifiAdapter->onConnectedDeviceChanged.connect(std::bind(&WifiController::updateConnectedDevice, this, std::placeholders::_1));
-    mUpdateEnableWifi = mWifiAdapter->onWifiEnableChanged.connect(std::bind(&WifiController::updateEnableWifi, this, std::placeholders::_1));
+
+    mUpdateEnableWifi = mWifiAdapter->onWifiEnableChanged.connect([this](bool enable) {
+        setWifiOn(enable);
+    });
 }
 
 WifiController::~WifiController()
@@ -46,17 +49,22 @@ void WifiController::updateConnectedDevice(WifiDevice *device)
     Q_UNUSED(device);
 }
 
-void WifiController::updateEnableWifi(bool enable)
-{
-    setWifiOn(enable);
-}
-
 void WifiController::setEnableWifi(const bool& enable)
 {
     if (mWifiAdapter == nullptr)
         return;
 
     mWifiAdapter->setEnableWifi(enable);
+}
+
+void WifiController::connectDevice(const QString &addr)
+{
+    qWarning() << addr;
+
+    if (mWifiAdapter == nullptr)
+        return;
+
+    mWifiAdapter->connectDevice(addr.toStdString());
 }
 
 bool WifiController::wifiOn() const

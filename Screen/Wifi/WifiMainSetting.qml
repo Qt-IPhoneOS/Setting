@@ -75,7 +75,7 @@ Rectangle {
                 textStr: model.name
 
                 onDeviceClicked: {
-                    console.log(model.name)
+                    wifiController.connectDevice(model.addr)
                 }
             }
         }
