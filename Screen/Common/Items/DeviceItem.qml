@@ -15,6 +15,8 @@ Rectangle {
     property bool underlineVisible: false
     property string textStr: ""
 
+    signal deviceClicked()
+
     Icon {
         x: 15
         width: 20
@@ -55,11 +57,11 @@ Rectangle {
         }
 
         Icon {
-            id: circle
-            Layout.preferredHeight: 25
-            Layout.preferredWidth: 25
+            id: lock
+            Layout.preferredHeight: 20
+            Layout.preferredWidth: 20
             visible: isWifi
-            source: "qrc:/Assets/circle-i.png"
+            source: "qrc:/Assets/lock.png"
         }
 
         Icon {
@@ -71,11 +73,12 @@ Rectangle {
         }
 
         Icon {
-            id: lock
-            Layout.preferredHeight: 20
-            Layout.preferredWidth: 20
+            id: circle
+            Layout.preferredHeight: 25
+            Layout.preferredWidth: 25
             visible: isWifi
-            source: "qrc:/Assets/lock.png"
+            source: "qrc:/Assets/circle-i.png"
+            z: 10
         }
 
         Item {
@@ -89,5 +92,13 @@ Rectangle {
         visible: underlineVisible
 
         anchors.top: area.bottom
+    }
+
+    MouseArea {
+        id: mouseArea
+        anchors.fill: parent
+        z: 1
+
+        onClicked: deviceClicked()
     }
 }

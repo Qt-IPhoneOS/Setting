@@ -5,7 +5,6 @@
         <file>Screen/Common/Components/Icon.qml</file>
         <file>Screen/Common/Components/LoadingAnimation.qml</file>
         <file>Screen/Common/Components/Underline.qml</file>
-        <file>Screen/Common/Items/SwitchItem.qml</file>
         <file>Screen/Common/Items/DeviceItem.qml</file>
         <file>Screen/Common/Components/ListItemsContainer.qml</file>
         <file>Screen/MainSetting.qml</file>

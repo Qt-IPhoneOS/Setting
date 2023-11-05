@@ -73,6 +73,10 @@ Rectangle {
                 height: 55
                 underlineVisible: model.index !== wifiDeviceModel.count - 1
                 textStr: model.name
+
+                onDeviceClicked: {
+                    console.log(model.name)
+                }
             }
         }
     }
