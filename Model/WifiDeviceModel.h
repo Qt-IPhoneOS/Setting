@@ -31,19 +31,11 @@ private:
         DeviceType,
         Address,
         PrivateAddress,
-        IP,
-        DNS,
-        Proxy,
         Password,
-        LowDataMode,
-        LimitIP,
-        IPAddress,
-        Subnet,
-        Router,
         State
     };
 
-    QVector<WifiDevice*> mWifiDeviceList;
+    QVector<WifiDevice*> mWifiDevices;
     int mCount;
 };
 

@@ -7,13 +7,13 @@ WifiDeviceModel::WifiDeviceModel(QObject* parent) : QAbstractListModel(parent)
 
 WifiDeviceModel::~WifiDeviceModel()
 {
-    mWifiDeviceList.clear();
+    mWifiDevices.clear();
 }
 
 int WifiDeviceModel::rowCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent);
-    return mWifiDeviceList.size();
+    return mWifiDevices.size();
 }
 
 QVariant WifiDeviceModel::data(const QModelIndex &index, int role) const
@@ -21,55 +21,31 @@ QVariant WifiDeviceModel::data(const QModelIndex &index, int role) const
     if (!index.isValid())
         return QVariant{};
 
-    if (index.row() >= mWifiDeviceList.size() || index.row() < 0)
+    if (index.row() >= mWifiDevices.size() || index.row() < 0)
         return QVariant{};
 
     QVariant result;
     switch(role) {
     case Name:
-        result = QString::fromStdString(mWifiDeviceList.at(index.row())->getPairedDeviceInfo().mName);
+        result = QString::fromStdString(mWifiDevices.at(index.row())->getPairedDeviceInfo().mName);
         break;
     case SpeedMode:
-        result = (int)mWifiDeviceList.at(index.row())->getSpeedMode();
+        result = (int)mWifiDevices.at(index.row())->getSpeedMode();
         break;
     case DeviceType:
-        result = (int)mWifiDeviceList.at(index.row())->getDeviceType();
+        result = (int)mWifiDevices.at(index.row())->getDeviceType();
         break;
     case Address:
-        result = QString::fromStdString(mWifiDeviceList.at(index.row())->getPairedDeviceInfo().mAddress);
+        result = QString::fromStdString(mWifiDevices.at(index.row())->getPairedDeviceInfo().mAddress);
         break;
     case PrivateAddress:
-        result = mWifiDeviceList.at(index.row())->getPairedDeviceInfo().mPrivateAddress;
-        break;
-    case IP:
-        result = (int)mWifiDeviceList.at(index.row())->getPairedDeviceInfo().mIPConfig;
-        break;
-    case DNS:
-        result = (int)mWifiDeviceList.at(index.row())->getPairedDeviceInfo().mDNSConfig;
-        break;
-    case Proxy:
-        result = (int)mWifiDeviceList.at(index.row())->getPairedDeviceInfo().mProxyConfig;
+        result = mWifiDevices.at(index.row())->getPairedDeviceInfo().mPrivateAddress;
         break;
     case Password:
-        result = QString::fromStdString(mWifiDeviceList.at(index.row())->getPassword());
-        break;
-    case LowDataMode:
-        result = (int)mWifiDeviceList.at(index.row())->getLowDataMode();
-        break;
-    case LimitIP:
-        result = (int)mWifiDeviceList.at(index.row())->getLimitIP();
-        break;
-    case IPAddress:
-        result = QString::fromStdString(mWifiDeviceList.at(index.row())->getIPConfigInfo().mIPAddress);
-        break;
-    case Subnet:
-        result = QString::fromStdString(mWifiDeviceList.at(index.row())->getIPConfigInfo().mSubnetMask);
-        break;
-    case Router:
-        result = QString::fromStdString(mWifiDeviceList.at(index.row())->getIPConfigInfo().mRouter);
+        result = QString::fromStdString(mWifiDevices.at(index.row())->getPassword());
         break;
     case State:
-        result = (int)mWifiDeviceList.at(index.row())->getState();
+        result = (int)mWifiDevices.at(index.row())->getState();
         break;
     default:
         break;
@@ -86,15 +62,7 @@ QHash<int, QByteArray> WifiDeviceModel::roleNames() const
     roles[DeviceType] = "type";
     roles[Address] = "addr";
     roles[PrivateAddress] = "privateAddr";
-    roles[IP] = "ip";
-    roles[DNS] = "dns";
-    roles[Proxy] = "proxy";
     roles[Password] = "password";
-    roles[LowDataMode] = "lowData";
-    roles[LimitIP] = "limitIP";
-    roles[IPAddress] = "ipAddress";
-    roles[Subnet] = "subnet";
-    roles[Router] = "router";
     roles[State] = "state";
     return roles;
 }
@@ -102,17 +70,17 @@ QHash<int, QByteArray> WifiDeviceModel::roleNames() const
 void WifiDeviceModel::appendItem(QVector<WifiDevice*>& deviceList)
 {
     if (deviceList.size() > 0)
-        mWifiDeviceList.clear();
+        mWifiDevices.clear();
 
     beginResetModel();
-    mWifiDeviceList = deviceList;
+    mWifiDevices = deviceList;
     setCount(deviceList.size());
     endResetModel();
 }
 
 int WifiDeviceModel::count() const
 {
-    return mWifiDeviceList.size();
+    return mWifiDevices.size();
 }
 
 void WifiDeviceModel::setCount(int newCount)
