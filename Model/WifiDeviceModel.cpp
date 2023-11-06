@@ -27,7 +27,7 @@ QVariant WifiDeviceModel::data(const QModelIndex &index, int role) const
     QVariant result;
     switch(role) {
     case Name:
-        result = QString::fromStdString(mWifiDeviceList.at(index.row())->getName());
+        result = QString::fromStdString(mWifiDeviceList.at(index.row())->getPairedDeviceInfo().mName);
         break;
     case SpeedMode:
         result = (int)mWifiDeviceList.at(index.row())->getSpeedMode();
@@ -36,19 +36,19 @@ QVariant WifiDeviceModel::data(const QModelIndex &index, int role) const
         result = (int)mWifiDeviceList.at(index.row())->getDeviceType();
         break;
     case Address:
-        result = QString::fromStdString(mWifiDeviceList.at(index.row())->getAddress());
+        result = QString::fromStdString(mWifiDeviceList.at(index.row())->getPairedDeviceInfo().mAddress);
         break;
     case PrivateAddress:
-        result = mWifiDeviceList.at(index.row())->getPrivateAddress();
+        result = mWifiDeviceList.at(index.row())->getPairedDeviceInfo().mPrivateAddress;
         break;
     case IP:
-        result = (int)mWifiDeviceList.at(index.row())->getIP();
+        result = (int)mWifiDeviceList.at(index.row())->getPairedDeviceInfo().mIPConfig;
         break;
     case DNS:
-        result = (int)mWifiDeviceList.at(index.row())->getDNS();
+        result = (int)mWifiDeviceList.at(index.row())->getPairedDeviceInfo().mDNSConfig;
         break;
     case Proxy:
-        result = (int)mWifiDeviceList.at(index.row())->getProxy();
+        result = (int)mWifiDeviceList.at(index.row())->getPairedDeviceInfo().mProxyConfig;
         break;
     case Password:
         result = QString::fromStdString(mWifiDeviceList.at(index.row())->getPassword());
@@ -60,13 +60,13 @@ QVariant WifiDeviceModel::data(const QModelIndex &index, int role) const
         result = (int)mWifiDeviceList.at(index.row())->getLimitIP();
         break;
     case IPAddress:
-        result = QString::fromStdString(mWifiDeviceList.at(index.row())->getIPAddress());
+        result = QString::fromStdString(mWifiDeviceList.at(index.row())->getIPConfigInfo().mIPAddress);
         break;
     case Subnet:
-        result = QString::fromStdString(mWifiDeviceList.at(index.row())->getSubnet());
+        result = QString::fromStdString(mWifiDeviceList.at(index.row())->getIPConfigInfo().mSubnetMask);
         break;
     case Router:
-        result = QString::fromStdString(mWifiDeviceList.at(index.row())->getRouter());
+        result = QString::fromStdString(mWifiDeviceList.at(index.row())->getIPConfigInfo().mRouter);
         break;
     case State:
         result = (int)mWifiDeviceList.at(index.row())->getState();
