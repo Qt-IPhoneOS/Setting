@@ -6,7 +6,9 @@ WifiController::WifiController(const std::shared_ptr<WifiDeviceModel>& model) : 
     mInterfaces.push_back(mWifiAdapter);
 
     mUpdatePairedList = mWifiAdapter->onPairedDeviceChanged.connect(std::bind(&WifiController::updatePairedDeviceList, this, std::placeholders::_1));
-    mUpdateConnectedDevice = mWifiAdapter->onConnectedDeviceChanged.connect(std::bind(&WifiController::updateConnectedDevice, this, std::placeholders::_1));
+    mUpdateConnectedDevice = mWifiAdapter->onConnectedDeviceChanged.connect([this](WifiDevice* device) {
+        setConnectedName(QString::fromStdString(device->getPairedDeviceInfo().mName));
+    });
 
     mUpdateEnableWifi = mWifiAdapter->onWifiEnableChanged.connect([this](bool enable) {
         setWifiOn(enable);
@@ -43,12 +45,6 @@ void WifiController::updatePairedDeviceList(std::vector<WifiDevice*> devices)
     mWifiDeviceModel->appendItem(qVector);
 }
 
-void WifiController::updateConnectedDevice(WifiDevice *device)
-{
-//    mConnectedDevice = device;
-    Q_UNUSED(device);
-}
-
 void WifiController::setEnableWifi(const bool& enable)
 {
     if (mWifiAdapter == nullptr)
@@ -78,4 +74,17 @@ void WifiController::setWifiOn(bool newWifiOn)
         return;
     m_wifiOn = newWifiOn;
     emit wifiOnChanged();
+}
+
+QString WifiController::connectedName() const
+{
+    return m_connectedName;
+}
+
+void WifiController::setConnectedName(const QString &newConnectedName)
+{
+    if (m_connectedName == newConnectedName)
+        return;
+    m_connectedName = newConnectedName;
+    emit connectedNameChanged();
 }

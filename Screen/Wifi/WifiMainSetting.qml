@@ -48,7 +48,7 @@ Rectangle {
                 width: parent.width
                 height: parent.height / 2
                 marginLeft: 50
-                textStr: "Anh Ha"
+                textStr: wifiController.connectedName
                 isConnected: true
                 visible: wifiController.wifiOn
             }

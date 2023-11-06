@@ -9,6 +9,7 @@
 class WifiController : public QObject {
     Q_OBJECT
     Q_PROPERTY(bool wifiOn READ wifiOn WRITE setWifiOn NOTIFY wifiOnChanged)
+    Q_PROPERTY(QString connectedName READ connectedName WRITE setConnectedName NOTIFY connectedNameChanged)
 
 public:
     WifiController(const std::shared_ptr<WifiDeviceModel>&);
@@ -21,12 +22,16 @@ public:
     bool wifiOn() const;
     void setWifiOn(bool newWifiOn);
 
+    QString connectedName() const;
+    void setConnectedName(const QString &newConnectedName);
+
 signals:
     void wifiOnChanged();
 
+    void connectedNameChanged();
+
 private:
     void updatePairedDeviceList(std::vector<WifiDevice*>);
-    void updateConnectedDevice(WifiDevice *);
 
     signal::Connect mUpdatePairedList;
     signal::Connect mUpdateConnectedDevice;
@@ -38,6 +43,7 @@ private:
     std::shared_ptr<WifiDeviceModel> mWifiDeviceModel;
     QVector<AbstractInterface*> mInterfaces;
     bool m_wifiOn {false};
+    QString m_connectedName;
 };
 
 #endif // WIFICONTROLLER
