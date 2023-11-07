@@ -27,25 +27,25 @@ QVariant WifiDeviceModel::data(const QModelIndex &index, int role) const
     QVariant result;
     switch(role) {
     case Name:
-        result = QString::fromStdString(mWifiDevices.at(index.row())->getPairedDeviceInfo().mName);
-        break;
-    case SpeedMode:
-        result = (int)mWifiDevices.at(index.row())->getSpeedMode();
-        break;
-    case DeviceType:
-        result = (int)mWifiDevices.at(index.row())->getDeviceType();
+        result = QString::fromStdString(mWifiDevices.at(index.row())->getDeviceInfo().mName);
         break;
     case Address:
-        result = QString::fromStdString(mWifiDevices.at(index.row())->getPairedDeviceInfo().mAddress);
+        result = QString::fromStdString(mWifiDevices.at(index.row())->getDeviceInfo().mAddress);
         break;
     case PrivateAddress:
-        result = mWifiDevices.at(index.row())->getPairedDeviceInfo().mPrivateAddress;
+        result = mWifiDevices.at(index.row())->getDeviceInfo().mPrivateAddress;
         break;
     case Password:
         result = QString::fromStdString(mWifiDevices.at(index.row())->getPassword());
         break;
+    case AutoConnect:
+        result = (int)mWifiDevices.at(index.row())->getAutoConnect();
+        break;
     case State:
         result = (int)mWifiDevices.at(index.row())->getState();
+        break;
+    case SpeedMode:
+        result = (int)mWifiDevices.at(index.row())->getSpeedMode();
         break;
     default:
         break;
@@ -59,10 +59,10 @@ QHash<int, QByteArray> WifiDeviceModel::roleNames() const
     QHash<int, QByteArray> roles;
     roles[Name] = "name";
     roles[SpeedMode] = "speedMode";
-    roles[DeviceType] = "type";
     roles[Address] = "addr";
     roles[PrivateAddress] = "privateAddr";
     roles[Password] = "password";
+    roles[AutoConnect] = "autoConnect";
     roles[State] = "state";
     return roles;
 }

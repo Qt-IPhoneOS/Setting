@@ -7,7 +7,7 @@ WifiController::WifiController(const std::shared_ptr<WifiDeviceModel>& model) : 
 
     mUpdatePairedList = mWifiAdapter->onPairedDeviceChanged.connect(std::bind(&WifiController::updatePairedDeviceList, this, std::placeholders::_1));
     mUpdateConnectedDevice = mWifiAdapter->onConnectedDeviceChanged.connect([this](WifiDevice* device) {
-        setConnectedName(QString::fromStdString(device->getPairedDeviceInfo().mName));
+        setConnectedName(QString::fromStdString(device->getDeviceInfo().mName));
     });
 
     mUpdateEnableWifi = mWifiAdapter->onWifiEnableChanged.connect([this](bool enable) {

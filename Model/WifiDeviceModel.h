@@ -27,11 +27,11 @@ signals:
 private:
     enum Role {
         Name,
-        SpeedMode,
-        DeviceType,
         Address,
         PrivateAddress,
         Password,
+        AutoConnect,
+        SpeedMode,
         State
     };
 
