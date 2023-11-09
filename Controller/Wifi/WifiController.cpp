@@ -13,6 +13,11 @@ WifiController::WifiController(const std::shared_ptr<WifiDeviceModel>& model) : 
     mUpdateEnableWifi = mWifiAdapter->onWifiEnableChanged.connect([this](bool enable) {
         setWifiOn(enable);
     });
+
+    mUpdateConnectDeviceState = mWifiAdapter->onDeviceStateChanged.connect([this](const std::string& addr, const WifiDevice::State& oldState, const WifiDevice::State& newState) {
+        qWarning() << "old state: " << (int)oldState;
+        qWarning() << "new state: " << (int)newState;
+    });
 }
 
 WifiController::~WifiController()
@@ -42,7 +47,7 @@ void WifiController::updatePairedDeviceList(std::vector<WifiDevice*> devices)
     for (const auto& item : devices) {
         qVector.append(item);
     }
-    mWifiDeviceModel->appendItem(qVector);
+    mWifiDeviceModel->appendDevices(qVector);
 }
 
 void WifiController::setEnableWifi(const bool& enable)

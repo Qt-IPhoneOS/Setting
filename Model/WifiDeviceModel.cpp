@@ -41,9 +41,6 @@ QVariant WifiDeviceModel::data(const QModelIndex &index, int role) const
     case AutoConnect:
         result = (int)mWifiDevices.at(index.row())->getAutoConnect();
         break;
-    case State:
-        result = (int)mWifiDevices.at(index.row())->getState();
-        break;
     case SpeedMode:
         result = (int)mWifiDevices.at(index.row())->getSpeedMode();
         break;
@@ -63,11 +60,10 @@ QHash<int, QByteArray> WifiDeviceModel::roleNames() const
     roles[PrivateAddress] = "privateAddr";
     roles[Password] = "password";
     roles[AutoConnect] = "autoConnect";
-    roles[State] = "state";
     return roles;
 }
 
-void WifiDeviceModel::appendItem(QVector<WifiDevice*>& deviceList)
+void WifiDeviceModel::appendDevices(QVector<WifiDevice*>& deviceList)
 {
     if (deviceList.size() > 0)
         mWifiDevices.clear();

@@ -36,6 +36,7 @@ private:
     signal::Connect mUpdatePairedList;
     signal::Connect mUpdateConnectedDevice;
     signal::Connect mUpdateEnableWifi;
+    signal::Connect mUpdateConnectDeviceState;
 
 private:
     WifiAdapter* mWifiAdapter {nullptr};

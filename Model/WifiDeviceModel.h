@@ -16,7 +16,7 @@ public:
     QVariant data(const QModelIndex &index, int role) const override;
     QHash<int, QByteArray> roleNames() const override;
 
-    void appendItem(QVector<WifiDevice*>& deviceList);
+    void appendDevices(QVector<WifiDevice*>& deviceList);
 
     int count() const;
     void setCount(int newCount);
@@ -31,8 +31,7 @@ private:
         PrivateAddress,
         Password,
         AutoConnect,
-        SpeedMode,
-        State
+        SpeedMode
     };
 
     QVector<WifiDevice*> mWifiDevices;
