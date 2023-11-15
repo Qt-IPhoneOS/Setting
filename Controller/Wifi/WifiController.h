@@ -27,13 +27,18 @@ public:
 
 signals:
     void wifiOnChanged();
-
     void connectedNameChanged();
+
+public slots:
+    void handleUpdatePairedDevices(std::vector<WifiDevice*>);
+    void handleUpdateDeviceState(const std::string&, const WifiDevice::State&, const WifiDevice::State&);
+    void handleUpdateConnectedDevice(WifiDevice*);
+    void handleUpdateEnableWifi(bool);
 
 private:
     void updatePairedDeviceList(std::vector<WifiDevice*>);
 
-    signal::Connect mUpdatePairedList;
+    signal::Connect mUpdatePairedDevices;
     signal::Connect mUpdateConnectedDevice;
     signal::Connect mUpdateEnableWifi;
     signal::Connect mUpdateConnectDeviceState;

@@ -5,18 +5,21 @@ WifiController::WifiController(const std::shared_ptr<WifiDeviceModel>& model) : 
 {
     mInterfaces.push_back(mWifiAdapter);
 
-    mUpdatePairedList = mWifiAdapter->onPairedDeviceChanged.connect(std::bind(&WifiController::updatePairedDeviceList, this, std::placeholders::_1));
+    mUpdatePairedDevices = mWifiAdapter->onPairedDeviceChanged.connect([this](std::vector<WifiDevice*> devices){
+        QMetaObject::invokeMethod(this, "handleUpdatePairedDevices", Qt::QueuedConnection, Q_ARG(std::vector<WifiDevice*>, devices));
+    }) ;
+
     mUpdateConnectedDevice = mWifiAdapter->onConnectedDeviceChanged.connect([this](WifiDevice* device) {
-        setConnectedName(QString::fromStdString(device->getDeviceInfo().mName));
+        QMetaObject::invokeMethod(this, "handleUpdateConnectedDevice", Qt::QueuedConnection, Q_ARG(WifiDevice*, device));
     });
 
     mUpdateEnableWifi = mWifiAdapter->onWifiEnableChanged.connect([this](bool enable) {
-        setWifiOn(enable);
+        QMetaObject::invokeMethod(this, "handleUpdateEnableWifi", Qt::QueuedConnection, Q_ARG(bool, enable));
     });
 
     mUpdateConnectDeviceState = mWifiAdapter->onDeviceStateChanged.connect([this](const std::string& addr, const WifiDevice::State& oldState, const WifiDevice::State& newState) {
-        qWarning() << "old state: " << (int)oldState;
-        qWarning() << "new state: " << (int)newState;
+        QMetaObject::invokeMethod(this, "handleUpdateDeviceState", Qt::QueuedConnection,
+                                  Q_ARG(const std::string&, addr), Q_ARG(const WifiDevice::State&, oldState), Q_ARG(const WifiDevice::State&, newState));
     });
 }
 
@@ -39,7 +42,24 @@ void WifiController::init()
     }
 }
 
-void WifiController::updatePairedDeviceList(std::vector<WifiDevice*> devices)
+void WifiController::handleUpdateConnectedDevice(WifiDevice* device)
+{
+    setConnectedName(QString::fromStdString(device->getDeviceInfo().mName));
+}
+
+void WifiController::handleUpdateEnableWifi(bool enable)
+{
+    setWifiOn(enable);
+}
+
+void WifiController::handleUpdateDeviceState(const std::string &addr, const WifiDevice::State &oldState, const WifiDevice::State &newState)
+{
+    qWarning() << addr.c_str();
+    qWarning() << (int)oldState;
+    qWarning() << (int)newState;
+}
+
+void WifiController::handleUpdatePairedDevices(std::vector<WifiDevice*> devices)
 {
     QVector<WifiDevice*> qVector;
     qVector.reserve(devices.size());
