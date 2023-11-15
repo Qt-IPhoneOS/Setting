@@ -36,7 +36,7 @@ Rectangle {
         id: area
         width: parent.width - marginLeft
         height: parent.height - (underlineVisible ? 1 : 0)
-        spacing: 18
+        spacing: 12
 
         anchors {
             left: parent.left

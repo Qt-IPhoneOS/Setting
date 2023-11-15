@@ -3,7 +3,7 @@
 
 #include <QObject>
 #include <unordered_map>
-#include "Controller/Enums.h"
+#include <Enums.h>
 
 class ScreenNavigator : public QObject
 {

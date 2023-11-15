@@ -1,6 +1,6 @@
 #include "ScreenNavigator.h"
 #include <QDebug>
-#include <Feature/Log.h>
+#include <Log.h>
 
 ScreenNavigator::ScreenNavigator(QObject *parent) : QObject(parent), mCurrentScreenNode(nullptr),
     mScreenID(Enums::MainScreen), mScreenStr("qrc:/Screen/MainSetting.qml")

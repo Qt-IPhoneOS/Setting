@@ -1,5 +1,6 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
+import Enums 1.0
 import '../Common/Components'
 import '../Common/Items'
 
@@ -36,7 +37,7 @@ Rectangle {
                 isHasSwitchButton: true
                 titleItemText: "Wi-Fi"
                 switchOn: wifiController.wifiOn
-                underlineVisible: true
+                underlineVisible: wifiController.wifiOn
 
                 onSwitchBtn: {
                     wifiController.setEnableWifi(!switchOn)
@@ -49,7 +50,8 @@ Rectangle {
                 height: parent.height / 2
                 marginLeft: 50
                 textStr: wifiController.connectedName
-                isConnected: true
+                isConnected: wifiController.connectedStatus === Enums.DeviceConnected
+                isConnecting: wifiController.connectedStatus === Enums.DeviceConnecting
                 visible: wifiController.wifiOn
             }
         }
@@ -62,14 +64,14 @@ Rectangle {
         anchors.horizontalCenter: parent.horizontalCenter
         headerText: "MY NETWORKS"
         visible: wifiController.wifiOn
-        isVisibleLoadingAnimation: true
 
         listContainer: ListView {
             model: wifiDeviceModel
-            anchors.fill: parent
+            width: 500
+            height: 55 * wifiDeviceModel.count
             interactive: false
             delegate: DeviceItem {
-                width: parent.width
+                width: 500
                 height: 55
                 underlineVisible: model.index !== wifiDeviceModel.count - 1
                 textStr: model.name

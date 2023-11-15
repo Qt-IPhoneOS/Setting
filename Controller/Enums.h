@@ -16,20 +16,27 @@ public:
         WifiMainScreen
     };
 
-    enum State {
-        UnknownState,
-        UnpairedState,
-        CheckingSSIDState,
-        CheckingSSIDFailState,
-        CheckingSSIDSuccessState,
-        PairedState,
-        WaitingAuthenState,
-        AuthenFailState,
-        AuthenSuccessState,
-        ConnectedState
+    enum WifiState {
+        Unknown,
+        Unpaired,
+        CheckingSSID,
+        CheckingSSIDFail,
+        CheckingSSIDSuccess,
+        Paired,
+        WaitingAuthen,
+        AuthenFail,
+        AuthenSuccess,
+        Connected
+    };
+
+    enum ConnectedState {
+        DeviceConnecting,
+        DeviceConnected
     };
 
     Q_ENUM(ScreenID)
+    Q_ENUM(WifiState)
+    Q_ENUM(ConnectedState)
 
 };
 

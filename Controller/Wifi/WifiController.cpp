@@ -19,7 +19,7 @@ WifiController::WifiController(const std::shared_ptr<WifiDeviceModel>& model) : 
 
     mUpdateConnectDeviceState = mWifiAdapter->onDeviceStateChanged.connect([this](const std::string& addr, const WifiDevice::State& oldState, const WifiDevice::State& newState) {
         QMetaObject::invokeMethod(this, "handleUpdateDeviceState", Qt::QueuedConnection,
-                                  Q_ARG(const std::string&, addr), Q_ARG(const WifiDevice::State&, oldState), Q_ARG(const WifiDevice::State&, newState));
+                                  Q_ARG(const std::string&, addr), Q_ARG(Enums::WifiState, static_cast<Enums::WifiState>(oldState)), Q_ARG(Enums::WifiState, static_cast<Enums::WifiState>(newState)));
     });
 }
 
@@ -32,7 +32,6 @@ WifiController::~WifiController()
     mInterfaces.clear();
 
     delete mWifiAdapter;
-    delete mConnectedDevice;
 }
 
 void WifiController::init()
@@ -45,6 +44,7 @@ void WifiController::init()
 void WifiController::handleUpdateConnectedDevice(WifiDevice* device)
 {
     setConnectedName(QString::fromStdString(device->getDeviceInfo().mName));
+    setConnectedStatus(Enums::DeviceConnected);
 }
 
 void WifiController::handleUpdateEnableWifi(bool enable)
@@ -52,11 +52,25 @@ void WifiController::handleUpdateEnableWifi(bool enable)
     setWifiOn(enable);
 }
 
-void WifiController::handleUpdateDeviceState(const std::string &addr, const WifiDevice::State &oldState, const WifiDevice::State &newState)
+void WifiController::handleUpdateDeviceState(const std::string &name, Enums::WifiState oldState, Enums::WifiState newState)
 {
-    qWarning() << addr.c_str();
-    qWarning() << (int)oldState;
-    qWarning() << (int)newState;
+    switch (newState) {
+    case Enums::WaitingAuthen:
+    case Enums::AuthenSuccess:
+        setConnectedName(QString::fromStdString(name));
+        setConnectedStatus(Enums::DeviceConnecting);
+        break;
+    case Enums::Unknown:
+    case Enums::AuthenFail:
+    case Enums::CheckingSSID:
+    case Enums::CheckingSSIDFail:
+    case Enums::CheckingSSIDSuccess:
+    case Enums::Paired:
+    case Enums::Connected:
+    case Enums::Unpaired:
+        break;
+    }
+
 }
 
 void WifiController::handleUpdatePairedDevices(std::vector<WifiDevice*> devices)
@@ -90,26 +104,39 @@ void WifiController::connectDevice(const QString &addr)
 
 bool WifiController::wifiOn() const
 {
-    return m_wifiOn;
+    return mWifiOn;
 }
 
 void WifiController::setWifiOn(bool newWifiOn)
 {
-    if (m_wifiOn == newWifiOn)
+    if (mWifiOn == newWifiOn)
         return;
-    m_wifiOn = newWifiOn;
+    mWifiOn = newWifiOn;
     emit wifiOnChanged();
 }
 
 QString WifiController::connectedName() const
 {
-    return m_connectedName;
+    return mConnectedName;
 }
 
 void WifiController::setConnectedName(const QString &newConnectedName)
 {
-    if (m_connectedName == newConnectedName)
+    if (mConnectedName == newConnectedName)
         return;
-    m_connectedName = newConnectedName;
+    mConnectedName = newConnectedName;
     emit connectedNameChanged();
+}
+
+Enums::ConnectedState WifiController::connectedStatus() const
+{
+    return mConnectedStatus;
+}
+
+void WifiController::setConnectedStatus(Enums::ConnectedState newConnectedStatus)
+{
+    if (mConnectedStatus == newConnectedStatus)
+        return;
+    mConnectedStatus = newConnectedStatus;
+    emit connectedStatusChanged();
 }
