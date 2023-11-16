@@ -113,4 +113,8 @@ Rectangle {
             }
         }
     }
+
+    Component.onCompleted: {
+        wifiController.startDiscovery()
+    }
 }

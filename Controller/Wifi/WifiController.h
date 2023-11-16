@@ -21,6 +21,7 @@ public:
 
     Q_INVOKABLE void setEnableWifi(const bool& enable);
     Q_INVOKABLE void connectDevice(const QString& addr);
+    Q_INVOKABLE void startDiscovery();
 
     bool wifiOn() const;
     void setWifiOn(bool newWifiOn);
@@ -48,10 +49,11 @@ private:
     signal::Connect mUpdateConnectedDevice;
     signal::Connect mUpdateEnableWifi;
     signal::Connect mUpdateConnectDeviceState;
+    signal::Connect mUpdateDiscoveryDevice;
 
 private:
-    WifiAdapter* mWifiAdapter {nullptr};
-    std::shared_ptr<WifiDeviceModel> mWifiDeviceModel;
+    WifiAdapter* mAdapter {nullptr};
+    std::shared_ptr<WifiDeviceModel> mDeviceModel;
     QVector<AbstractInterface*> mInterfaces;
     bool mWifiOn {false};
     QString mConnectedName {""};

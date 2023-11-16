@@ -1,23 +1,23 @@
 #include "WifiController.h"
 #include <QDebug>
 
-WifiController::WifiController(const std::shared_ptr<WifiDeviceModel>& model) : mWifiAdapter(WifiAdapter::instance()), mWifiDeviceModel(model)
+WifiController::WifiController(const std::shared_ptr<WifiDeviceModel>& model) : mAdapter(WifiAdapter::instance()), mDeviceModel(model)
 {
-    mInterfaces.push_back(mWifiAdapter);
+    mInterfaces.push_back(mAdapter);
 
-    mUpdatePairedDevices = mWifiAdapter->onPairedDeviceChanged.connect([this](std::vector<WifiDevice*> devices){
+    mUpdatePairedDevices = mAdapter->onPairedDeviceChanged.connect([this](std::vector<WifiDevice*> devices){
         QMetaObject::invokeMethod(this, "handleUpdatePairedDevices", Qt::QueuedConnection, Q_ARG(std::vector<WifiDevice*>, devices));
-    }) ;
+    });
 
-    mUpdateConnectedDevice = mWifiAdapter->onConnectedDeviceChanged.connect([this](WifiDevice* device) {
+    mUpdateConnectedDevice = mAdapter->onConnectedDeviceChanged.connect([this](WifiDevice* device) {
         QMetaObject::invokeMethod(this, "handleUpdateConnectedDevice", Qt::QueuedConnection, Q_ARG(WifiDevice*, device));
     });
 
-    mUpdateEnableWifi = mWifiAdapter->onWifiEnableChanged.connect([this](bool enable) {
+    mUpdateEnableWifi = mAdapter->onWifiEnableChanged.connect([this](bool enable) {
         QMetaObject::invokeMethod(this, "handleUpdateEnableWifi", Qt::QueuedConnection, Q_ARG(bool, enable));
     });
 
-    mUpdateConnectDeviceState = mWifiAdapter->onDeviceStateChanged.connect([this](const std::string& addr, const WifiDevice::State& oldState, const WifiDevice::State& newState) {
+    mUpdateConnectDeviceState = mAdapter->onDeviceStateChanged.connect([this](const std::string& addr, const WifiDevice::State& oldState, const WifiDevice::State& newState) {
         QMetaObject::invokeMethod(this, "handleUpdateDeviceState", Qt::QueuedConnection,
                                   Q_ARG(const std::string&, addr), Q_ARG(Enums::WifiState, static_cast<Enums::WifiState>(oldState)), Q_ARG(Enums::WifiState, static_cast<Enums::WifiState>(newState)));
     });
@@ -31,7 +31,7 @@ WifiController::~WifiController()
 
     mInterfaces.clear();
 
-    delete mWifiAdapter;
+    delete mAdapter;
 }
 
 void WifiController::init()
@@ -54,20 +54,22 @@ void WifiController::handleUpdateEnableWifi(bool enable)
 
 void WifiController::handleUpdateDeviceState(const std::string &name, Enums::WifiState oldState, Enums::WifiState newState)
 {
+    Q_UNUSED(oldState);
+
     switch (newState) {
     case Enums::WaitingAuthen:
     case Enums::AuthenSuccess:
         setConnectedName(QString::fromStdString(name));
         setConnectedStatus(Enums::DeviceConnecting);
         break;
+    case Enums::Paired:
     case Enums::Unknown:
+    case Enums::Unpaired:
+    case Enums::Connected:
     case Enums::AuthenFail:
     case Enums::CheckingSSID:
     case Enums::CheckingSSIDFail:
     case Enums::CheckingSSIDSuccess:
-    case Enums::Paired:
-    case Enums::Connected:
-    case Enums::Unpaired:
         break;
     }
 
@@ -81,25 +83,31 @@ void WifiController::handleUpdatePairedDevices(std::vector<WifiDevice*> devices)
     for (const auto& item : devices) {
         qVector.append(item);
     }
-    mWifiDeviceModel->appendDevices(qVector);
+    mDeviceModel->appendDevices(qVector);
 }
 
 void WifiController::setEnableWifi(const bool& enable)
 {
-    if (mWifiAdapter == nullptr)
+    if (mAdapter == nullptr)
         return;
 
-    mWifiAdapter->setEnableWifi(enable);
+    mAdapter->setEnableWifi(enable);
 }
 
 void WifiController::connectDevice(const QString &addr)
 {
-    qWarning() << addr;
-
-    if (mWifiAdapter == nullptr)
+    if (mAdapter == nullptr)
         return;
 
-    mWifiAdapter->connectDevice(addr.toStdString());
+    mAdapter->connectDevice(addr.toStdString());
+}
+
+void WifiController::startDiscovery()
+{
+    if (mAdapter == nullptr)
+        return;
+
+    mAdapter->startDiscovery();
 }
 
 bool WifiController::wifiOn() const
