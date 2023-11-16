@@ -4,11 +4,10 @@ import Enums 1.0
 import '../Common/Components'
 import '../Common/Items'
 
-Rectangle {
+RootScreen {
     id: root
-    width: 550; height: 1100
-    color: "#f0f2f5"
     property bool switchOn: false
+    contentHeight: pairedList.height + discoveryList.height
 
     HeaderSetting {
         width: parent.width

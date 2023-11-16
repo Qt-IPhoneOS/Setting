@@ -13,6 +13,7 @@
         <file>Screen/Wifi/WifiMainSetting.qml</file>
         <file>Screen/Common/Components/BackButton.qml</file>
         <file>Screen/Common/Components/HeaderSetting.qml</file>
+        <file>Screen/Common/Components/RootScreen.qml</file>
     </qresource>
     <qresource prefix="/QML_RESOUCES"/>
 </RCC>
