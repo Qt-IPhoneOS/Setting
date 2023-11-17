@@ -6,6 +6,7 @@ SettingEngine::SettingEngine(QObject *parent) : QObject(parent)
     mWifiDeviceModel = std::make_shared<WifiDeviceModel>(new WifiDeviceModel());
     mWifiController = new WifiController(mWifiDeviceModel);
     mScreens = ScreenNavigator::instance();
+    mSettingController = new SettingController();
 }
 
 SettingEngine::~SettingEngine()
@@ -48,6 +49,7 @@ void SettingEngine::registerContextProperty()
     mView->rootContext()->setContextProperty("wifiController", mWifiController);
     mView->rootContext()->setContextProperty("screenNavigator", mScreens);
     mView->rootContext()->setContextProperty("wifiDeviceModel", mWifiDeviceModel.get());
+    mSettingController->registerContext(mView);
 
 }
 

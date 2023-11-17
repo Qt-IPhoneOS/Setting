@@ -87,8 +87,8 @@ Rectangle {
             visible: isHasSwitchButton
             Layout.preferredHeight: 36
             Layout.preferredWidth: 66
-            switchOn: rootItem.switchOn
-            onSwitchClicked: switchBtn()
+            switchOn: AirplaneController.airplaneModelIns->isAirplaneModeActive
+            onSwitchClicked: AirplaneController.airplaneModelIns->setIsAirplaneModeActive(!AirplaneController.airplaneModelIns->isAirplaneModeActive)
         }
 
         Icon {

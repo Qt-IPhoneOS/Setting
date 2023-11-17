@@ -3,25 +3,28 @@
 
 #include <QObject>
 #include <memory>
+#include "../../Model/AirplaneMode/AirplaneModeModel.h"
 
-class AirplaneModeControler : public QObject {
+class AirplaneModeController : public QObject {
     Q_OBJECT
-    Q_PROPERTY(std::shared_ptr<AirplaneModel> airplaneModelIns READ airplaneModelIns WRITE setAirplaneModelIns)
+    Q_PROPERTY(std::shared_ptr<AirplaneModeModel> airplaneModelIns READ airplaneModelIns WRITE setAirplaneModelIns)
 
-    AirplaneModeControler(std::shared_ptr<AirplaneModel>&);
-    AirplaneModeControler();
 public:
-    ~AirplaneModeControler();
-    static AirplaneModeControler& getInstance();
+    ~AirplaneModeController();
+    static AirplaneModeController& getInstance();
 
-    std::shared_ptr<AirplaneModel> airplaneModelIns() const {
+    std::shared_ptr<AirplaneModeModel> airplaneModelIns() const {
         return mAirplaneModelObj;
     }
 
-    void setAirplaneModelIns(const std::shared_ptr<AirplaneModel>& newObject);
+    void setAirplaneModelIns(const std::shared_ptr<AirplaneModeModel>& newObject);
 
 private:
-    std::shared_ptr<AirplaneModel> mAirplaneModelObj;
+    std::shared_ptr<AirplaneModeModel> mAirplaneModelObj;
+
+private: //singleton
+    AirplaneModeController(std::shared_ptr<AirplaneModeModel>&);
+    AirplaneModeController();
 };
 
 

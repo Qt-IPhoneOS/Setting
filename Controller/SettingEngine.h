@@ -7,6 +7,7 @@
 #include <memory>
 #include "Wifi/WifiController.h"
 #include "ScreenNavigator/ScreenNavigator.h"
+#include "SettingController.h"
 
 class SettingEngine : public QObject
 {
@@ -25,6 +26,7 @@ private:
     QQuickView* mView {nullptr};
     WifiController* mWifiController {nullptr};
     ScreenNavigator* mScreens;
+    SettingController* mSettingController {nullptr};
     std::shared_ptr<WifiDeviceModel> mWifiDeviceModel;
 };
 
