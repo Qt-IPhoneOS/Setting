@@ -74,6 +74,14 @@ void WifiDeviceModel::appendDevices(QVector<WifiDevice*>& deviceList)
     endResetModel();
 }
 
+void WifiDeviceModel::appendItem(WifiDevice *device)
+{
+    beginResetModel();
+    mWifiDevices.append(device);
+    setCount(mWifiDevices.size());
+    endResetModel();
+}
+
 int WifiDeviceModel::count() const
 {
     return mWifiDevices.size();

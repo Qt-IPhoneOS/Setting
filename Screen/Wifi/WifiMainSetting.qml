@@ -14,13 +14,13 @@ RootScreen {
         backBtnText: "Setting"
         headerText: "Wi-Fi"
 
-        onBack: screenNavigator.showPreviousScreen()
+        onBack: ScreenNavigator.showPreviousScreen()
     }
 
     Rectangle {
         id: connectedArea
         width: 500
-        height: wifiController.wifiOn ? 110 : 55
+        height: WifiController.wifiOn ? 110 : 55
         radius: 15
         y: 100
         anchors.horizontalCenter: parent.horizontalCenter
@@ -32,14 +32,14 @@ RootScreen {
             SettingItem {
                 id: wifiSwitch
                 width: parent.width
-                height: wifiController.wifiOn ? parent.height / 2 : parent.height
+                height: WifiController.wifiOn ? parent.height / 2 : parent.height
                 isHasSwitchButton: true
                 titleItemText: "Wi-Fi"
-                switchOn: wifiController.wifiOn
-                underlineVisible: wifiController.wifiOn
+                switchOn: WifiController.wifiOn
+                underlineVisible: WifiController.wifiOn
 
                 onSwitchBtn: {
-                    wifiController.setEnableWifi(!switchOn)
+                    WifiController.setEnableWifi(!switchOn)
                 }
             }
 
@@ -48,10 +48,10 @@ RootScreen {
                 width: parent.width
                 height: parent.height / 2
                 marginLeft: 50
-                textStr: wifiController.connectedName
-                isConnected: wifiController.connectedStatus === Enums.DeviceConnected
-                isConnecting: wifiController.connectedStatus === Enums.DeviceConnecting
-                visible: wifiController.wifiOn
+                textStr: WifiController.connectedName
+                isConnected: WifiController.connectedStatus === Enums.DeviceConnected
+                isConnecting: WifiController.connectedStatus === Enums.DeviceConnecting
+                visible: WifiController.wifiOn
             }
         }
     }
@@ -59,24 +59,24 @@ RootScreen {
     ListItemsContainer {
         id: pairedList
         y: 260
-        sizeOfModel: wifiDeviceModel.count
+        sizeOfModel: WifiPairedModel.count
         anchors.horizontalCenter: parent.horizontalCenter
         headerText: "MY NETWORKS"
-        visible: wifiController.wifiOn
+        visible: WifiController.wifiOn
 
         listContainer: ListView {
-            model: wifiDeviceModel
+            model: WifiPairedModel
             width: 500
-            height: 55 * wifiDeviceModel.count
+            height: 55 * WifiPairedModel.count
             interactive: false
             delegate: DeviceItem {
                 width: 500
                 height: 55
-                underlineVisible: model.index !== wifiDeviceModel.count - 1
+                underlineVisible: model.index !== WifiPairedModel.count - 1
                 textStr: model.name
 
                 onDeviceClicked: {
-                    wifiController.connectDevice(model.addr)
+                    WifiController.connectDevice(model.addr)
                 }
             }
         }
@@ -84,9 +84,9 @@ RootScreen {
 
     ListItemsContainer {
         id: discoveryList
-        sizeOfModel: 2
+        sizeOfModel: WifiDiscoveryModel.count
         headerText: "OTHER NETWORKS"
-        visible: wifiController.wifiOn
+        visible: WifiController.wifiOn
         isVisibleLoadingAnimation: true
 
         anchors {
@@ -96,24 +96,20 @@ RootScreen {
         }
 
         listContainer: ListView {
-            model: 2
-            anchors.fill: parent
+            model: WifiDiscoveryModel
+            width: 500
+            height: 55 * WifiPairedModel.count
             interactive: false
-            delegate: Rectangle {
-                width: parent.width
+            delegate: DeviceItem {
+                width: 500
                 height: 55
-                color: "transparent"
-                DeviceItem {
-                    anchors.fill: parent
-                    underlineVisible: model.index !== 1
-                    marginLeft: 50
-                    textStr: "Anh Ha"
-                }
+                underlineVisible: model.index !== WifiDiscoveryModel.count - 1
+                textStr: model.name
             }
         }
     }
 
     Component.onCompleted: {
-        wifiController.startDiscovery()
+        WifiController.startDiscovery()
     }
 }

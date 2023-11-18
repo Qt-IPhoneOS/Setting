@@ -15,7 +15,7 @@ class WifiController : public QObject {
     Q_PROPERTY(Enums::ConnectedState connectedStatus READ connectedStatus WRITE setConnectedStatus NOTIFY connectedStatusChanged)
 
 public:
-    WifiController(const std::shared_ptr<WifiDeviceModel>&);
+    WifiController();
     ~WifiController();
     void init();
 
@@ -32,10 +32,19 @@ public:
     Enums::ConnectedState connectedStatus() const;
     void setConnectedStatus(Enums::ConnectedState newConnectedStatus);
 
+    inline std::shared_ptr<WifiDeviceModel> getPairedDeviceModel()
+    {
+        return mPairedDeviceModel;
+    }
+
+    inline std::shared_ptr<WifiDeviceModel> getDiscoveryDeviceModel()
+    {
+        return mDiscoveryModel;
+    }
+
 signals:
     void wifiOnChanged();
     void connectedNameChanged();
-
     void connectedStatusChanged();
 
 public slots:
@@ -43,6 +52,7 @@ public slots:
     void handleUpdateDeviceState(const std::string&, Enums::WifiState, Enums::WifiState);
     void handleUpdateConnectedDevice(WifiDevice*);
     void handleUpdateEnableWifi(bool);
+    void handleUpdateDiscoveryDevice(const WifiAdapter::DiscoveryAction&, const WifiDevice::DeviceInfo&);
 
 private:
     signal::Connect mUpdatePairedDevices;
@@ -53,7 +63,8 @@ private:
 
 private:
     WifiAdapter* mAdapter {nullptr};
-    std::shared_ptr<WifiDeviceModel> mDeviceModel;
+    std::shared_ptr<WifiDeviceModel> mPairedDeviceModel;
+    std::shared_ptr<WifiDeviceModel> mDiscoveryModel;
     QVector<AbstractInterface*> mInterfaces;
     bool mWifiOn {false};
     QString mConnectedName {""};

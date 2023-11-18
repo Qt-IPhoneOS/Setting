@@ -25,7 +25,6 @@ private:
     QQuickView* mView {nullptr};
     WifiController* mWifiController {nullptr};
     ScreenNavigator* mScreens;
-    std::shared_ptr<WifiDeviceModel> mWifiDeviceModel;
 };
 
 #endif // SETTINGENGINE_H

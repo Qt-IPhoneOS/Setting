@@ -8,7 +8,7 @@ Item {
     visible: true
 
     Connections {
-        target: screenNavigator
+        target: ScreenNavigator
 
         function onChangeScreen(screenId, screenStr) {
             settingPage.source = screenStr
