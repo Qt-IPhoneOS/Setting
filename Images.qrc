@@ -1,0 +1,24 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Assets/message.png</file>
+        <file>Assets/setting.png</file>
+        <file>Assets/phone.png</file>
+        <file>Assets/safari.png</file>
+        <file>Assets/face_time.png</file>
+        <file>Assets/gallery.png</file>
+        <file>Assets/loading-img.png</file>
+        <file>Assets/connected.png</file>
+        <file>Assets/circle-i.png</file>
+        <file>Assets/lock.png</file>
+        <file>Assets/wifi-strong.png</file>
+        <file>Assets/avartarUser.jpg</file>
+        <file>Assets/airplane.png</file>
+        <file>Assets/bluetooth.png</file>
+        <file>Assets/cellular.png</file>
+        <file>Assets/personalhotspot.png</file>
+        <file>Assets/wifi.png</file>
+        <file>Assets/arrow_right.png</file>
+        <file>Assets/search_image.png</file>
+        <file>Assets/back_button.png</file>
+    </qresource>
+</RCC>
