@@ -5,6 +5,7 @@ SettingEngine::SettingEngine(QObject *parent) : QObject(parent)
 {
     mWifiController = new WifiController();
     mScreens = ScreenNavigator::instance();
+    mSettingController = new SettingController();
 }
 
 SettingEngine::~SettingEngine()
@@ -37,6 +38,7 @@ void SettingEngine::init()
 
     if (createWindow())
     {
+//        mSettingController->initialized();
         mWifiController->init();
     }
 }
@@ -48,6 +50,8 @@ void SettingEngine::registerContextProperty()
     mView->rootContext()->setContextProperty("ScreenNavigator", mScreens);
     mView->rootContext()->setContextProperty("WifiPairedModel", mWifiController->getPairedDeviceModel().get());
     mView->rootContext()->setContextProperty("WifiDiscoveryModel", mWifiController->getDiscoveryDeviceModel().get());
+    mSettingController->registerContext(mView);
+
 
 }
 
