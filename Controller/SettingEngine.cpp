@@ -39,6 +39,7 @@ void SettingEngine::init()
 
     if (createWindow())
     {
+        mSettingController->initialized();
         mWifiController->init();
     }
 }

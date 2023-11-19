@@ -2,6 +2,7 @@
 #define AIRPLANEMODEMODEL_H
 
 #include <QObject>
+#include <QDebug>
 
 class AirplaneModeModel : public QObject {
     Q_OBJECT
@@ -11,7 +12,6 @@ public:
     explicit AirplaneModeModel(QObject* parent = nullptr);
     ~AirplaneModeModel();
 
-
 public slots:
     bool isAirplaneModeActive() const;
     void setIsAirplaneModeActive(const bool& newStatus);
@@ -20,7 +20,7 @@ signals:
     void onIsAirplaneModeChanged();
 
 private:
-    bool m_isAirplaneModeActive {false};
+    bool m_isAirplaneModeActive {true};
 
 };
 

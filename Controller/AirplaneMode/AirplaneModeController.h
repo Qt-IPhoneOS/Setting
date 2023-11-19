@@ -3,29 +3,37 @@
 
 #include <QObject>
 #include <memory>
-#include "../../Model/AirplaneMode/AirplaneModeModel.h"
+#include "Model/AirplaneMode/AirplaneModeModel.h"
+#include <Setting/SettingAdapter.h>
+#include <QDebug>
 
 class AirplaneModeController : public QObject {
     Q_OBJECT
-    Q_PROPERTY(std::shared_ptr<AirplaneModeModel> airplaneModelIns READ airplaneModelIns WRITE setAirplaneModelIns)
+    Q_PROPERTY(AirplaneModeModel* airplaneModelIns READ airplaneModelIns CONSTANT)
 
 public:
     ~AirplaneModeController();
     static AirplaneModeController& getInstance();
 
-    std::shared_ptr<AirplaneModeModel> airplaneModelIns() const {
-        return mAirplaneModelObj;
+    void init();
+
+public slots:
+    AirplaneModeModel* airplaneModelIns() const {
+        return mAirplaneModelObj.get();
     }
 
-    void setAirplaneModelIns(const std::shared_ptr<AirplaneModeModel>& newObject);
+    void setNewAirplaneMode(const bool& newStatus);
+
+public:
+    void onNotifyAirplaneModeChanged(const middlewarelayer::AirplaneMode&);
 
 private:
     std::shared_ptr<AirplaneModeModel> mAirplaneModelObj;
+    SettingAdapter& mSettingAdapter;
+    signal::Connect mUpdateAirplaneMode;
 
 private: //singleton
-    AirplaneModeController(std::shared_ptr<AirplaneModeModel>&);
-    AirplaneModeController();
+    AirplaneModeController(const std::shared_ptr<AirplaneModeModel>&);
 };
-
 
 #endif //AIRPLANEMODECONTROLLER_H
