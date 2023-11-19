@@ -62,7 +62,7 @@ RootScreen {
         sizeOfModel: WifiPairedModel.count
         anchors.horizontalCenter: parent.horizontalCenter
         headerText: "MY NETWORKS"
-        visible: WifiController.wifiOn
+        visible: WifiController.wifiOn && sizeOfModel > 0
 
         listContainer: ListView {
             model: WifiPairedModel
@@ -76,6 +76,9 @@ RootScreen {
                 textStr: model.name
 
                 onDeviceClicked: {
+                    if (model.name === WifiController.connectedName)
+                        return
+
                     WifiController.connectDevice(model.addr)
                 }
             }
@@ -105,6 +108,13 @@ RootScreen {
                 height: 55
                 underlineVisible: model.index !== WifiDiscoveryModel.count - 1
                 textStr: model.name
+
+                onDeviceClicked: {
+                    if (model.name === WifiController.connectedName)
+                        return
+
+                    WifiController.connectDevice(model.addr)
+                }
             }
         }
     }

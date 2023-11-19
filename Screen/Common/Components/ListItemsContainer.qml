@@ -18,7 +18,7 @@ Item {
         x: 15
         color: "#a1a1a1"
         text: headerText
-        visible: headerText !== "" && sizeOfModel > 0
+        visible: headerText !== ""
         font {
             pixelSize: 16
             weight: Font.Light

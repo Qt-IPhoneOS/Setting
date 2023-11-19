@@ -52,14 +52,16 @@ public slots:
     void handleUpdateDeviceState(const std::string&, Enums::WifiState, Enums::WifiState);
     void handleUpdateConnectedDevice(WifiDevice*);
     void handleUpdateEnableWifi(bool);
-    void handleUpdateDiscoveryDevice(const WifiAdapter::DiscoveryAction&, const WifiDevice::DeviceInfo&);
+    void handleAddDiscoveryDevice(WifiDevice*);
+    void handleRemoveDiscoveryDevice(const std::string&);
 
 private:
     signal::Connect mUpdatePairedDevices;
     signal::Connect mUpdateConnectedDevice;
     signal::Connect mUpdateEnableWifi;
     signal::Connect mUpdateConnectDeviceState;
-    signal::Connect mUpdateDiscoveryDevice;
+    signal::Connect mAddDiscoveryDevice;
+    signal::Connect mRemoveDiscoveryDevice;
 
 private:
     WifiAdapter* mAdapter {nullptr};

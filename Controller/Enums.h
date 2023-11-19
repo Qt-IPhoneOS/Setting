@@ -25,8 +25,7 @@ public:
         Paired,
         WaitingAuthen,
         AuthenFail,
-        AuthenSuccess,
-        Connected
+        AuthenSuccess
     };
 
     enum ConnectedState {

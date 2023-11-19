@@ -18,6 +18,7 @@ public:
 
     void appendDevices(QVector<WifiDevice*>& deviceList);
     void appendItem(WifiDevice* device);
+    void removeItem(const std::string& addr);
 
 
     int count() const;
@@ -33,7 +34,8 @@ private:
         PrivateAddress,
         Password,
         AutoConnect,
-        SpeedMode
+        SpeedMode,
+        DeviceType
     };
 
     QVector<WifiDevice*> mWifiDevices;
