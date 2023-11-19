@@ -10,6 +10,8 @@ INCLUDEPATH += $$PWD/../../MiddlewareLayer \
                $$PWD/../../MiddlewareLayer/Common \
                $$PWD/../../MiddlewareLayer/Wifi \
                $$PWD/../UICommon \
+               $$PWD/../UICommon/Feature \
+               $$PWD/Controller \
                $$PWD/../../Services/include
                $$PWD/../../Services/include/Common
                $$PWD/../../Services/include/Wifi

@@ -27,7 +27,7 @@ private:
     WifiController* mWifiController {nullptr};
     ScreenNavigator* mScreens;
     SettingController* mSettingController {nullptr};
-    std::shared_ptr<WifiDeviceModel> mWifiDeviceModel;
+
 };
 
 #endif // SETTINGENGINE_H

@@ -1,26 +1,26 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
+import Enums 1.0
 import '../Common/Components'
 import '../Common/Items'
 
-Rectangle {
+RootScreen {
     id: root
-    width: 550; height: 1100
-    color: "#f0f2f5"
     property bool switchOn: false
+    contentHeight: pairedList.height + discoveryList.height
 
     HeaderSetting {
         width: parent.width
         backBtnText: "Setting"
         headerText: "Wi-Fi"
 
-        onBack: screenNavigator.showPreviousScreen()
+        onBack: ScreenNavigator.showPreviousScreen()
     }
 
     Rectangle {
         id: connectedArea
         width: 500
-        height: wifiController.wifiOn ? 110 : 55
+        height: WifiController.wifiOn ? 110 : 55
         radius: 15
         y: 100
         anchors.horizontalCenter: parent.horizontalCenter
@@ -32,14 +32,14 @@ Rectangle {
             SettingItem {
                 id: wifiSwitch
                 width: parent.width
-                height: wifiController.wifiOn ? parent.height / 2 : parent.height
+                height: WifiController.wifiOn ? parent.height / 2 : parent.height
                 isHasSwitchButton: true
                 titleItemText: "Wi-Fi"
-                switchOn: wifiController.wifiOn
-                underlineVisible: true
+                switchOn: WifiController.wifiOn
+                underlineVisible: WifiController.wifiOn
 
                 onSwitchBtn: {
-                    wifiController.setEnableWifi(!switchOn)
+                    WifiController.setEnableWifi(!switchOn)
                 }
             }
 
@@ -48,9 +48,10 @@ Rectangle {
                 width: parent.width
                 height: parent.height / 2
                 marginLeft: 50
-                textStr: wifiController.connectedName
-                isConnected: true
-                visible: wifiController.wifiOn
+                textStr: WifiController.connectedName
+                isConnected: WifiController.connectedStatus === Enums.DeviceConnected
+                isConnecting: WifiController.connectedStatus === Enums.DeviceConnecting
+                visible: WifiController.wifiOn
             }
         }
     }
@@ -58,24 +59,27 @@ Rectangle {
     ListItemsContainer {
         id: pairedList
         y: 260
-        sizeOfModel: wifiDeviceModel.count
+        sizeOfModel: WifiPairedModel.count
         anchors.horizontalCenter: parent.horizontalCenter
         headerText: "MY NETWORKS"
-        visible: wifiController.wifiOn
-        isVisibleLoadingAnimation: true
+        visible: WifiController.wifiOn && sizeOfModel > 0
 
         listContainer: ListView {
-            model: wifiDeviceModel
-            anchors.fill: parent
+            model: WifiPairedModel
+            width: 500
+            height: 55 * WifiPairedModel.count
             interactive: false
             delegate: DeviceItem {
-                width: parent.width
+                width: 500
                 height: 55
-                underlineVisible: model.index !== wifiDeviceModel.count - 1
+                underlineVisible: model.index !== WifiPairedModel.count - 1
                 textStr: model.name
 
                 onDeviceClicked: {
-                    wifiController.connectDevice(model.addr)
+                    if (model.name === WifiController.connectedName)
+                        return
+
+                    WifiController.connectDevice(model.addr)
                 }
             }
         }
@@ -83,9 +87,9 @@ Rectangle {
 
     ListItemsContainer {
         id: discoveryList
-        sizeOfModel: 2
+        sizeOfModel: WifiDiscoveryModel.count
         headerText: "OTHER NETWORKS"
-        visible: wifiController.wifiOn
+        visible: WifiController.wifiOn
         isVisibleLoadingAnimation: true
 
         anchors {
@@ -95,20 +99,27 @@ Rectangle {
         }
 
         listContainer: ListView {
-            model: 2
-            anchors.fill: parent
+            model: WifiDiscoveryModel
+            width: 500
+            height: 55 * WifiPairedModel.count
             interactive: false
-            delegate: Rectangle {
-                width: parent.width
+            delegate: DeviceItem {
+                width: 500
                 height: 55
-                color: "transparent"
-                DeviceItem {
-                    anchors.fill: parent
-                    underlineVisible: model.index !== 1
-                    marginLeft: 50
-                    textStr: "Anh Ha"
+                underlineVisible: model.index !== WifiDiscoveryModel.count - 1
+                textStr: model.name
+
+                onDeviceClicked: {
+                    if (model.name === WifiController.connectedName)
+                        return
+
+                    WifiController.connectDevice(model.addr)
                 }
             }
         }
+    }
+
+    Component.onCompleted: {
+        WifiController.startDiscovery()
     }
 }

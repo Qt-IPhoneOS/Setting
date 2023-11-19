@@ -17,6 +17,9 @@ public:
     QHash<int, QByteArray> roleNames() const override;
 
     void appendDevices(QVector<WifiDevice*>& deviceList);
+    void appendItem(WifiDevice* device);
+    void removeItem(const std::string& addr);
+
 
     int count() const;
     void setCount(int newCount);
@@ -31,7 +34,8 @@ private:
         PrivateAddress,
         Password,
         AutoConnect,
-        SpeedMode
+        SpeedMode,
+        DeviceType
     };
 
     QVector<WifiDevice*> mWifiDevices;

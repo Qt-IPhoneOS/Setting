@@ -44,6 +44,8 @@ QVariant WifiDeviceModel::data(const QModelIndex &index, int role) const
     case SpeedMode:
         result = (int)mWifiDevices.at(index.row())->getSpeedMode();
         break;
+    case DeviceType:
+        result = (int)mWifiDevices.at((index.row()))->getDeviceType();
     default:
         break;
     }
@@ -60,6 +62,7 @@ QHash<int, QByteArray> WifiDeviceModel::roleNames() const
     roles[PrivateAddress] = "privateAddr";
     roles[Password] = "password";
     roles[AutoConnect] = "autoConnect";
+    roles[DeviceType] = "type";
     return roles;
 }
 
@@ -71,6 +74,37 @@ void WifiDeviceModel::appendDevices(QVector<WifiDevice*>& deviceList)
     beginResetModel();
     mWifiDevices = deviceList;
     setCount(deviceList.size());
+    endResetModel();
+}
+
+void WifiDeviceModel::appendItem(WifiDevice *device)
+{
+    for (auto& item : mWifiDevices)
+    {
+        if (item->getDeviceInfo().mAddress == device->getDeviceInfo().mAddress)
+            return;
+    }
+
+    beginResetModel();
+    mWifiDevices.append(device);
+    setCount(mWifiDevices.size());
+    endResetModel();
+}
+
+void WifiDeviceModel::removeItem(const std::string &addr)
+{
+    auto it = mWifiDevices.begin();
+    while (it != mWifiDevices.end())
+    {
+        if ((*it)->getDeviceInfo().mAddress == addr) {
+            mWifiDevices.erase(it);
+            break;
+        }
+        ++it;
+    }
+
+    beginResetModel();
+    setCount(mWifiDevices.size());
     endResetModel();
 }
 
