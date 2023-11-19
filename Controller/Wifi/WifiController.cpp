@@ -117,7 +117,6 @@ void WifiController::setEnableWifi(const bool& enable)
 
 void WifiController::connectDevice(const QString &addr)
 {
-    qWarning() << "connect Device";
     if (mAdapter == nullptr)
         return;
 
