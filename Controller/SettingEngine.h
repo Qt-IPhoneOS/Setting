@@ -18,7 +18,7 @@ public:
     ~SettingEngine();
 
     bool createWindow();
-    void init();
+    void initialized();
     void registerContextProperty();
     void registerEnumType();
 

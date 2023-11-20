@@ -33,7 +33,7 @@ bool SettingEngine::createWindow()
     return true;
 }
 
-void SettingEngine::init()
+void SettingEngine::initialized()
 {
 
     if (createWindow())
