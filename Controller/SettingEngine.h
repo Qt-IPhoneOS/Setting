@@ -7,26 +7,25 @@
 #include <memory>
 #include "Wifi/WifiController.h"
 #include "ScreenNavigator/ScreenNavigator.h"
-#include "SettingController.h"
-
+#include "SystemSettingController/SystemSettingController.h"
 class SettingEngine : public QObject
 {
     Q_OBJECT
-
 public:
     explicit SettingEngine(QObject *parent = nullptr);
     ~SettingEngine();
 
-    bool createWindow();
+public:
     void init();
+    bool createWindow();
     void registerContextProperty();
     void registerEnumType();
 
 private:
-    QQuickView* mView {nullptr};
-    WifiController* mWifiController {nullptr};
-    ScreenNavigator* mScreens;
-    SettingController* mSettingController {nullptr};
+    QQuickView*                     mView                       {nullptr};
+    WifiController*                 mWifiController             {nullptr};
+    ScreenNavigator*                mScreens                    {nullptr};
+    SystemSettingController*        mSystemSettingController    {nullptr};
 
 };
 

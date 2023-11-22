@@ -8,6 +8,9 @@ import './Common/Items'
 
 RootScreen {
     id: rootItem
+
+    property bool isActiveAirplaneMode: SystemSettingModel.isActiveAirplaneMode
+
     contentHeight: networkService.height
 
     Text {
@@ -160,6 +163,7 @@ RootScreen {
                 backgrBeginIconColor: model.brgColor
                 labelItemText: model.labelText
                 isHasSwitchButton: model.switchBtn
+                switchOn: rootItem.isActiveAirplaneMode
                 marginLeft: 80
                 underlineVisible: model.index < myModel.count - 1
 
