@@ -12,7 +12,7 @@ SettingController::~SettingController() {
 }
 
 void SettingController::initialized() {
-    mAirplaneController.init();
+    //mAirplaneController.init();
 }
 
 void SettingController::registerContext(const QQuickView* mViewer) {

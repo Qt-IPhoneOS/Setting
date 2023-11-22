@@ -5,7 +5,7 @@ SettingEngine::SettingEngine(QObject *parent) : QObject(parent)
 {
     mWifiController = new WifiController();
     mScreens = ScreenNavigator::instance();
-    mSettingController = new SettingController();
+    //mSettingController = new SettingController();
 }
 
 SettingEngine::~SettingEngine()
@@ -25,7 +25,7 @@ bool SettingEngine::createWindow()
     registerContextProperty();
     registerEnumType();
 
-    mView->setWidth(700);
+    mView->setWidth(550);
     mView->setHeight(1100);
     mView->setSource(QUrl("qrc:/Setting/Screen/main.qml"));
     mView->show();
@@ -50,7 +50,7 @@ void SettingEngine::registerContextProperty()
     mView->rootContext()->setContextProperty("ScreenNavigator", mScreens);
     mView->rootContext()->setContextProperty("WifiPairedModel", mWifiController->getPairedDeviceModel().get());
     mView->rootContext()->setContextProperty("WifiDiscoveryModel", mWifiController->getDiscoveryDeviceModel().get());
-    mSettingController->registerContext(mView);
+    //mSettingController->registerContext(mView);
 
 
 }

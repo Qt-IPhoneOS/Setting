@@ -68,4 +68,3 @@ void ScreenNavigator::showPreviousScreen()
     LogEnum("Show Screen:", mScreenID);
     emit changeScreen(mScreenID, mScreenStr);
 }
-
