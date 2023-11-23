@@ -2,11 +2,9 @@
 #define SETTINGENGINE_H
 
 #include <QObject>
-#include <QQuickView>
-#include <QQmlContext>
 #include <memory>
 #include "Wifi/WifiController.h"
-#include "ScreenNavigator/ScreenNavigator.h"
+#include "ScreenNavigator/ScreenQueue.h"
 #include "SettingController.h"
 
 class SettingEngine : public QObject
@@ -23,11 +21,9 @@ public:
     void registerEnumType();
 
 private:
-    QQuickView* mView {nullptr};
     WifiController* mWifiController {nullptr};
-    ScreenNavigator* mScreens;
     SettingController* mSettingController {nullptr};
-
+    ScreenQueue* mScreenQueue {nullptr};
 };
 
 #endif // SETTINGENGINE_H

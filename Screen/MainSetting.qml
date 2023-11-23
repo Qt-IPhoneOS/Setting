@@ -166,7 +166,7 @@ RootScreen {
                 onClicked: {
                     if (model.index === networkService.wifiType)
                     {
-                        ScreenNavigator.showNextScreen(Enums.WifiMainScreen)
+                        ScreenQueue.showNextScreen(Enums.WifiMainScreen)
                     }
                 }
             }

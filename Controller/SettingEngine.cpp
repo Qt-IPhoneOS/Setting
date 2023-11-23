@@ -4,7 +4,7 @@
 SettingEngine::SettingEngine(QObject *parent) : QObject(parent)
 {
     mWifiController = new WifiController();
-    mScreens = ScreenNavigator::instance();
+    mScreenQueue = ScreenQueue::instance();
     //mSettingController = new SettingController();
 }
 
@@ -15,20 +15,12 @@ SettingEngine::~SettingEngine()
 
 bool SettingEngine::createWindow()
 {
-    if (nullptr == mView) {
-        mView = new QQuickView();
-    }
-
-    if (mView == nullptr)
-        return false;
-
     registerContextProperty();
     registerEnumType();
 
-    mView->setWidth(550);
-    mView->setHeight(1100);
-    mView->setSource(QUrl("qrc:/Setting/Screen/main.qml"));
-    mView->show();
+    mScreenQueue->createView();
+    mScreenQueue->registerRootScreen(Enums::MainScreen, "qrc:/Screen/MainSetting.qml");
+    mScreenQueue->registerChildScreen(Enums::MainScreen, Enums::WifiMainScreen, "qrc:/Screen/Wifi/WifiMainSetting.qml");
 
     return true;
 }
@@ -38,18 +30,17 @@ void SettingEngine::initialized()
 
     if (createWindow())
     {
-//        mSettingController->initialized();
         mWifiController->init();
     }
 }
 
 void SettingEngine::registerContextProperty()
 {
-    mView->rootContext()->setContextProperty("SettingEngine", this);
-    mView->rootContext()->setContextProperty("WifiController", mWifiController);
-    mView->rootContext()->setContextProperty("ScreenNavigator", mScreens);
-    mView->rootContext()->setContextProperty("WifiPairedModel", mWifiController->getPairedDeviceModel().get());
-    mView->rootContext()->setContextProperty("WifiDiscoveryModel", mWifiController->getDiscoveryDeviceModel().get());
+    mScreenQueue->getViewer()->rootContext()->setContextProperty("SettingEngine", this);
+    mScreenQueue->getViewer()->rootContext()->setContextProperty("WifiController", mWifiController);
+    mScreenQueue->getViewer()->rootContext()->setContextProperty("ScreenQueue", mScreenQueue);
+    mScreenQueue->getViewer()->rootContext()->setContextProperty("WifiPairedModel", mWifiController->getPairedDeviceModel().get());
+    mScreenQueue->getViewer()->rootContext()->setContextProperty("WifiDiscoveryModel", mWifiController->getDiscoveryDeviceModel().get());
     //mSettingController->registerContext(mView);
 
 
