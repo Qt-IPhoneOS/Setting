@@ -17,16 +17,17 @@ public:
 
     inline QSharedPointer<SystemSettingModel> systemSettingModelObject() const {
         return mSystemSettingModel;
-    };
+    }
+
+public slots:
+    void setNewAirplaneMode(const bool&);
 
 public:
-    bool setNewAirplaneMode(const bool&);
-
     void handleUpdateAirplaneMode(const SystemSettingAdapter::AirplaneModeEnums&);
 
 private:
     QSharedPointer<SystemSettingModel>   mSystemSettingModel;
-    SystemSettingAdapter& mSysAdapter;
+//    SystemSettingAdapter& mSysAdapter;
 
     signal::Connect mUpdateAirplaneMode;
 };

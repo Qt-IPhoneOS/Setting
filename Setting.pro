@@ -16,7 +16,7 @@ INCLUDEPATH += $$PWD/../../MiddlewareLayer \
                $$PWD/../../Services/include \
                $$PWD/../../Services/include/Common \
                $$PWD/../../Services/include/Wifi \
-               $$PWD/../../Services/include/SystemSettingServices \
+               $$PWD/../../Services/include/SystemSetting \
 
 SOURCES += \
         Controller/SettingEngine.cpp \
