@@ -21,13 +21,11 @@ public:
 
 public slots:
     void setNewAirplaneMode(const bool&);
-
-public:
     void handleUpdateAirplaneMode(const SystemSettingAdapter::AirplaneModeEnums&);
 
 private:
     QSharedPointer<SystemSettingModel>   mSystemSettingModel;
-//    SystemSettingAdapter& mSysAdapter;
+    SystemSettingAdapter& mSysAdapter;
 
     signal::Connect mUpdateAirplaneMode;
 };

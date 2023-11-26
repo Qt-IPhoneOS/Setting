@@ -89,7 +89,7 @@ Rectangle {
             Layout.preferredWidth: 66
             switchOn: rootItem.switchOn
             onSwitchClicked: {
-                SystemSettingController.setNewAirplaneMode(false)
+                SystemSettingController.setNewAirplaneMode(!rootItem.switchOn)
             }
         }
 
