@@ -19,12 +19,12 @@ INCLUDEPATH += $$PWD/../../MiddlewareLayer \
                $$PWD/../../Services/include/SystemSetting \
 
 SOURCES += \
+        Controller/ScreenNavigator/ScreenQueue.cpp \
         Controller/SettingEngine.cpp \
         Controller/Wifi/WifiController.cpp \
-        Controller/ScreenNavigator/ScreenNavigator.cpp \
+        Model/WifiDeviceModel.cpp \
         Controller/SystemSettingController/SystemSettingController.cpp \
         Model/SystemSettingModel/SystemSettingModel.cpp \
-        Model/WifiDeviceModel.cpp \
         main.cpp
 
 resources.prefix = /$${TARGET}
@@ -36,12 +36,13 @@ resources.files = Screen/main.qml
 
 HEADERS += \
     Controller/Enums.h \
+    Controller/ScreenNavigator/ScreenQueue.h \
     Controller/SettingEngine.h \
     Controller/Wifi/WifiController.h \
-    Controller/ScreenNavigator/ScreenNavigator.h \
+    Controller/AirplaneMode/AirplaneModeController.h \
+    Model/WifiDeviceModel.h \
     Controller/SystemSettingController/SystemSettingController.h \
     Model/SystemSettingModel/SystemSettingModel.h \
-    Model/WifiDeviceModel.h \
 
 DISTFILES +=
 

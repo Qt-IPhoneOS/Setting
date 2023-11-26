@@ -14,7 +14,7 @@ RootScreen {
         backBtnText: "Setting"
         headerText: "Wi-Fi"
 
-        onBack: ScreenNavigator.showPreviousScreen()
+        onBack: ScreenQueue.showPreviousScreen()
     }
 
     Rectangle {
