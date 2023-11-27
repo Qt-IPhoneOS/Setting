@@ -9,22 +9,22 @@ LIBS += -L$$PWD/../../Executable \
 INCLUDEPATH += $$PWD/../../MiddlewareLayer \
                $$PWD/../../MiddlewareLayer/Common \
                $$PWD/../../MiddlewareLayer/Wifi \
+               $$PWD/../../MiddlewareLayer/SystemSetting \
                $$PWD/../UICommon \
                $$PWD/../UICommon/Feature \
                $$PWD/Controller \
-               $$PWD/../../Services/include
-               $$PWD/../../Services/include/Common
-               $$PWD/../../Services/include/Wifi
-               $$PWD/../../Services/include/SystemSetting
+               $$PWD/../../Services/include \
+               $$PWD/../../Services/include/Common \
+               $$PWD/../../Services/include/Wifi \
+               $$PWD/../../Services/include/SystemSetting \
 
 SOURCES += \
         Controller/ScreenNavigator/ScreenQueue.cpp \
         Controller/SettingEngine.cpp \
-        Controller/SettingController.cpp \
         Controller/Wifi/WifiController.cpp \
         Model/WifiDeviceModel.cpp \
-        Controller/AirplaneMode/AirplaneModeController.cpp \
-        Model/AirplaneMode/AirplaneModeModel.cpp \
+        Controller/SystemSettingController/SystemSettingController.cpp \
+        Model/SystemSettingModel/SystemSettingModel.cpp \
         main.cpp
 
 resources.prefix = /$${TARGET}
@@ -38,11 +38,11 @@ HEADERS += \
     Controller/Enums.h \
     Controller/ScreenNavigator/ScreenQueue.h \
     Controller/SettingEngine.h \
-    Controller/SettingController.h \
     Controller/Wifi/WifiController.h \
     Controller/AirplaneMode/AirplaneModeController.h \
     Model/WifiDeviceModel.h \
-    Model/AirplaneMode/AirplaneModeModel.h 
+    Controller/SystemSettingController/SystemSettingController.h \
+    Model/SystemSettingModel/SystemSettingModel.h \
 
 DISTFILES +=
 

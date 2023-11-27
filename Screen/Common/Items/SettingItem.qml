@@ -21,11 +21,6 @@ Rectangle {
     property bool underlineVisible: false
     property int marginLeft: 50
 
-    QtObject {
-        id: ctrPrv
-        property var airplaneModel: AirplaneController.airplaneModelIns
-    }
-
     signal clicked()
     signal switchBtn()
 
@@ -92,8 +87,10 @@ Rectangle {
             visible: isHasSwitchButton
             Layout.preferredHeight: 36
             Layout.preferredWidth: 66
-            switchOn: ctrPrv.airplaneModel.isAirplaneModeActive
-            onSwitchClicked: AirplaneController.setNewAirplaneMode(ctrPrv.airplaneModel.isAirplaneModeActive)
+            switchOn: rootItem.switchOn
+            onSwitchClicked: {
+                SystemSettingController.setNewAirplaneMode(!rootItem.switchOn)
+            }
         }
 
         Icon {
