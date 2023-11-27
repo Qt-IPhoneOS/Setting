@@ -5,7 +5,7 @@
 #include <memory>
 #include <SystemSetting/SystemSettingAdapter.h>
 #include <QDebug>
-#include "Model/SystemSettingModel/SystemSettingModel.h"
+#include "Model/SystemSettingModel.h"
 #include <QSharedPointer>
 
 class SystemSettingController : public QObject {

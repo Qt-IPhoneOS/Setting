@@ -3,9 +3,9 @@
 
 #include <QObject>
 #include <memory>
+#include <ScreenManager/ScreenQueue.h>
 #include "Wifi/WifiController.h"
-#include "ScreenNavigator/ScreenQueue.h"
-#include "SystemSettingController/SystemSettingController.h"
+#include "SystemSetting/SystemSettingController.h"
 
 
 class SettingEngine : public QObject
