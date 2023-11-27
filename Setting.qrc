@@ -1,19 +1,19 @@
 <RCC>
-    <qresource prefix="/">
-        <file>Screen/main.qml</file>
-        <file>Screen/Common/Components/SwitchButton.qml</file>
-        <file>Screen/Common/Components/Icon.qml</file>
-        <file>Screen/Common/Components/LoadingAnimation.qml</file>
-        <file>Screen/Common/Components/Underline.qml</file>
-        <file>Screen/Common/Items/DeviceItem.qml</file>
-        <file>Screen/Common/Components/ListItemsContainer.qml</file>
-        <file>Screen/MainSetting.qml</file>
-        <file>Screen/Common/Components/CMouseArea.qml</file>
-        <file>Screen/Common/Items/SettingItem.qml</file>
-        <file>Screen/Wifi/WifiMainSetting.qml</file>
-        <file>Screen/Common/Components/BackButton.qml</file>
-        <file>Screen/Common/Components/HeaderSetting.qml</file>
-        <file>Screen/Common/Components/RootScreen.qml</file>
+    <qresource prefix="/Resources">
+        <file>Screens/MainView.qml</file>
+        <file>Screens/Common/Components/SwitchButton.qml</file>
+        <file>Screens/Common/Components/Icon.qml</file>
+        <file>Screens/Common/Components/LoadingAnimation.qml</file>
+        <file>Screens/Common/Components/Underline.qml</file>
+        <file>Screens/Common/Items/DeviceItem.qml</file>
+        <file>Screens/Common/Components/ListItemsContainer.qml</file>
+        <file>Screens/MainSetting.qml</file>
+        <file>Screens/Common/Components/CMouseArea.qml</file>
+        <file>Screens/Common/Items/SettingItem.qml</file>
+        <file>Screens/Wifi/WifiMainSetting.qml</file>
+        <file>Screens/Common/Components/BackButton.qml</file>
+        <file>Screens/Common/Components/HeaderSetting.qml</file>
+        <file>Screens/Common/Components/RootScreen.qml</file>
     </qresource>
     <qresource prefix="/QML_RESOUCES"/>
 </RCC>

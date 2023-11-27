@@ -26,12 +26,9 @@ SOURCES += \
         Model/SystemSettingModel.cpp \
         main.cpp
 
-resources.prefix = /$${TARGET}
-RESOURCES += resources \
+RESOURCES += \
     Setting.qrc \
     Images.qrc
-
-resources.files = Screen/main.qml
 
 HEADERS += \
     Controller/Enums.h \
