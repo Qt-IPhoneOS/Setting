@@ -7,10 +7,10 @@
         <file>Screens/Common/Components/Underline.qml</file>
         <file>Screens/Common/Items/DeviceItem.qml</file>
         <file>Screens/Common/Components/ListItemsContainer.qml</file>
-        <file>Screens/MainSetting.qml</file>
+        <file>Screens/SET_Main.qml</file>
         <file>Screens/Common/Components/CMouseArea.qml</file>
         <file>Screens/Common/Items/SettingItem.qml</file>
-        <file>Screens/Wifi/WifiMainSetting.qml</file>
+        <file>Screens/Wifi/SET_WifiMenu.qml</file>
         <file>Screens/Common/Components/BackButton.qml</file>
         <file>Screens/Common/Components/HeaderSetting.qml</file>
         <file>Screens/Common/Components/RootScreen.qml</file>

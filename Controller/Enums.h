@@ -11,9 +11,9 @@ public:
     }
 
     enum ScreenID {
-        MainScreen,
+        SET_Main,
         // Wifi
-        WifiMainScreen
+        SET_WifiMenu
     };
 
     enum WifiState {

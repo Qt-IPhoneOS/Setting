@@ -20,8 +20,8 @@ bool SettingEngine::createWindow()
     registerEnumType();
 
     mScreenQueue->createView();
-    mScreenQueue->registerRootScreen(Enums::MainScreen, "qrc:/Resources/Screens/MainSetting.qml");
-    mScreenQueue->registerChildScreen(Enums::MainScreen, Enums::WifiMainScreen, "qrc:/Resources/Screens/Wifi/WifiMainSetting.qml");
+    mScreenQueue->registerRootScreen(Enums::SET_Main, "qrc:/Resources/Screens/SET_Main.qml");
+    mScreenQueue->registerChildScreen(Enums::SET_Main, Enums::SET_WifiMenu, "qrc:/Resources/Screens/Wifi/SET_WifiMenu.qml");
 
     return true;
 }
