@@ -4,7 +4,7 @@ import QtQuick.VirtualKeyboard
 
 Item {
     id: window
-    width: 600; height: 900
+    width: ScreenWidth; height: ScreenHeight
     visible: true
 
     Loader {
