@@ -39,7 +39,6 @@ void SettingEngine::registerContextProperty()
 {
     mScreenQueue->getViewer()->rootContext()->setContextProperty("SettingEngine", this);
     mScreenQueue->getViewer()->rootContext()->setContextProperty("WifiController", mWifiController);
-    mScreenQueue->getViewer()->rootContext()->setContextProperty("ScreenQueue", mScreenQueue);
     mScreenQueue->getViewer()->rootContext()->setContextProperty("WifiPairedModel", mWifiController->getPairedDeviceModel().get());
     mScreenQueue->getViewer()->rootContext()->setContextProperty("WifiDiscoveryModel", mWifiController->getDiscoveryDeviceModel().get());
     mScreenQueue->getViewer()->rootContext()->setContextProperty("SystemSettingController", mSystemSettingController);
@@ -49,4 +48,14 @@ void SettingEngine::registerContextProperty()
 void SettingEngine::registerEnumType()
 {
     qmlRegisterType<Enums>("Enums", 1, 0, "Enums");
+}
+
+void SettingEngine::showScreen(const uchar &screen)
+{
+    mScreenQueue->showNextScreen(screen);
+}
+
+void SettingEngine::backScreen()
+{
+    mScreenQueue->showPreviousScreen();
 }

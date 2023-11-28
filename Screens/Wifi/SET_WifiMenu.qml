@@ -14,7 +14,7 @@ RootScreen {
         backBtnText: "Setting"
         headerText: "Wi-Fi"
 
-        onBack: ScreenQueue.showPreviousScreen()
+        onBack: SettingEngine.backScreen()
     }
 
     Rectangle {

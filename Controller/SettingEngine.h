@@ -20,6 +20,9 @@ public:
     void registerContextProperty();
     void registerEnumType();
 
+    Q_INVOKABLE void showScreen(const uchar&);
+    Q_INVOKABLE void backScreen();
+
 private:
     WifiController*                 mWifiController             {nullptr};
     SystemSettingController*        mSystemSettingController    {nullptr};
