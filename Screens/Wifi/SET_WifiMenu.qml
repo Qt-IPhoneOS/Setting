@@ -3,13 +3,14 @@ import QtQuick.Controls 2.15
 import Enums 1.0
 import '../Common/Components'
 import '../Common/Items'
+import Components
 
 RootScreen {
     id: root
     property bool switchOn: false
     contentHeight: pairedList.height + discoveryList.height
 
-    HeaderSetting {
+    HeaderScreen {
         width: parent.width
         backBtnText: "Setting"
         headerText: "Wi-Fi"

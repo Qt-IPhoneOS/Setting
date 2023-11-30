@@ -18,7 +18,8 @@
         <file>Assets/personalhotspot.png</file>
         <file>Assets/wifi.png</file>
         <file>Assets/arrow_right.png</file>
-        <file>Assets/search_image.png</file>
         <file>Assets/back_button.png</file>
+        <file>Assets/delete_icon.png</file>
+        <file>Assets/search_icon.png</file>
     </qresource>
 </RCC>
