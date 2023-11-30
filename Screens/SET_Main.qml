@@ -5,7 +5,7 @@ import QtQuick.Layouts 1.15
 import Enums 1.0
 import './Common/Components'
 import './Common/Items'
-import Components
+import QML.Components
 
 RootScreen {
     id: rootItem
