@@ -3,7 +3,6 @@
 
 SystemSettingController::SystemSettingController(QObject* parent)
     : QObject(parent)
-    , mSystemSettingModel(QSharedPointer<SystemSettingModel>(new SystemSettingModel()))
     , mSysAdapter(SystemSettingAdapter::getInstance())
 {
     mUpdateAirplaneMode = mSysAdapter.notifyUpdateAirplaneMode.connect([this](const SystemSettingAdapter::AirplaneModeEnums& _airplaneMode) {
@@ -29,7 +28,7 @@ void SystemSettingController::handleUpdateAirplaneMode(const SystemSettingAdapte
     }
 }
 
-void SystemSettingController::setNewAirplaneMode(const bool& newAirplaneMode) {
+void SystemSettingController::setNewValueAirplaneMode(const bool& newAirplaneMode) {
     mSysAdapter.setNewAirplaneMode(static_cast<SystemSettingAdapter::AirplaneModeEnums>(newAirplaneMode));
 }
 

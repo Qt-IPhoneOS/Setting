@@ -42,7 +42,6 @@ void SettingEngine::registerContextProperty()
     mScreenQueue->getViewer()->rootContext()->setContextProperty("WifiPairedModel", mWifiController->getPairedDeviceModel().get());
     mScreenQueue->getViewer()->rootContext()->setContextProperty("WifiDiscoveryModel", mWifiController->getDiscoveryDeviceModel().get());
     mScreenQueue->getViewer()->rootContext()->setContextProperty("SystemSettingController", mSystemSettingController);
-    mScreenQueue->getViewer()->rootContext()->setContextProperty("SystemSettingModel", mSystemSettingController->systemSettingModelObject().get());
 }
 
 void SettingEngine::registerEnumType()

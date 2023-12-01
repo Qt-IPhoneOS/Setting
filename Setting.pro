@@ -1,5 +1,6 @@
 QT += quick virtualkeyboard
 CONFIG += c++20
+TARGET = Setting
 
 LIBS += -L$$PWD/../../Executable \
         -lmiddlewarelayer \
