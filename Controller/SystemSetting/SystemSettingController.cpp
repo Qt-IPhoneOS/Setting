@@ -4,7 +4,7 @@
 SystemSettingController::SystemSettingController(QObject* parent)
     : QObject(parent)
     , mSystemSettingModel(QSharedPointer<SystemSettingModel>(new SystemSettingModel()))
-    , mSysAdapter(SystemSettingAdapter::getInstance())
+    , mSysAdapter(SystemSettingAdapter::instance())
 {
     mUpdateAirplaneMode = mSysAdapter.notifyUpdateAirplaneMode.connect([this](const SystemSettingAdapter::AirplaneModeEnums& _airplaneMode) {
         QMetaObject::invokeMethod(this, "handleUpdateAirplaneMode", Q_ARG(SystemSettingAdapter::AirplaneModeEnums, _airplaneMode));
