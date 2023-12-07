@@ -3,9 +3,11 @@ import QtQuick.Window 2.2
 import QtQuick.VirtualKeyboard
 import QML.Constants
 
-Item {
-    id: window
+Rectangle {
+    id: mainWindow
+
     width: UIConstants.screen_width; height: UIConstants.screen_height
+    color: UIConstants.screen_background_color
     visible: true
 
     Loader {
