@@ -37,7 +37,7 @@ void SettingEngine::initialized()
 
 void SettingEngine::registerContextProperty()
 {
-    mScreenQueue->getViewer()->rootContext()->setContextProperty("SettingEngine", this);
+    mScreenQueue->getViewer()->rootContext()->setContextProperty("AppEngine", this);
     mScreenQueue->getViewer()->rootContext()->setContextProperty("WifiController", mWifiController);
     mScreenQueue->getViewer()->rootContext()->setContextProperty("WifiPairedModel", mWifiController->getPairedDeviceModel().get());
     mScreenQueue->getViewer()->rootContext()->setContextProperty("WifiDiscoveryModel", mWifiController->getDiscoveryDeviceModel().get());

@@ -4,9 +4,9 @@
 #include <QObject>
 #include <memory>
 #include <WifiAdapter.h>
-#include <Model/WifiDeviceModel.h>
 #include <Enums.h>
 #include <Log.h>
+#include <Model/WifiDeviceModel.h>
 
 class WifiController : public QObject {
     Q_OBJECT

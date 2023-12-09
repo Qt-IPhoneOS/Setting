@@ -16,7 +16,7 @@ public:
     QVariant data(const QModelIndex &index, int role) const override;
     QHash<int, QByteArray> roleNames() const override;
 
-    void appendDevices(QVector<WifiDevice*>& deviceList);
+    void setDevicelist(const QVector<WifiDevice*>& deviceList);
     void appendItem(WifiDevice* device);
     void removeItem(const std::string& addr);
 

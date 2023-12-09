@@ -66,7 +66,7 @@ QHash<int, QByteArray> WifiDeviceModel::roleNames() const
     return roles;
 }
 
-void WifiDeviceModel::appendDevices(QVector<WifiDevice*>& deviceList)
+void WifiDeviceModel::setDevicelist(const QVector<WifiDevice*>& deviceList)
 {
     if (deviceList.size() > 0)
         mWifiDevices.clear();

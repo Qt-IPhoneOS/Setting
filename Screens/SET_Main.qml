@@ -147,7 +147,7 @@ RootScreen {
                     onClicked: {
                         if (model.index === networkService.wifiType)
                         {
-                            SettingEngine.showScreen(Enums.SET_WifiMenu)
+                            AppEngine.showScreen(Enums.SET_WifiMenu)
                         }
                     }
                 }
