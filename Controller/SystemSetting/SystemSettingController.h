@@ -5,29 +5,32 @@
 #include <memory>
 #include <SystemSetting/SystemSettingAdapter.h>
 #include <QDebug>
-#include "Model/SystemSettingModel.h"
 #include <QSharedPointer>
 
 class SystemSettingController : public QObject {
     Q_OBJECT
-    Q_PROPERTY(QSharedPointer<SystemSettingModel> systemSettingModelObject READ systemSettingModelObject CONSTANT)
+    Q_PROPERTY(bool isAirplaneModeActive READ isAirplaneModeActive WRITE setIsAirplaneModeActive NOTIFY isAirplaneModeActiveChanged)
 public:
     explicit SystemSettingController(QObject* parent = nullptr);
     ~SystemSettingController();
 
-    inline QSharedPointer<SystemSettingModel> systemSettingModelObject() const {
-        return mSystemSettingModel;
-    }
-
 public slots:
-    void setNewAirplaneMode(const bool&);
+    bool isAirplaneModeActive() const;
+    void setIsAirplaneModeActive(bool newIsAirplaneModeActive);
+
     void handleUpdateAirplaneMode(const SystemSettingAdapter::AirplaneModeEnums&);
 
+public:
+    Q_INVOKABLE void setNewValueAirplaneMode(const bool&);
+
+signals:
+    void isAirplaneModeActiveChanged();
+
 private:
-    QSharedPointer<SystemSettingModel>   mSystemSettingModel;
     SystemSettingAdapter& mSysAdapter;
 
     signal::Connect mUpdateAirplaneMode;
+    bool m_isAirplaneModeActive {false};
 };
 
 #endif //SYSTEMSETTINGCONTROLLER_H

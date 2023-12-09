@@ -3,7 +3,6 @@
 
 SystemSettingController::SystemSettingController(QObject* parent)
     : QObject(parent)
-    , mSystemSettingModel(QSharedPointer<SystemSettingModel>(new SystemSettingModel()))
     , mSysAdapter(SystemSettingAdapter::instance())
 {
     mUpdateAirplaneMode = mSysAdapter.notifyUpdateAirplaneMode.connect([this](const SystemSettingAdapter::AirplaneModeEnums& _airplaneMode) {
@@ -18,16 +17,30 @@ SystemSettingController::~SystemSettingController() {
 void SystemSettingController::handleUpdateAirplaneMode(const SystemSettingAdapter::AirplaneModeEnums& _newAirplaneMode) {
     switch(_newAirplaneMode) {
     case SystemSettingAdapter::AirplaneModeEnums::Inactive:
-        mSystemSettingModel->setIsActiveAirplaneMode(false);
+        setIsAirplaneModeActive(false);
         break;
     case SystemSettingAdapter::AirplaneModeEnums::Active:
-        mSystemSettingModel->setIsActiveAirplaneMode(true);
+        setIsAirplaneModeActive(true);
         break;
     default:
+        setIsAirplaneModeActive(false);
         break;
     }
 }
 
-void SystemSettingController::setNewAirplaneMode(const bool& newAirplaneMode) {
+void SystemSettingController::setNewValueAirplaneMode(const bool& newAirplaneMode) {
     mSysAdapter.setNewAirplaneMode(static_cast<SystemSettingAdapter::AirplaneModeEnums>(newAirplaneMode));
+}
+
+bool SystemSettingController::isAirplaneModeActive() const
+{
+    return m_isAirplaneModeActive;
+}
+
+void SystemSettingController::setIsAirplaneModeActive(bool newIsAirplaneModeActive)
+{
+    if (m_isAirplaneModeActive == newIsAirplaneModeActive)
+        return;
+    m_isAirplaneModeActive = newIsAirplaneModeActive;
+    emit isAirplaneModeActiveChanged();
 }

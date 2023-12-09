@@ -10,7 +10,7 @@ import QML.Components
 RootScreen {
     id: rootItem
 
-    property bool isActiveAirplaneMode: SystemSettingModel.isActiveAirplaneMode
+    property bool isActiveAirplaneMode: SystemSettingController.isAirplaneModeActive
 
     contentHeight: networkService.height
 
@@ -88,7 +88,7 @@ RootScreen {
                             id: nameRect
                             width: parent.width
                             height: 40
-                            text: "Yua Mikami"
+                            text: "Monkey D. Luffy"
                             anchors.top: parent.top
                             anchors.topMargin: 25
                             font.pixelSize: 20

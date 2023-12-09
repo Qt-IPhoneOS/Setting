@@ -1,5 +1,6 @@
 QT += quick virtualkeyboard
 CONFIG += c++20
+TARGET = Setting
 
 LIBS += -L$$PWD/../../Executable \
         -lmiddlewarelayer \
@@ -23,7 +24,6 @@ SOURCES += \
         Controller/Wifi/WifiController.cpp \
         Model/WifiDeviceModel.cpp \
         Controller/SystemSetting/SystemSettingController.cpp \
-        Model/SystemSettingModel.cpp \
         main.cpp
 
 RESOURCES += \
@@ -34,10 +34,8 @@ HEADERS += \
     Controller/Enums.h \
     Controller/SettingEngine.h \
     Controller/Wifi/WifiController.h \
-    Controller/AirplaneMode/AirplaneModeController.h \
     Model/WifiDeviceModel.h \
     Controller/SystemSetting/SystemSettingController.h \
-    Model/SystemSettingModel.h \
 
 DISTFILES +=
 

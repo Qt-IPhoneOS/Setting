@@ -3,8 +3,6 @@ import QtQuick.Controls 2.15
 
 Flickable {
     id: rootItem
-    width: 550
-    height: 1100
     contentWidth: parent.width
 
     Rectangle {
