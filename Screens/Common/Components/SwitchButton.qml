@@ -8,7 +8,7 @@ Rectangle {
     color: "transparent"
     property bool switchOn: false
 
-    signal switchClicked()
+    signal switched()
 
     Rectangle {
         width: parent.width
@@ -36,7 +36,7 @@ Rectangle {
             id: switchArea
             width: parent.width
             height: parent.height
-            onClicked: switchContainer.switchClicked()
+            onClicked: switchContainer.switched()
         }
     }
 }
