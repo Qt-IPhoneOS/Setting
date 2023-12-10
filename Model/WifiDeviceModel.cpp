@@ -77,7 +77,7 @@ void WifiDeviceModel::setDevicelist(const QVector<WifiDevice*>& deviceList)
     endResetModel();
 }
 
-void WifiDeviceModel::appendItem(WifiDevice *device)
+void WifiDeviceModel::appendDevice(WifiDevice *device)
 {
     for (auto& item : mWifiDevices)
     {
@@ -91,7 +91,7 @@ void WifiDeviceModel::appendItem(WifiDevice *device)
     endResetModel();
 }
 
-void WifiDeviceModel::removeItem(const std::string &addr)
+void WifiDeviceModel::removeDevice(const std::string &addr)
 {
     auto it = mWifiDevices.begin();
     while (it != mWifiDevices.end())

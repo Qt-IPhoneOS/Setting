@@ -48,7 +48,7 @@ signals:
     void connectedStatusChanged();
 
 public slots:
-    void handleUpdatePairedDevices(std::vector<WifiDevice*>);
+    void handleUpdatePairedDeviceList(std::vector<WifiDevice*>);
     void handleUpdateDeviceState(const std::string&, Enums::WifiState, Enums::WifiState);
     void handleUpdateConnectedDevice(WifiDevice*);
     void handleUpdateEnableWifi(bool);

@@ -56,20 +56,17 @@ SOURCES       = ../Controller/SettingEngine.cpp \
 		../Controller/Wifi/WifiController.cpp \
 		../Model/WifiDeviceModel.cpp \
 		../Controller/SystemSetting/SystemSettingController.cpp \
-		../Model/SystemSettingModel.cpp \
 		../main.cpp qrc_Setting.cpp \
 		qrc_Images.cpp \
 		moc_Enums.cpp \
 		moc_SettingEngine.cpp \
 		moc_WifiController.cpp \
 		moc_WifiDeviceModel.cpp \
-		moc_SystemSettingController.cpp \
-		moc_SystemSettingModel.cpp
+		moc_SystemSettingController.cpp
 OBJECTS       = SettingEngine.o \
 		WifiController.o \
 		WifiDeviceModel.o \
 		SystemSettingController.o \
-		SystemSettingModel.o \
 		main.o \
 		qrc_Setting.o \
 		qrc_Images.o \
@@ -77,8 +74,7 @@ OBJECTS       = SettingEngine.o \
 		moc_SettingEngine.o \
 		moc_WifiController.o \
 		moc_WifiDeviceModel.o \
-		moc_SystemSettingController.o \
-		moc_SystemSettingModel.o
+		moc_SystemSettingController.o
 DIST          = /home/bao/Qt/6.5.1/gcc_64/mkspecs/features/spec_pre.prf \
 		/home/bao/Qt/6.5.1/gcc_64/mkspecs/common/unix.conf \
 		/home/bao/Qt/6.5.1/gcc_64/mkspecs/common/linux.conf \
@@ -278,14 +274,11 @@ DIST          = /home/bao/Qt/6.5.1/gcc_64/mkspecs/features/spec_pre.prf \
 		../../Setting.pro ../Controller/Enums.h \
 		../Controller/SettingEngine.h \
 		../Controller/Wifi/WifiController.h \
-		Controller/AirplaneMode/AirplaneModeController.h \
 		../Model/WifiDeviceModel.h \
-		../Controller/SystemSetting/SystemSettingController.h \
-		../Model/SystemSettingModel.h ../Controller/SettingEngine.cpp \
+		../Controller/SystemSetting/SystemSettingController.h ../Controller/SettingEngine.cpp \
 		../Controller/Wifi/WifiController.cpp \
 		../Model/WifiDeviceModel.cpp \
 		../Controller/SystemSetting/SystemSettingController.cpp \
-		../Model/SystemSettingModel.cpp \
 		../main.cpp
 QMAKE_TARGET  = Setting
 DESTDIR       = 
@@ -729,8 +722,8 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../Setting.qrc ../Images.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /home/bao/Qt/6.5.1/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../Controller/Enums.h ../Controller/SettingEngine.h ../Controller/Wifi/WifiController.h Controller/AirplaneMode/AirplaneModeController.h ../Model/WifiDeviceModel.h ../Controller/SystemSetting/SystemSettingController.h ../Model/SystemSettingModel.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../Controller/SettingEngine.cpp ../Controller/Wifi/WifiController.cpp ../Model/WifiDeviceModel.cpp ../Controller/SystemSetting/SystemSettingController.cpp ../Model/SystemSettingModel.cpp ../main.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../Controller/Enums.h ../Controller/SettingEngine.h ../Controller/Wifi/WifiController.h ../Model/WifiDeviceModel.h ../Controller/SystemSetting/SystemSettingController.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../Controller/SettingEngine.cpp ../Controller/Wifi/WifiController.cpp ../Model/WifiDeviceModel.cpp ../Controller/SystemSetting/SystemSettingController.cpp ../main.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -803,9 +796,9 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /home/bao/Qt/6.5.1/gcc_64/mkspecs/features/data/dummy.cpp
 	g++ -pipe -O2 -std=gnu++2a -Wall -Wextra -fPIC -dM -E -o moc_predefs.h /home/bao/Qt/6.5.1/gcc_64/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_Enums.cpp moc_SettingEngine.cpp moc_WifiController.cpp moc_WifiDeviceModel.cpp moc_SystemSettingController.cpp moc_SystemSettingModel.cpp
+compiler_moc_header_make_all: moc_Enums.cpp moc_SettingEngine.cpp moc_WifiController.cpp moc_WifiDeviceModel.cpp moc_SystemSettingController.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_Enums.cpp moc_SettingEngine.cpp moc_WifiController.cpp moc_WifiDeviceModel.cpp moc_SystemSettingController.cpp moc_SystemSettingModel.cpp
+	-$(DEL_FILE) moc_Enums.cpp moc_SettingEngine.cpp moc_WifiController.cpp moc_WifiDeviceModel.cpp moc_SystemSettingController.cpp
 moc_Enums.cpp: ../Controller/Enums.h \
 		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/QObject \
 		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qobject.h \
@@ -1108,19 +1101,18 @@ moc_SettingEngine.cpp: ../Controller/SettingEngine.h \
 		../../UICommon/Feature/CommonType.h \
 		../../UICommon/Feature/StackingTask.h \
 		../../../MiddlewareLayer/Wifi/WifiDevice.h \
+		../Controller/Enums.h \
+		../../UICommon/Feature/Log.h \
+		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/QDebug \
+		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/QMetaEnum \
 		../Model/WifiDeviceModel.h \
 		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/QAbstractListModel \
 		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qabstractitemmodel.h \
 		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/QVariant \
 		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/QVector \
 		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qvector.h \
-		../Controller/Enums.h \
-		../../UICommon/Feature/Log.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/QDebug \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/QMetaEnum \
 		../Controller/SystemSetting/SystemSettingController.h \
 		../../../MiddlewareLayer/SystemSetting/SystemSettingAdapter.h \
-		../Model/SystemSettingModel.h \
 		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/QSharedPointer \
 		moc_predefs.h \
 		/home/bao/Qt/6.5.1/gcc_64/libexec/moc
@@ -1224,11 +1216,9 @@ moc_WifiController.cpp: ../Controller/Wifi/WifiController.h \
 		../../UICommon/Feature/CommonType.h \
 		../../UICommon/Feature/StackingTask.h \
 		../../../MiddlewareLayer/Wifi/WifiDevice.h \
-		../Model/WifiDeviceModel.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/QAbstractListModel \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qabstractitemmodel.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qhash.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qvariant.h \
+		../Controller/Enums.h \
+		../../UICommon/Feature/Log.h \
+		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/QDebug \
 		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qdebug.h \
 		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qtextstream.h \
 		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qstringconverter_base.h \
@@ -1239,16 +1229,18 @@ moc_WifiController.cpp: ../Controller/Wifi/WifiController.h \
 		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qmap.h \
 		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qshareddata_impl.h \
 		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qset.h \
+		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qhash.h \
 		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qvarlengtharray.h \
 		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/q20memory.h \
+		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/QMetaEnum \
+		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qmetaobject.h \
+		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qvariant.h \
+		../Model/WifiDeviceModel.h \
+		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/QAbstractListModel \
+		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qabstractitemmodel.h \
 		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/QVariant \
 		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/QVector \
 		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qvector.h \
-		../Controller/Enums.h \
-		../../UICommon/Feature/Log.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/QDebug \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/QMetaEnum \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qmetaobject.h \
 		moc_predefs.h \
 		/home/bao/Qt/6.5.1/gcc_64/libexec/moc
 	/home/bao/Qt/6.5.1/gcc_64/libexec/moc $(DEFINES) --include /home/bao/projects/IPhoneOS/Apps/Setting/build/moc_predefs.h -I/home/bao/Qt/6.5.1/gcc_64/mkspecs/linux-g++ -I/home/bao/projects/IPhoneOS/Apps/Setting -I/home/bao/projects/IPhoneOS/MiddlewareLayer -I/home/bao/projects/IPhoneOS/MiddlewareLayer/Common -I/home/bao/projects/IPhoneOS/MiddlewareLayer/Wifi -I/home/bao/projects/IPhoneOS/MiddlewareLayer/SystemSetting -I/home/bao/projects/IPhoneOS/Apps/UICommon -I/home/bao/projects/IPhoneOS/Apps/UICommon/Feature -I/home/bao/projects/IPhoneOS/Apps/Setting/Controller -I/home/bao/projects/IPhoneOS/Services/include -I/home/bao/projects/IPhoneOS/Services/include/Common -I/home/bao/projects/IPhoneOS/Services/include/Wifi -I/home/bao/projects/IPhoneOS/Services/include/SystemSetting -I/home/bao/Qt/6.5.1/gcc_64/include -I/home/bao/Qt/6.5.1/gcc_64/include/QtVirtualKeyboard -I/home/bao/Qt/6.5.1/gcc_64/include/QtQuick -I/home/bao/Qt/6.5.1/gcc_64/include/QtOpenGL -I/home/bao/Qt/6.5.1/gcc_64/include/QtGui -I/home/bao/Qt/6.5.1/gcc_64/include/QtQmlModels -I/home/bao/Qt/6.5.1/gcc_64/include/QtQml -I/home/bao/Qt/6.5.1/gcc_64/include/QtQmlIntegration -I/home/bao/Qt/6.5.1/gcc_64/include/QtNetwork -I/home/bao/Qt/6.5.1/gcc_64/include/QtCore -I. -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../Controller/Wifi/WifiController.h -o moc_WifiController.cpp
@@ -1482,121 +1474,10 @@ moc_SystemSettingController.cpp: ../Controller/SystemSetting/SystemSettingContro
 		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qhash.h \
 		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qvarlengtharray.h \
 		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/q20memory.h \
-		../Model/SystemSettingModel.h \
 		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/QSharedPointer \
 		moc_predefs.h \
 		/home/bao/Qt/6.5.1/gcc_64/libexec/moc
 	/home/bao/Qt/6.5.1/gcc_64/libexec/moc $(DEFINES) --include /home/bao/projects/IPhoneOS/Apps/Setting/build/moc_predefs.h -I/home/bao/Qt/6.5.1/gcc_64/mkspecs/linux-g++ -I/home/bao/projects/IPhoneOS/Apps/Setting -I/home/bao/projects/IPhoneOS/MiddlewareLayer -I/home/bao/projects/IPhoneOS/MiddlewareLayer/Common -I/home/bao/projects/IPhoneOS/MiddlewareLayer/Wifi -I/home/bao/projects/IPhoneOS/MiddlewareLayer/SystemSetting -I/home/bao/projects/IPhoneOS/Apps/UICommon -I/home/bao/projects/IPhoneOS/Apps/UICommon/Feature -I/home/bao/projects/IPhoneOS/Apps/Setting/Controller -I/home/bao/projects/IPhoneOS/Services/include -I/home/bao/projects/IPhoneOS/Services/include/Common -I/home/bao/projects/IPhoneOS/Services/include/Wifi -I/home/bao/projects/IPhoneOS/Services/include/SystemSetting -I/home/bao/Qt/6.5.1/gcc_64/include -I/home/bao/Qt/6.5.1/gcc_64/include/QtVirtualKeyboard -I/home/bao/Qt/6.5.1/gcc_64/include/QtQuick -I/home/bao/Qt/6.5.1/gcc_64/include/QtOpenGL -I/home/bao/Qt/6.5.1/gcc_64/include/QtGui -I/home/bao/Qt/6.5.1/gcc_64/include/QtQmlModels -I/home/bao/Qt/6.5.1/gcc_64/include/QtQml -I/home/bao/Qt/6.5.1/gcc_64/include/QtQmlIntegration -I/home/bao/Qt/6.5.1/gcc_64/include/QtNetwork -I/home/bao/Qt/6.5.1/gcc_64/include/QtCore -I. -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../Controller/SystemSetting/SystemSettingController.h -o moc_SystemSettingController.cpp
-
-moc_SystemSettingModel.cpp: ../Model/SystemSettingModel.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/QObject \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qobject.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qobjectdefs.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qnamespace.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qglobal.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qtversionchecks.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qconfig.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qtcore-config.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qtconfigmacros.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qtcoreexports.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qtpreprocessorsupport.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qtnoop.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qsystemdetection.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qprocessordetection.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qcompilerdetection.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qassert.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qtypes.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qtclasshelpermacros.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qtversion.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qtypeinfo.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qcontainerfwd.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qsysinfo.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qlogging.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qflags.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qcompare_impl.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qatomic.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qbasicatomic.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qatomic_cxx11.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qgenericatomic.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qconstructormacros.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qdarwinhelpers.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qexceptionhandling.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qforeach.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qtdeprecationmarkers.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qttypetraits.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qfunctionpointer.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qglobalstatic.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qmalloc.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qminmax.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qnumeric.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qoverload.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qswap.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qtenvironmentvariables.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qtresource.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qttranslation.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qversiontagging.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qtmetamacros.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qobjectdefs_impl.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qstring.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qchar.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qstringview.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qbytearray.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qrefcount.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qarraydata.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qpair.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qarraydatapointer.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qarraydataops.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qcontainertools_impl.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qxptype_traits.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qbytearrayalgorithms.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qbytearrayview.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qstringfwd.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/q20type_traits.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qstringliteral.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qstringalgorithms.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qanystringview.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qutf8stringview.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qstringtokenizer.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qstringbuilder.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qlist.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qhashfunctions.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qiterator.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qbytearraylist.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qstringlist.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qalgorithms.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qstringmatcher.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qcoreevent.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qscopedpointer.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qmetatype.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qcompare.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qdatastream.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qiodevicebase.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qfloat16.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qmath.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qiterable.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qmetacontainer.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qcontainerinfo.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qtaggedpointer.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qscopeguard.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qobject_impl.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qbindingstorage.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/QDebug \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qdebug.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qtextstream.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qstringconverter_base.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qcontiguouscache.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qsharedpointer.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qshareddata.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qsharedpointer_impl.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qmap.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qshareddata_impl.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qset.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qhash.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qvarlengtharray.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/q20memory.h \
-		moc_predefs.h \
-		/home/bao/Qt/6.5.1/gcc_64/libexec/moc
-	/home/bao/Qt/6.5.1/gcc_64/libexec/moc $(DEFINES) --include /home/bao/projects/IPhoneOS/Apps/Setting/build/moc_predefs.h -I/home/bao/Qt/6.5.1/gcc_64/mkspecs/linux-g++ -I/home/bao/projects/IPhoneOS/Apps/Setting -I/home/bao/projects/IPhoneOS/MiddlewareLayer -I/home/bao/projects/IPhoneOS/MiddlewareLayer/Common -I/home/bao/projects/IPhoneOS/MiddlewareLayer/Wifi -I/home/bao/projects/IPhoneOS/MiddlewareLayer/SystemSetting -I/home/bao/projects/IPhoneOS/Apps/UICommon -I/home/bao/projects/IPhoneOS/Apps/UICommon/Feature -I/home/bao/projects/IPhoneOS/Apps/Setting/Controller -I/home/bao/projects/IPhoneOS/Services/include -I/home/bao/projects/IPhoneOS/Services/include/Common -I/home/bao/projects/IPhoneOS/Services/include/Wifi -I/home/bao/projects/IPhoneOS/Services/include/SystemSetting -I/home/bao/Qt/6.5.1/gcc_64/include -I/home/bao/Qt/6.5.1/gcc_64/include/QtVirtualKeyboard -I/home/bao/Qt/6.5.1/gcc_64/include/QtQuick -I/home/bao/Qt/6.5.1/gcc_64/include/QtOpenGL -I/home/bao/Qt/6.5.1/gcc_64/include/QtGui -I/home/bao/Qt/6.5.1/gcc_64/include/QtQmlModels -I/home/bao/Qt/6.5.1/gcc_64/include/QtQml -I/home/bao/Qt/6.5.1/gcc_64/include/QtQmlIntegration -I/home/bao/Qt/6.5.1/gcc_64/include/QtNetwork -I/home/bao/Qt/6.5.1/gcc_64/include/QtCore -I. -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../Model/SystemSettingModel.h -o moc_SystemSettingModel.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -1818,19 +1699,18 @@ SettingEngine.o: ../Controller/SettingEngine.cpp ../Controller/SettingEngine.h \
 		../../UICommon/Feature/CommonType.h \
 		../../UICommon/Feature/StackingTask.h \
 		../../../MiddlewareLayer/Wifi/WifiDevice.h \
+		../Controller/Enums.h \
+		../../UICommon/Feature/Log.h \
+		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/QDebug \
+		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/QMetaEnum \
 		../Model/WifiDeviceModel.h \
 		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/QAbstractListModel \
 		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qabstractitemmodel.h \
 		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/QVariant \
 		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/QVector \
 		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qvector.h \
-		../Controller/Enums.h \
-		../../UICommon/Feature/Log.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/QDebug \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/QMetaEnum \
 		../Controller/SystemSetting/SystemSettingController.h \
 		../../../MiddlewareLayer/SystemSetting/SystemSettingAdapter.h \
-		../Model/SystemSettingModel.h \
 		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/QSharedPointer
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SettingEngine.o ../Controller/SettingEngine.cpp
 
@@ -1932,11 +1812,9 @@ WifiController.o: ../Controller/Wifi/WifiController.cpp ../Controller/Wifi/WifiC
 		../../UICommon/Feature/CommonType.h \
 		../../UICommon/Feature/StackingTask.h \
 		../../../MiddlewareLayer/Wifi/WifiDevice.h \
-		../Model/WifiDeviceModel.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/QAbstractListModel \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qabstractitemmodel.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qhash.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qvariant.h \
+		../Controller/Enums.h \
+		../../UICommon/Feature/Log.h \
+		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/QDebug \
 		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qdebug.h \
 		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qtextstream.h \
 		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qstringconverter_base.h \
@@ -1947,16 +1825,18 @@ WifiController.o: ../Controller/Wifi/WifiController.cpp ../Controller/Wifi/WifiC
 		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qmap.h \
 		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qshareddata_impl.h \
 		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qset.h \
+		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qhash.h \
 		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qvarlengtharray.h \
 		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/q20memory.h \
+		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/QMetaEnum \
+		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qmetaobject.h \
+		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qvariant.h \
+		../Model/WifiDeviceModel.h \
+		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/QAbstractListModel \
+		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qabstractitemmodel.h \
 		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/QVariant \
 		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/QVector \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qvector.h \
-		../Controller/Enums.h \
-		../../UICommon/Feature/Log.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/QDebug \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/QMetaEnum \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qmetaobject.h
+		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qvector.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o WifiController.o ../Controller/Wifi/WifiController.cpp
 
 WifiDeviceModel.o: ../Model/WifiDeviceModel.cpp ../Model/WifiDeviceModel.h \
@@ -2187,117 +2067,8 @@ SystemSettingController.o: ../Controller/SystemSetting/SystemSettingController.c
 		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qhash.h \
 		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qvarlengtharray.h \
 		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/q20memory.h \
-		../Model/SystemSettingModel.h \
 		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/QSharedPointer
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SystemSettingController.o ../Controller/SystemSetting/SystemSettingController.cpp
-
-SystemSettingModel.o: ../Model/SystemSettingModel.cpp ../Model/SystemSettingModel.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/QObject \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qobject.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qobjectdefs.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qnamespace.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qglobal.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qtversionchecks.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qconfig.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qtcore-config.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qtconfigmacros.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qtcoreexports.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qtpreprocessorsupport.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qtnoop.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qsystemdetection.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qprocessordetection.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qcompilerdetection.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qassert.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qtypes.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qtclasshelpermacros.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qtversion.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qtypeinfo.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qcontainerfwd.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qsysinfo.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qlogging.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qflags.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qcompare_impl.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qatomic.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qbasicatomic.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qatomic_cxx11.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qgenericatomic.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qconstructormacros.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qdarwinhelpers.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qexceptionhandling.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qforeach.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qtdeprecationmarkers.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qttypetraits.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qfunctionpointer.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qglobalstatic.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qmalloc.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qminmax.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qnumeric.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qoverload.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qswap.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qtenvironmentvariables.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qtresource.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qttranslation.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qversiontagging.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qtmetamacros.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qobjectdefs_impl.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qstring.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qchar.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qstringview.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qbytearray.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qrefcount.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qarraydata.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qpair.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qarraydatapointer.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qarraydataops.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qcontainertools_impl.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qxptype_traits.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qbytearrayalgorithms.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qbytearrayview.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qstringfwd.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/q20type_traits.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qstringliteral.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qstringalgorithms.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qanystringview.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qutf8stringview.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qstringtokenizer.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qstringbuilder.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qlist.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qhashfunctions.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qiterator.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qbytearraylist.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qstringlist.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qalgorithms.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qstringmatcher.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qcoreevent.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qscopedpointer.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qmetatype.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qcompare.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qdatastream.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qiodevicebase.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qfloat16.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qmath.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qiterable.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qmetacontainer.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qcontainerinfo.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qtaggedpointer.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qscopeguard.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qobject_impl.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qbindingstorage.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/QDebug \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qdebug.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qtextstream.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qstringconverter_base.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qcontiguouscache.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qsharedpointer.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qshareddata.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qsharedpointer_impl.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qmap.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qshareddata_impl.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qset.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qhash.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qvarlengtharray.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/q20memory.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SystemSettingModel.o ../Model/SystemSettingModel.cpp
 
 main.o: ../main.cpp /home/bao/Qt/6.5.1/gcc_64/include/QtGui/QGuiApplication \
 		/home/bao/Qt/6.5.1/gcc_64/include/QtGui/qguiapplication.h \
@@ -2528,19 +2299,18 @@ main.o: ../main.cpp /home/bao/Qt/6.5.1/gcc_64/include/QtGui/QGuiApplication \
 		../../UICommon/Feature/CommonType.h \
 		../../UICommon/Feature/StackingTask.h \
 		../../../MiddlewareLayer/Wifi/WifiDevice.h \
+		../Controller/Enums.h \
+		../../UICommon/Feature/Log.h \
+		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/QDebug \
+		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/QMetaEnum \
 		../Model/WifiDeviceModel.h \
 		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/QAbstractListModel \
 		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qabstractitemmodel.h \
 		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/QVariant \
 		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/QVector \
 		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/qvector.h \
-		../Controller/Enums.h \
-		../../UICommon/Feature/Log.h \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/QDebug \
-		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/QMetaEnum \
 		../Controller/SystemSetting/SystemSettingController.h \
 		../../../MiddlewareLayer/SystemSetting/SystemSettingAdapter.h \
-		../Model/SystemSettingModel.h \
 		/home/bao/Qt/6.5.1/gcc_64/include/QtCore/QSharedPointer
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../main.cpp
 
@@ -2564,9 +2334,6 @@ moc_WifiDeviceModel.o: moc_WifiDeviceModel.cpp
 
 moc_SystemSettingController.o: moc_SystemSettingController.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_SystemSettingController.o moc_SystemSettingController.cpp
-
-moc_SystemSettingModel.o: moc_SystemSettingModel.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_SystemSettingModel.o moc_SystemSettingModel.cpp
 
 ####### Install
 

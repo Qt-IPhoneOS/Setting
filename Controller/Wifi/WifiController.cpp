@@ -9,7 +9,7 @@ WifiController::WifiController() : mAdapter(WifiAdapter::instance())
     mDiscoveryModel = std::make_shared<WifiDeviceModel>();
 
     mUpdatePairedDevices = mAdapter->onPairedDeviceListChanged.connect([this](std::vector<WifiDevice*> devices){
-        QMetaObject::invokeMethod(this, "handleUpdatePairedDevices", Qt::QueuedConnection, Q_ARG(std::vector<WifiDevice*>, devices));
+        QMetaObject::invokeMethod(this, "handleUpdatePairedDeviceList", Qt::QueuedConnection, Q_ARG(std::vector<WifiDevice*>, devices));
     });
 
     mUpdateConnectedDevice = mAdapter->onConnectedDeviceChanged.connect([this](WifiDevice* device) {
@@ -65,12 +65,12 @@ void WifiController::handleUpdateEnableWifi(bool enable)
 
 void WifiController::handleAddDiscoveryDevice(WifiDevice* device)
 {
-    mDiscoveryModel->appendItem(device);
+    mDiscoveryModel->appendDevice(device);
 }
 
 void WifiController::handleRemoveDiscoveryDevice(const std::string &addr)
 {
-    mDiscoveryModel->removeItem(addr);
+    mDiscoveryModel->removeDevice(addr);
 }
 
 void WifiController::handleUpdateDeviceState(const std::string &name, Enums::WifiState oldState, Enums::WifiState newState)
@@ -96,7 +96,7 @@ void WifiController::handleUpdateDeviceState(const std::string &name, Enums::Wif
 
 }
 
-void WifiController::handleUpdatePairedDevices(std::vector<WifiDevice*> devices)
+void WifiController::handleUpdatePairedDeviceList(std::vector<WifiDevice*> devices)
 {
     QVector<WifiDevice*> qVector;
     qVector.reserve(devices.size());
@@ -104,7 +104,7 @@ void WifiController::handleUpdatePairedDevices(std::vector<WifiDevice*> devices)
     for (const auto& item : devices) {
         qVector.append(item);
     }
-    mPairedDeviceModel->appendDevices(qVector);
+    mPairedDeviceModel->setDevicelist(qVector);
 }
 
 void WifiController::setEnableWifi(const bool& enable)

@@ -17,8 +17,8 @@ public:
     QHash<int, QByteArray> roleNames() const override;
 
     void setDevicelist(const QVector<WifiDevice*>& deviceList);
-    void appendItem(WifiDevice* device);
-    void removeItem(const std::string& addr);
+    void appendDevice(WifiDevice* device);
+    void removeDevice(const std::string& addr);
 
 
     int count() const;

@@ -21,7 +21,7 @@ RootScreen {
             backBtnText: "Setting"
             headerText: "Wi-Fi"
 
-            onBack: SettingEngine.backScreen()
+            onBack: AppEngine.backScreen()
         }
 
         Rectangle {

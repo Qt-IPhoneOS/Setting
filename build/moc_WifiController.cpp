@@ -43,7 +43,7 @@ static constexpr auto qt_meta_stringdata_CLASSWifiControllerENDCLASS = QtMocHelp
     "",
     "connectedNameChanged",
     "connectedStatusChanged",
-    "handleUpdatePairedDevices",
+    "handleUpdatePairedDeviceList",
     "std::vector<WifiDevice*>",
     "handleUpdateDeviceState",
     "std::string",
@@ -71,7 +71,7 @@ struct qt_meta_stringdata_CLASSWifiControllerENDCLASS_t {
     char stringdata2[1];
     char stringdata3[21];
     char stringdata4[23];
-    char stringdata5[26];
+    char stringdata5[29];
     char stringdata6[25];
     char stringdata7[24];
     char stringdata8[12];
@@ -100,32 +100,32 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSWifiControllerENDCLASS_t qt_met
         QT_MOC_LITERAL(29, 0),  // ""
         QT_MOC_LITERAL(30, 20),  // "connectedNameChanged"
         QT_MOC_LITERAL(51, 22),  // "connectedStatusChanged"
-        QT_MOC_LITERAL(74, 25),  // "handleUpdatePairedDevices"
-        QT_MOC_LITERAL(100, 24),  // "std::vector<WifiDevice*>"
-        QT_MOC_LITERAL(125, 23),  // "handleUpdateDeviceState"
-        QT_MOC_LITERAL(149, 11),  // "std::string"
-        QT_MOC_LITERAL(161, 16),  // "Enums::WifiState"
-        QT_MOC_LITERAL(178, 27),  // "handleUpdateConnectedDevice"
-        QT_MOC_LITERAL(206, 11),  // "WifiDevice*"
-        QT_MOC_LITERAL(218, 22),  // "handleUpdateEnableWifi"
-        QT_MOC_LITERAL(241, 24),  // "handleAddDiscoveryDevice"
-        QT_MOC_LITERAL(266, 27),  // "handleRemoveDiscoveryDevice"
-        QT_MOC_LITERAL(294, 13),  // "setEnableWifi"
-        QT_MOC_LITERAL(308, 6),  // "enable"
-        QT_MOC_LITERAL(315, 13),  // "connectDevice"
-        QT_MOC_LITERAL(329, 4),  // "addr"
-        QT_MOC_LITERAL(334, 14),  // "startDiscovery"
-        QT_MOC_LITERAL(349, 6),  // "wifiOn"
-        QT_MOC_LITERAL(356, 13),  // "connectedName"
-        QT_MOC_LITERAL(370, 15),  // "connectedStatus"
-        QT_MOC_LITERAL(386, 21)   // "Enums::ConnectedState"
+        QT_MOC_LITERAL(74, 28),  // "handleUpdatePairedDeviceList"
+        QT_MOC_LITERAL(103, 24),  // "std::vector<WifiDevice*>"
+        QT_MOC_LITERAL(128, 23),  // "handleUpdateDeviceState"
+        QT_MOC_LITERAL(152, 11),  // "std::string"
+        QT_MOC_LITERAL(164, 16),  // "Enums::WifiState"
+        QT_MOC_LITERAL(181, 27),  // "handleUpdateConnectedDevice"
+        QT_MOC_LITERAL(209, 11),  // "WifiDevice*"
+        QT_MOC_LITERAL(221, 22),  // "handleUpdateEnableWifi"
+        QT_MOC_LITERAL(244, 24),  // "handleAddDiscoveryDevice"
+        QT_MOC_LITERAL(269, 27),  // "handleRemoveDiscoveryDevice"
+        QT_MOC_LITERAL(297, 13),  // "setEnableWifi"
+        QT_MOC_LITERAL(311, 6),  // "enable"
+        QT_MOC_LITERAL(318, 13),  // "connectDevice"
+        QT_MOC_LITERAL(332, 4),  // "addr"
+        QT_MOC_LITERAL(337, 14),  // "startDiscovery"
+        QT_MOC_LITERAL(352, 6),  // "wifiOn"
+        QT_MOC_LITERAL(359, 13),  // "connectedName"
+        QT_MOC_LITERAL(373, 15),  // "connectedStatus"
+        QT_MOC_LITERAL(389, 21)   // "Enums::ConnectedState"
     },
     "WifiController",
     "wifiOnChanged",
     "",
     "connectedNameChanged",
     "connectedStatusChanged",
-    "handleUpdatePairedDevices",
+    "handleUpdatePairedDeviceList",
     "std::vector<WifiDevice*>",
     "handleUpdateDeviceState",
     "std::string",
@@ -232,7 +232,7 @@ Q_CONSTINIT const QMetaObject WifiController::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'connectedStatusChanged'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'handleUpdatePairedDevices'
+        // method 'handleUpdatePairedDeviceList'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<std::vector<WifiDevice*>, std::false_type>,
         // method 'handleUpdateDeviceState'
@@ -273,7 +273,7 @@ void WifiController::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
         case 0: _t->wifiOnChanged(); break;
         case 1: _t->connectedNameChanged(); break;
         case 2: _t->connectedStatusChanged(); break;
-        case 3: _t->handleUpdatePairedDevices((*reinterpret_cast< std::add_pointer_t<std::vector<WifiDevice*>>>(_a[1]))); break;
+        case 3: _t->handleUpdatePairedDeviceList((*reinterpret_cast< std::add_pointer_t<std::vector<WifiDevice*>>>(_a[1]))); break;
         case 4: _t->handleUpdateDeviceState((*reinterpret_cast< std::add_pointer_t<std::string>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<Enums::WifiState>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<Enums::WifiState>>(_a[3]))); break;
         case 5: _t->handleUpdateConnectedDevice((*reinterpret_cast< std::add_pointer_t<WifiDevice*>>(_a[1]))); break;
         case 6: _t->handleUpdateEnableWifi((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
