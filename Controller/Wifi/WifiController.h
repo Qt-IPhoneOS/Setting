@@ -48,11 +48,11 @@ signals:
     void connectedStatusChanged();
 
 public slots:
-    void handleUpdatePairedDeviceList(std::vector<WifiDevice*>);
+    void handleUpdatePairedDeviceList(std::vector<midlayer::WifiDevice*>);
     void handleUpdateDeviceState(const std::string&, Enums::WifiState, Enums::WifiState);
-    void handleUpdateConnectedDevice(WifiDevice*);
+    void handleUpdateConnectedDevice(midlayer::WifiDevice*);
     void handleUpdateEnableWifi(bool);
-    void handleAddDiscoveryDevice(WifiDevice*);
+    void handleAddDiscoveryDevice(midlayer::WifiDevice*);
     void handleRemoveDiscoveryDevice(const std::string&);
 
 private:
@@ -64,7 +64,7 @@ private:
     uicommon::Connect mRemoveDiscoveryDevice;
 
 private:
-    WifiAdapter* mAdapter {nullptr};
+    midlayer::WifiAdapter* mAdapter {nullptr};
     std::shared_ptr<WifiDeviceModel> mPairedDeviceModel;
     std::shared_ptr<WifiDeviceModel> mDiscoveryModel;
     QVector<AbstractInterface*> mInterfaces;

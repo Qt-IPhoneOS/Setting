@@ -18,7 +18,7 @@ public slots:
     bool isAirplaneModeActive() const;
     void setIsAirplaneModeActive(bool newIsAirplaneModeActive);
 
-    void handleUpdateAirplaneMode(const SystemSettingAdapter::AirplaneModeEnums&);
+    void handleUpdateAirplaneMode(const midlayer::SystemSettingAdapter::AirplaneModeEnums&);
 
 public:
     Q_INVOKABLE void setNewValueAirplaneMode(const bool&);
@@ -27,7 +27,7 @@ signals:
     void isAirplaneModeActiveChanged();
 
 private:
-    SystemSettingAdapter& mSysAdapter;
+    midlayer::SystemSettingAdapter& mSysAdapter;
 
     uicommon::Connect mUpdateAirplaneMode;
     bool m_isAirplaneModeActive {false};
