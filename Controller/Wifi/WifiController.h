@@ -56,12 +56,12 @@ public slots:
     void handleRemoveDiscoveryDevice(const std::string&);
 
 private:
-    signal::Connect mUpdatePairedDevices;
-    signal::Connect mUpdateConnectedDevice;
-    signal::Connect mUpdateEnableWifi;
-    signal::Connect mUpdateConnectDeviceState;
-    signal::Connect mAddDiscoveryDevice;
-    signal::Connect mRemoveDiscoveryDevice;
+    uicommon::Connect mUpdatePairedDevices;
+    uicommon::Connect mUpdateConnectedDevice;
+    uicommon::Connect mUpdateEnableWifi;
+    uicommon::Connect mUpdateConnectDeviceState;
+    uicommon::Connect mAddDiscoveryDevice;
+    uicommon::Connect mRemoveDiscoveryDevice;
 
 private:
     WifiAdapter* mAdapter {nullptr};

@@ -29,7 +29,7 @@ signals:
 private:
     SystemSettingAdapter& mSysAdapter;
 
-    signal::Connect mUpdateAirplaneMode;
+    uicommon::Connect mUpdateAirplaneMode;
     bool m_isAirplaneModeActive {false};
 };
 

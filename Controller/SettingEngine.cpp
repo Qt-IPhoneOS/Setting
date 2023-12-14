@@ -4,7 +4,7 @@
 SettingEngine::SettingEngine(QObject *parent) : QObject(parent)
 {
     mWifiController = new WifiController();
-    mScreenQueue = ScreenQueue::instance();
+    mScreenQueue = uicommon::ScreenQueue::instance();
     mSystemSettingController = new SystemSettingController();
 }
 
