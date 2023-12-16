@@ -11,6 +11,26 @@ RootScreen {
 
     contentHeight: itemContainer.childrenRect.height + 50
 
+    QtObject {
+        id: paramsDevice
+        property string deviceName: ""
+        property bool isConnecting: false
+        property int typeDeviceConnect: 1
+        property string addressDevice: ""
+    }
+
+    Connections {
+        target: WifiController
+        function onSingleDeviceObjectChanged() {
+            AppEngine.showScreen(Enums.SET_WifiDevice)
+        }
+    }
+
+    function setDataDevice(__param) {
+        paramsDevice.deviceName = __param.name
+        paramsDevice.deviceName = __param.addr
+    }
+
     Item {
         id: itemContainer
         width: parent.width
@@ -59,8 +79,20 @@ RootScreen {
                     isConnected: WifiController.connectedStatus === Enums.DeviceConnected
                     isConnecting: WifiController.connectedStatus === Enums.DeviceConnecting
                     visible: WifiController.wifiOn
+
+                    onDeviceInfoClicked: {
+                        paramsDevice.typeDeviceConnect = 0
+                        paramsDevice.deviceName = WifiController.connectedName
+                        WifiController.sendParamsDevice(paramsDevice)
+                    }
                 }
             }
+        }
+
+        QtObject {
+            id: paramsWifiDevice
+            property string deviceName: ""
+            property bool isAutoConnect: false
         }
 
         ListItemsContainer {
@@ -87,6 +119,13 @@ RootScreen {
                             return
 
                         WifiController.connectDevice(model.addr)
+                    }
+
+                    onDeviceInfoClicked: {
+                        paramsDevice.typeDeviceConnect = 1
+                        paramsDevice.deviceName = model.name
+                        paramsDevice.addressDevice = model.addr
+                        WifiController.sendParamsDevice(paramsDevice)
                     }
                 }
             }
@@ -117,10 +156,18 @@ RootScreen {
                     textStr: model.name
 
                     onDeviceClicked: {
+                        WifiController.testSendData(paramsWifiDevice)
                         if (model.name === WifiController.connectedName)
                             return
 
                         WifiController.connectDevice(model.addr)
+                    }
+
+                    onDeviceInfoClicked: {
+                        paramsDevice.typeDeviceConnect = 2
+                        paramsDevice.deviceName = model.name
+                        paramsDevice.addressDevice = model.addr
+                        WifiController.sendParamsDevice(paramsDevice)
                     }
                 }
             }

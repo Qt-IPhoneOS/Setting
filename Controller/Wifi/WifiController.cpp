@@ -1,7 +1,9 @@
 #include "WifiController.h"
 #include <QDebug>
 
-WifiController::WifiController() : mAdapter(WifiAdapter::instance())
+WifiController::WifiController(QObject* parent)
+    : mAdapter(WifiAdapter::instance())
+    , QObject(parent)
 {
     mInterfaces.push_back(mAdapter);
 
@@ -131,6 +133,13 @@ void WifiController::startDiscovery()
     mAdapter->startDiscovery();
 }
 
+void WifiController::sendParamsDevice(QObject* params)
+{
+    qWarning() << "WifiController::sendParamsDevice -- nameDevice: " << params->property("deviceName").toString() << " -- type: " << params->property("typeDeviceConnect").toInt();
+    if (params == nullptr) return;
+    setSingleDeviceObject(params);
+}
+
 bool WifiController::wifiOn() const
 {
     return mWifiOn;
@@ -168,4 +177,17 @@ void WifiController::setConnectedStatus(Enums::ConnectedState newConnectedStatus
         return;
     mConnectedStatus = newConnectedStatus;
     emit connectedStatusChanged();
+}
+
+QObject *WifiController::singleDeviceObject() const
+{
+    return m_singleDeviceObject;
+}
+
+void WifiController::setSingleDeviceObject(QObject *newSingleDeviceObject)
+{
+    if (m_singleDeviceObject == newSingleDeviceObject)
+        return;
+    m_singleDeviceObject = newSingleDeviceObject;
+    emit singleDeviceObjectChanged();
 }

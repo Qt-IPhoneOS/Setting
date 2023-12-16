@@ -3,6 +3,7 @@ import QtQuick.Layouts 1.15
 import QtQuick.Controls 2.15
 import '../Components'
 import QML.Components
+import Enums 1.0
 
 Rectangle {
     id: deviceItem
@@ -17,6 +18,7 @@ Rectangle {
     property string textStr: ""
 
     signal deviceClicked()
+    signal deviceInfoClicked()
 
     Icon {
         x: 15
@@ -73,18 +75,9 @@ Rectangle {
             source: "qrc:/Assets/wifi-strong.png"
         }
 
-        Icon {
-            id: circle
-            Layout.preferredHeight: 25
-            Layout.preferredWidth: 25
-            visible: isWifi
-            source: "qrc:/Assets/circle-i.png"
-            z: 10
-        }
-
         Item {
-            Layout.preferredHeight: 5
-            Layout.preferredWidth: 5
+            Layout.preferredHeight: 35
+            Layout.preferredWidth: 35
         }
     }
 
@@ -98,8 +91,27 @@ Rectangle {
     MouseArea {
         id: mouseArea
         anchors.fill: parent
-        z: 1
+        onClicked: {
+            deviceClicked()
+        }
+    }
 
-        onClicked: deviceClicked()
+    Icon {
+        id: circle
+        width: 25
+        height: 25
+        visible: isWifi
+        anchors {
+            verticalCenter: parent.verticalCenter
+            right: parent.right
+            rightMargin: 10
+        }
+        source: "qrc:/Assets/circle-i.png"
+        MouseArea {
+            anchors.fill: parent
+            onClicked: {
+                deviceItem.deviceInfoClicked()
+            }
+        }
     }
 }

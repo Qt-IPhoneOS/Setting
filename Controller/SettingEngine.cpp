@@ -22,6 +22,7 @@ bool SettingEngine::createWindow()
     mScreenQueue->createView();
     mScreenQueue->registerRootScreen(Enums::SET_Main, "qrc:/Resources/Screens/SET_Main.qml");
     mScreenQueue->registerChildScreen(Enums::SET_Main, Enums::SET_WifiMenu, "qrc:/Resources/Screens/Wifi/SET_WifiMenu.qml");
+    mScreenQueue->registerChildScreen(Enums::SET_WifiMenu, Enums::SET_WifiDevice, "qrc:/Resources/Screens/Wifi/SET_WifiDevice.qml");
 
     return true;
 }

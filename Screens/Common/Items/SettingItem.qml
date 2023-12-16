@@ -13,6 +13,7 @@ Rectangle {
     color: "transparent"
 
     property string beginIconSource: ""
+    property string colorTitleText: ""
     property string titleItemText: ""
     property string labelItemText: ""
     property string backgrBeginIconColor: ""
@@ -21,6 +22,8 @@ Rectangle {
     property bool switchOn: false
     property bool underlineVisible: false
     property int marginLeft: 50
+    property bool isShowArrowIcon: true
+    property bool isPasswordItem: false
 
     signal clicked()
     signal switchBtn()
@@ -64,6 +67,7 @@ Rectangle {
             Layout.fillWidth: true
             visible: rootItem.titleItemText != ""
             text: rootItem.titleItemText
+            color: rootItem.colorTitleText
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignLeft
             font {
@@ -94,9 +98,28 @@ Rectangle {
             }
         }
 
+        Item {
+            visible: rootItem.isPasswordItem
+            Layout.preferredHeight: 20
+            Layout.preferredWidth: 200
+            Layout.alignment: Qt.AlignRight & Qt.AlignVCenter
+            Repeater {
+                anchors.fill: parent
+                model: 15
+                delegate: Rectangle {
+                    anchors.verticalCenter: parent.verticalCenter
+                    x: model.index*13
+                    width: 9
+                    height: 9
+                    radius: 4.5
+                    color: "gray"
+                }
+            }
+        }
+
         Icon {
             id: iconArrow
-            visible: !rootItem.isHasSwitchButton
+            visible: !rootItem.isHasSwitchButton && rootItem.isShowArrowIcon
             Layout.preferredHeight: 20
             Layout.preferredWidth: 20
             source: "qrc:/Assets/arrow_right.png"

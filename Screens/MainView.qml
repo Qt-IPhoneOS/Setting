@@ -14,5 +14,8 @@ Rectangle {
         id: settingPage
         anchors.fill: parent
         source: ScreenSource
+        onSourceChanged: {
+            console.log("\n---> SOURCE: " + settingPage.source)
+        }
     }
 }
