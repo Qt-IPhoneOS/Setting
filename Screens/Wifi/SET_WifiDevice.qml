@@ -9,6 +9,7 @@ import QML.Components
 
 Rectangle {
     id: rootItem
+    color: "#f0f2f5"
 
     QtObject {
         id: __infoDevice
@@ -34,43 +35,32 @@ Rectangle {
 
     HeaderScreen {
         id: headerContainer
-        width: parent.width
         backBtnText: "Wi-Fi"
-        color: rootItem.isUnderLineVisible ? "gray" : "transparent"
+        isFlick: rootItem.isUnderLineVisible
         headerText: __infoDevice.deviceName
+        z: 10
         onBack: {
             AppEngine.backScreen()
-            console.log("Device Info - name: " + __infoDevice.deviceName
-                        + " - isConnect: " + __infoDevice.isConnecting
-                        + " - type: " + __infoDevice.typeDeviceConnect
-                        + " - address: " + __infoDevice.addressDevice)
         }
-    }
-
-    Underline {
-        id: underLine
-        width: parent.width
-        visible: rootItem.isUnderLineVisible
-        y: 80
-        z: 1
     }
 
     RootScreen {
         id: rootSreen
         width: parent.width
-        height: parent.height - headerContainer.height - 1
-        anchors.top: underLine.bottom
-        contentHeight: 500
+        height: parent.height - headerContainer.height
+        anchors.top: headerContainer.bottom
+        contentHeight: itemContainer.implicitHeight
 
-        onYChanged: {
-            console.log("\n---> THAIVD ----- " + rootSreen.y)
-            if (rootSreen.y < 0) {
-                console.log("\n---> THAIVD ----- ")
+        onVerticalVelocityChanged: {
+            if (visibleArea.yPosition > 0) {
                 rootItem.isUnderLineVisible = true
-            } else rootItem.isUnderLineVisible = false
+            } else {
+                rootItem.isUnderLineVisible = false
+            }
         }
 
         ColumnLayout {
+            id: itemContainer
             width: parent.width
             spacing: 0
             ListItemsContainer {
@@ -85,7 +75,7 @@ Rectangle {
                 }
             }
             Item {
-                Layout.preferredHeight: 30
+                Layout.preferredHeight: 20
                 Layout.preferredWidth: parent.width
             }
             ListItemsContainer {
@@ -100,30 +90,8 @@ Rectangle {
                 }
             }
             Item {
-                Layout.preferredHeight: 30
+                Layout.preferredHeight: 20
                 Layout.preferredWidth: parent.width
-            }
-            ListItemsContainer {
-                Layout.alignment: Qt.AlignHCenter
-                visible: __infoDevice.typeDeviceConnect == 2
-                sizeOfModel: 2
-                listContainer: ListView {
-                    interactive: false
-                    model: 2
-                    delegate: SettingItem {
-                        underlineVisible: model.index === 0
-                        isShowArrowIcon: false
-                        titleItemText: {
-                            if (model.index == 0) return "Private Wi-Fi Address"
-                            else return "Wi-Fi Address"
-                        }
-                        labelItemText: {
-                            if (model.index == 1) return __infoDevice.addressDevice
-                            else return ""
-                        }
-                        isHasSwitchButton: model.index == 0
-                    }
-                }
             }
             ListItemsContainer {
                 visible: __infoDevice.typeDeviceConnect != 2
@@ -145,6 +113,48 @@ Rectangle {
                 }
             }
             Item {
+                visible: __infoDevice.typeDeviceConnect != 2
+                Layout.preferredHeight: 20
+                Layout.preferredWidth: parent.width
+            }
+            ListItemsContainer {
+                sizeOfModel: 1
+                Layout.alignment: Qt.AlignHCenter
+                visible: __infoDevice.typeDeviceConnect != 2
+                listContainer: SettingItem {
+                    id: lowDataModeItem
+                    isShowArrowIcon: false
+                    isHasSwitchButton: true
+                    titleItemText: "Low Data Mode"
+                }
+            }
+            Item {
+                Layout.preferredHeight: 20
+                Layout.preferredWidth: parent.width
+            }
+            ListItemsContainer {
+                Layout.alignment: Qt.AlignHCenter
+                sizeOfModel: 2
+                listContainer: ListView {
+                    interactive: false
+                    model: 2
+                    delegate: SettingItem {
+                        underlineVisible: model.index === 0
+                        isShowArrowIcon: false
+                        titleItemText: {
+                            if (model.index == 0) return "Private Wi-Fi Address"
+                            else return "Wi-Fi Address"
+                        }
+                        labelItemText: {
+                            if (model.index == 1) return __infoDevice.addressDevice
+                            else return ""
+                        }
+                        isHasSwitchButton: model.index == 0
+                    }
+                }
+            }
+
+            Item {
                 Layout.preferredHeight: 30
                 Layout.preferredWidth: parent.width
             }
@@ -154,6 +164,7 @@ Rectangle {
                 sizeOfModel: 1
                 visible: __infoDevice.typeDeviceConnect == 2
                 listContainer: ListView {
+                    interactive: false
                     model: 1
                     delegate: SettingItem {
                         titleItemText: "Configure IP"
@@ -172,6 +183,7 @@ Rectangle {
                 visible: __infoDevice.typeDeviceConnect == 2
                 sizeOfModel: 1
                 listContainer: ListView {
+                    interactive: false
                     model: 1
                     delegate: SettingItem {
                         titleItemText: "Configure DSN"
