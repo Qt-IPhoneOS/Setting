@@ -26,7 +26,7 @@ public:
 private:
     WifiController*                 mWifiController             {nullptr};
     SystemSettingController*        mSystemSettingController    {nullptr};
-    ScreenQueue*                    mScreenQueue                {nullptr};
+    uicommon::ScreenQueue*          mScreenQueue                {nullptr};
 };
 
 #endif // SETTINGENGINE_H

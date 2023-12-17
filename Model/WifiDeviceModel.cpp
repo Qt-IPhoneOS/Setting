@@ -66,7 +66,7 @@ QHash<int, QByteArray> WifiDeviceModel::roleNames() const
     return roles;
 }
 
-void WifiDeviceModel::setDevicelist(const QVector<WifiDevice*>& deviceList)
+void WifiDeviceModel::setDevicelist(const QVector<midlayer::WifiDevice*>& deviceList)
 {
     if (deviceList.size() > 0)
         mWifiDevices.clear();
@@ -77,7 +77,7 @@ void WifiDeviceModel::setDevicelist(const QVector<WifiDevice*>& deviceList)
     endResetModel();
 }
 
-void WifiDeviceModel::appendDevice(WifiDevice *device)
+void WifiDeviceModel::appendDevice(midlayer::WifiDevice *device)
 {
     for (auto& item : mWifiDevices)
     {

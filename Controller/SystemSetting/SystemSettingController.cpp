@@ -3,10 +3,10 @@
 
 SystemSettingController::SystemSettingController(QObject* parent)
     : QObject(parent)
-    , mSysAdapter(SystemSettingAdapter::instance())
+    , mSysAdapter(midlayer::SystemSettingAdapter::instance())
 {
-    mUpdateAirplaneMode = mSysAdapter.notifyUpdateAirplaneMode.connect([this](const SystemSettingAdapter::AirplaneModeEnums& _airplaneMode) {
-        QMetaObject::invokeMethod(this, "handleUpdateAirplaneMode", Q_ARG(SystemSettingAdapter::AirplaneModeEnums, _airplaneMode));
+    mUpdateAirplaneMode = mSysAdapter.notifyUpdateAirplaneMode.connect([this](const midlayer::SystemSettingAdapter::AirplaneModeEnums& _airplaneMode) {
+        QMetaObject::invokeMethod(this, "handleUpdateAirplaneMode", Q_ARG(midlayer::SystemSettingAdapter::AirplaneModeEnums, _airplaneMode));
     });
 }
 
@@ -14,12 +14,12 @@ SystemSettingController::~SystemSettingController() {
     
 }
 
-void SystemSettingController::handleUpdateAirplaneMode(const SystemSettingAdapter::AirplaneModeEnums& _newAirplaneMode) {
+void SystemSettingController::handleUpdateAirplaneMode(const midlayer::SystemSettingAdapter::AirplaneModeEnums& _newAirplaneMode) {
     switch(_newAirplaneMode) {
-    case SystemSettingAdapter::AirplaneModeEnums::Inactive:
+    case midlayer::SystemSettingAdapter::AirplaneModeEnums::Inactive:
         setIsAirplaneModeActive(false);
         break;
-    case SystemSettingAdapter::AirplaneModeEnums::Active:
+    case midlayer::SystemSettingAdapter::AirplaneModeEnums::Active:
         setIsAirplaneModeActive(true);
         break;
     default:
@@ -29,7 +29,7 @@ void SystemSettingController::handleUpdateAirplaneMode(const SystemSettingAdapte
 }
 
 void SystemSettingController::setNewValueAirplaneMode(const bool& newAirplaneMode) {
-    mSysAdapter.setNewAirplaneMode(static_cast<SystemSettingAdapter::AirplaneModeEnums>(newAirplaneMode));
+    mSysAdapter.setNewAirplaneMode(static_cast<midlayer::SystemSettingAdapter::AirplaneModeEnums>(newAirplaneMode));
 }
 
 bool SystemSettingController::isAirplaneModeActive() const
