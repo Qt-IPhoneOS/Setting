@@ -18,17 +18,13 @@ RootScreen {
         width: parent.width - 70
         anchors.horizontalCenter: parent.horizontalCenter
 
-        Text {
+        TitleScreen {
             id: settingTitle
             width: parent.width
             height: 50
+            y: 40
             anchors.horizontalCenter: parent.horizontalCenter
-            horizontalAlignment: Text.AlignLeft
-            text: "Settings"
-            font {
-                pixelSize: 30
-                weight: 600
-            }
+            textStr: "Settings"
         }
 
         SearchInput {

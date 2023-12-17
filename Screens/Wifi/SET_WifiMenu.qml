@@ -20,6 +20,7 @@ RootScreen {
             width: parent.width
             backBtnText: "Setting"
             headerText: "Wi-Fi"
+            y: 30
 
             onBack: AppEngine.backScreen()
         }

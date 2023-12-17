@@ -7,7 +7,7 @@ Rectangle {
     id: mainWindow
 
     width: UIConstants.screen_width; height: UIConstants.screen_height
-    color: UIConstants.screen_background
+    color: UIColors.screen_background
     visible: true
 
     Loader {
