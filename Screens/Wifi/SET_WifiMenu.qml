@@ -1,11 +1,11 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 import Enums 1.0
+import QML.Components
 import '../Common/Components'
 import '../Common/Items'
-import QML.Components
 
-RootScreen {
+ScrollScreen {
     id: root
     property bool switchOn: false
 
