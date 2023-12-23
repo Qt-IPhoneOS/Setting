@@ -5,7 +5,7 @@ import QML.Components
 import '../Common/Components'
 import '../Common/Items'
 
-ScrollScreen {
+RootScreen {
     id: root
     property bool switchOn: false
 

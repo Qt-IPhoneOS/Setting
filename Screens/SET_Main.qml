@@ -7,7 +7,7 @@ import QML.Components
 import './Common/Components'
 import './Common/Items'
 
-ScrollScreen {
+RootScreen {
     id: rootItem
 
     property bool isActiveAirplaneMode: SystemSettingController.isAirplaneModeActive
