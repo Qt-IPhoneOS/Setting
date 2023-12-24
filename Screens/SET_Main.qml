@@ -6,6 +6,7 @@ import Enums 1.0
 import './Common/Components'
 import './Common/Items'
 import QML.Components
+import QML.Constants
 
 RootScreen {
     id: rootItem
@@ -13,6 +14,13 @@ RootScreen {
     property bool isActiveAirplaneMode: SystemSettingController.isAirplaneModeActive
 
     contentHeight: networkService.height
+
+    QtObject {
+        id: constant
+        property string nameUser: "Monkey D. Luffy"
+        property string avatarUserImgSrc: "qrc:/Assets/avartarUser.jpg"
+
+    }
 
     Item {
         width: parent.width - 70
@@ -45,7 +53,7 @@ RootScreen {
                 horizontalCenter: parent.horizontalCenter
                 topMargin: 10
             }
-            color: "white"
+            color: UIColors.white
             radius: 15
 
             Item {
@@ -65,7 +73,7 @@ RootScreen {
                         height: 65
                         Layout.preferredWidth: 65
                         Layout.preferredHeight: 65
-                        source: "qrc:/Assets/avartarUser.jpg"
+                        source: constant.avatarUserImgSrc
                         layer.enabled: true
     //                        layer.effect: OpacityMask {
     //                            id: mask
@@ -84,7 +92,7 @@ RootScreen {
                             id: nameRect
                             width: parent.width
                             height: 40
-                            text: "Monkey D. Luffy"
+                            text: constant.nameUser
                             anchors.top: parent.top
                             anchors.topMargin: 25
                             font.pixelSize: 20

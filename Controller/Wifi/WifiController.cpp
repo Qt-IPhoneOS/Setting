@@ -2,7 +2,7 @@
 #include <QDebug>
 
 WifiController::WifiController(QObject* parent)
-    : mAdapter(WifiAdapter::instance())
+    : mAdapter(midlayer::WifiAdapter::instance())
     , QObject(parent)
 {
     mInterfaces.push_back(mAdapter);

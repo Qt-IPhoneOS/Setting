@@ -1,6 +1,8 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 import './'
+import QML.Components
+import QML.Constants
 
 Item {
     id: container
@@ -13,11 +15,16 @@ Item {
 
     property bool isVisibleLoadingAnimation: false
 
-    Text {
+    QtObject {
+        id: constantListItemContainer
+
+    }
+
+    CustomText {
         id: text
         x: 15
         color: "#a1a1a1"
-        text: headerText
+        textStr: headerText
         visible: headerText !== ""
         font {
             pixelSize: 16

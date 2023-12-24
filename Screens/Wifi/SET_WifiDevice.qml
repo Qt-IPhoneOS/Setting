@@ -6,10 +6,11 @@ import QtQuick.Layouts
 import '../Common/Components'
 import '../Common/Items'
 import QML.Components
+import QML.Constants
 
 Rectangle {
     id: rootItem
-    color: "#f0f2f5"
+    color: UIColors.screen_background
 
     QtObject {
         id: __infoDevice
@@ -71,7 +72,7 @@ Rectangle {
                     id: joinNetworkSection
                     isShowArrowIcon: false
                     titleItemText: "Join This Network"
-                    colorTitleText: "#2196f3"
+                    colorTitleText: UIColors.color_highlight_text
                 }
             }
             Item {
@@ -86,7 +87,7 @@ Rectangle {
                     id: forgetNetworkSection
                     isShowArrowIcon: false
                     titleItemText: "Forget This Network"
-                    colorTitleText: "#2196f3"
+                    colorTitleText: UIColors.color_highlight_text
                 }
             }
             Item {

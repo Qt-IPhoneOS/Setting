@@ -1,5 +1,6 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
+import QML.Constants
 
 Flickable {
     id: rootItem
@@ -8,6 +9,6 @@ Flickable {
     Rectangle {
         width: parent.width
         height: 1100
-        color: "#f0f2f5"
+        color: UIColors.screen_background
     }
 }

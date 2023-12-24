@@ -4,10 +4,11 @@ import Enums 1.0
 import '../Common/Components'
 import '../Common/Items'
 import QML.Components
+import QML.Constants
 
 Rectangle {
    id: rootItem
-   color: "#f0f2f5"
+   color: UIColors.screen_background
 
    property bool isUnderLineVisible: false
 

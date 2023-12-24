@@ -1,9 +1,10 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
+import QML.Constants
 
 Rectangle {
     id: loadingBg
-    color: "transparent"
+    color: UIColors.transparent
     width: 20
     height: 20
 

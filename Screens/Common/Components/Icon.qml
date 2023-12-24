@@ -1,11 +1,12 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
+import QML.Constants
 
 Rectangle {
     id: icon
 
     property string source: ""
-    color: "transparent"
+    color: UIColors.transparent
 
     Image {
         id: connected

@@ -4,11 +4,12 @@ import QtQuick.Controls 2.15
 import '../Components'
 import QML.Components
 import Enums 1.0
+import QML.Constants
 
 Rectangle {
     id: deviceItem
 
-    color: "transparent"
+    color: UIColors.transparent
 
     property bool isWifi: true
     property bool isConnected: false
@@ -20,13 +21,21 @@ Rectangle {
     signal deviceClicked()
     signal deviceInfoClicked()
 
+    QtObject {
+        id: constant
+        property string lockIcon: "qrc:/Assets/lock.png"
+        property string strongWifiIcon: "qrc:/Assets/wifi-strong.png"
+        property string connectedWifiIcon: "qrc:/Assets/connected.png"
+        property string cicleIcon: "qrc:/Assets/circle-i.png"
+    }
+
     Icon {
         x: 15
         width: 20
         height: 20
         visible: isWifi && isConnected
         anchors.verticalCenter: parent.verticalCenter
-        source: "qrc:/Assets/connected.png"
+        source: constant.connectedWifiIcon
     }
 
     LoadingAnimation {
@@ -48,7 +57,7 @@ Rectangle {
 
         Text {
             id: text
-            color: "#000"
+            color: UIColors.black
             Layout.fillHeight: true
             Layout.fillWidth: true
             text: textStr
@@ -64,7 +73,7 @@ Rectangle {
             Layout.preferredHeight: 20
             Layout.preferredWidth: 20
             visible: isWifi
-            source: "qrc:/Assets/lock.png"
+            source: constant.lockIcon
         }
 
         Icon {
@@ -72,7 +81,7 @@ Rectangle {
             Layout.preferredHeight: 45
             Layout.preferredWidth: 45
             visible: isWifi
-            source: "qrc:/Assets/wifi-strong.png"
+            source: constant.strongWifiIcon
         }
 
         Item {
@@ -106,7 +115,7 @@ Rectangle {
             right: parent.right
             rightMargin: 10
         }
-        source: "qrc:/Assets/circle-i.png"
+        source: constant.cicleIcon
         MouseArea {
             anchors.fill: parent
             onClicked: {
