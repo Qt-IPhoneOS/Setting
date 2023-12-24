@@ -1,8 +1,9 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
-//import Qt5Compat.GraphicalEffects
+import Qt5Compat.GraphicalEffects
 import QtQuick.Layouts 1.15
 import Enums 1.0
+import QML.Components
 import './Common/Components'
 import './Common/Items'
 import QML.Components
@@ -67,24 +68,13 @@ RootScreen {
                         Layout.fillWidth: true
                     }
 
-                    Image {
+                    Avatar {
                         id: avatarUser
                         width: 65
                         height: 65
-                        Layout.preferredWidth: 65
-                        Layout.preferredHeight: 65
-                        source: constant.avatarUserImgSrc
-                        layer.enabled: true
-    //                        layer.effect: OpacityMask {
-    //                            id: mask
-    //                            maskSource: Rectangle {
-    //                                width: avatarUser.width
-    //                                height: avatarUser.height
-    //                                anchors.centerIn: parent
-    //                                radius: avatarUser.width/2
-    //                            }
-    //                        }
+                        sourceImg: "qrc:/Assets/avartarUser.jpg"
                     }
+
                     Item {
                         Layout.preferredWidth: 360
                         Layout.preferredHeight: parent.height

@@ -26,6 +26,8 @@ SOURCES += \
         Controller/SystemSetting/SystemSettingController.cpp \
         main.cpp
 
+QML_IMPORT_PATH += $$PWD/../UICommon
+
 RESOURCES += \
     Setting.qrc \
     Images.qrc
