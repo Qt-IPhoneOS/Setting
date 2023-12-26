@@ -23,7 +23,7 @@ Item {
     CustomText {
         id: text
         x: 15
-        color: "#a1a1a1"
+        color: UIColors.medium_light_gray
         textStr: headerText
         visible: headerText !== ""
         font {
@@ -44,7 +44,7 @@ Item {
         radius: 15
         width: parent.width
         height: 55 * sizeOfModel
-        color: "#fff"
+        color: UIColors.white
         anchors {
             top: text.bottom
             topMargin: 15

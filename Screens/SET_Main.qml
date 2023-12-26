@@ -68,12 +68,12 @@ RootScreen {
                         Layout.fillWidth: true
                     }
 
-                    Avatar {
-                        id: avatarUser
-                        width: 65
-                        height: 65
-                        sourceImg: "qrc:/Assets/avartarUser.jpg"
-                    }
+//                    Avata {
+//                        id: avatarUser
+//                        width: 65
+//                        height: 65
+//                        sourceImg: "qrc:/Assets/avartarUser.jpg"
+//                    }
 
                     Item {
                         Layout.preferredWidth: 360
@@ -95,7 +95,6 @@ RootScreen {
                             text: "Apple ID, iCloud, Media & Purchases"
                             font.pixelSize: 10
                         }
-
                     }
                     Icon {
                         Layout.preferredWidth: 20
@@ -134,7 +133,7 @@ RootScreen {
                     backgrBeginIconColor: model.brgColor
                     labelItemText: model.labelText
                     isHasSwitchButton: model.switchBtn
-                    switchOn: rootItem.isActiveAirplaneMode
+                    switchOn: rooItem.isActiveAirplaneMode
                     marginLeft: 80
                     underlineVisible: model.index < myModel.count - 1
 

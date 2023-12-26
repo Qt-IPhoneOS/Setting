@@ -61,30 +61,29 @@ Rectangle {
             leftMargin: marginLeft
         }
 
-        Text {
+        CustomText {
             id: titleItemText
             Layout.fillHeight: true
             Layout.fillWidth: true
             visible: rootItem.titleItemText != ""
-            text: rootItem.titleItemText
             color: rootItem.colorTitleText
+            textStr: rootItem.titleItemText
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignLeft
-            font {
-                pixelSize: 20
-                weight: Font.Light
-            }
+            enableAnimation: true
+            visibleAnimation: true
         }
 
-        Text {
+        CustomText {
             id: label
             Layout.fillHeight: true
             Layout.fillWidth: true
             visible: rootItem.labelItemText != ""
-            text: rootItem.labelItemText
+            textStr: rootItem.labelItemText
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignRight
-            font.weight: Font.Light
+            enableAnimation: true
+            visibleAnimation: true
         }
 
         SwitchButton {
