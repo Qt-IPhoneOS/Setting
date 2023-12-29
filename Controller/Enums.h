@@ -13,7 +13,8 @@ public:
     enum ScreenID {
         SET_Main,
         // Wifi
-        SET_WifiMenu
+        SET_WifiMenu,
+        SET_WifiDevice
     };
 
     enum WifiState {

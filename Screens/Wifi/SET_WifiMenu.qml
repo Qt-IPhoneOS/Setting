@@ -4,131 +4,200 @@ import Enums 1.0
 import QML.Components
 import '../Common/Components'
 import '../Common/Items'
+import QML.Components
+import QML.Constants
 
-RootScreen {
-    id: root
-    property bool switchOn: false
+Rectangle {
+   id: rootItem
+   color: UIColors.screen_background
 
-    contentHeight: itemContainer.childrenRect.height + 50
+   property bool isUnderLineVisible: false
 
-    Item {
-        id: itemContainer
-        width: parent.width
-
-        HeaderScreen {
-            id: headerWifi
-            width: parent.width
-            backBtnText: "Setting"
-            headerText: "Wi-Fi"
-            y: 30
-
-            onBack: AppEngine.backScreen()
-        }
-
-        Rectangle {
-            id: connectedArea
-            width: 500
-            height: WifiController.wifiOn ? 110 : 55
-            radius: 15
-            y: 100
-            anchors.horizontalCenter: parent.horizontalCenter
-
-            Column {
-                width: parent.width
-                height: parent.height
-
-                SettingItem {
-                    id: wifiSwitch
-                    width: parent.width
-                    height: WifiController.wifiOn ? parent.height / 2 : parent.height
-                    isHasSwitchButton: true
-                    titleItemText: "Wi-Fi"
-                    switchOn: WifiController.wifiOn
-                    underlineVisible: WifiController.wifiOn
-
-                    onSwitchBtn: {
-                        WifiController.setEnableWifi(!switchOn)
-                    }
-                }
-
-                DeviceItem {
-                    id: connectedWifi
-                    width: parent.width
-                    height: parent.height / 2
-                    marginLeft: 50
-                    textStr: WifiController.connectedName
-                    isConnected: WifiController.connectedStatus === Enums.DeviceConnected
-                    isConnecting: WifiController.connectedStatus === Enums.DeviceConnecting
-                    visible: WifiController.wifiOn
-                }
-            }
-        }
-
-        ListItemsContainer {
-            id: pairedList
-            y: 260
-            sizeOfModel: WifiPairedModel.count
-            anchors.horizontalCenter: parent.horizontalCenter
-            headerText: "MY NETWORKS"
-            visible: WifiController.wifiOn && sizeOfModel > 0
-
-            listContainer: ListView {
-                model: WifiPairedModel
-                width: 500
-                height: 55 * WifiPairedModel.count
-                interactive: false
-                delegate: DeviceItem {
-                    width: 500
-                    height: 55
-                    underlineVisible: model.index !== WifiPairedModel.count - 1
-                    textStr: model.name
-
-                    onDeviceClicked: {
-                        if (model.name === WifiController.connectedName)
-                            return
-
-                        WifiController.connectDevice(model.addr)
-                    }
-                }
-            }
-        }
-
-        ListItemsContainer {
-            id: discoveryList
-            sizeOfModel: WifiDiscoveryModel.count
-            headerText: "OTHER NETWORKS"
-            visible: WifiController.wifiOn
-            isVisibleLoadingAnimation: true
-
-            anchors {
-                horizontalCenter: parent.horizontalCenter
-                top: pairedList.bottom
-                topMargin: 50
-            }
-
-            listContainer: ListView {
-                model: WifiDiscoveryModel
-                width: 500
-                height: 55 * WifiPairedModel.count
-                interactive: false
-                delegate: DeviceItem {
-                    width: 500
-                    height: 55
-                    underlineVisible: model.index !== WifiDiscoveryModel.count - 1
-                    textStr: model.name
-
-                    onDeviceClicked: {
-                        if (model.name === WifiController.connectedName)
-                            return
-
-                        WifiController.connectDevice(model.addr)
-                    }
-                }
-            }
-        }
+    HeaderScreen {
+        id: headerWifi
+        z: 10
+        backBtnText: "Setting"
+        headerText: "Wi-Fi"
+        isFlick: rootItem.isUnderLineVisible
+        onBack: AppEngine.backScreen()
     }
 
-    Component.onCompleted: {
-        WifiController.startDiscovery()
+    RootScreen {
+        id: rootScreen
+
+        width: parent.width
+        height: parent.height - headerWifi.height
+        anchors.top: headerWifi.bottom
+
+        property bool switchOn: false
+        property bool isFlicked: false
+
+        contentHeight: itemContainer.childrenRect.height + 50
+
+        onVerticalVelocityChanged: {
+            if (visibleArea.yPosition > 0) {
+                rootItem.isUnderLineVisible = true
+            } else {
+                rootItem.isUnderLineVisible = false
+            }
+        }
+
+        QtObject {
+            id: paramsDevice
+            property string deviceName: ""
+            property bool isConnecting: false
+            property int typeDeviceConnect: 1
+            property string addressDevice: ""
+        }
+
+        Connections {
+            target: WifiController
+            function onSingleDeviceObjectChanged() {
+                AppEngine.showScreen(Enums.SET_WifiDevice)
+            }
+        }
+
+        function setDataDevice(__param) {
+            paramsDevice.deviceName = __param.name
+            paramsDevice.deviceName = __param.addr
+        }
+
+        Item {
+            id: itemContainer
+            width: parent.width
+
+            Rectangle {
+                id: connectedArea
+                width: 500
+                height: WifiController.wifiOn ? 110 : 55
+                radius: 15
+                y: 100
+                anchors.horizontalCenter: parent.horizontalCenter
+
+                Column {
+                    width: parent.width
+                    height: parent.height
+
+                    SettingItem {
+                        id: wifiSwitch
+                        width: parent.width
+                        height: WifiController.wifiOn ? parent.height / 2 : parent.height
+                        isHasSwitchButton: true
+                        titleItemText: "Wi-Fi"
+                        switchOn: WifiController.wifiOn
+                        underlineVisible: WifiController.wifiOn
+
+                        onSwitchBtn: {
+                            WifiController.setEnableWifi(!switchOn)
+                        }
+                    }
+
+                    DeviceItem {
+                        id: connectedWifi
+                        width: parent.width
+                        height: parent.height / 2
+                        marginLeft: 50
+                        textStr: WifiController.connectedName
+                        isConnected: WifiController.connectedStatus === Enums.DeviceConnected
+                        isConnecting: WifiController.connectedStatus === Enums.DeviceConnecting
+                        visible: WifiController.wifiOn
+
+                        onDeviceInfoClicked: {
+                            paramsDevice.typeDeviceConnect = 0
+                            paramsDevice.deviceName = WifiController.connectedName
+                            WifiController.sendParamsDevice(paramsDevice)
+                        }
+                    }
+                }
+            }
+
+            QtObject {
+                id: paramsWifiDevice
+                property string deviceName: ""
+                property bool isAutoConnect: false
+            }
+
+            ListItemsContainer {
+                id: pairedList
+                y: 260
+                sizeOfModel: WifiPairedModel.count
+                anchors.horizontalCenter: parent.horizontalCenter
+                headerText: "MY NETWORKS"
+                visible: WifiController.wifiOn && sizeOfModel > 0
+
+                listContainer: ListView {
+                    model: WifiPairedModel
+                    width: 500
+                    height: 55 * WifiPairedModel.count
+                    interactive: false
+                    delegate: DeviceItem {
+                        width: 500
+                        height: 55
+                        underlineVisible: model.index !== WifiPairedModel.count - 1
+                        textStr: model.name
+
+                        onDeviceClicked: {
+                            if (model.name === WifiController.connectedName)
+                                return
+
+                            WifiController.connectDevice(model.addr)
+                        }
+
+                        onDeviceInfoClicked: {
+                            paramsDevice.typeDeviceConnect = 1
+                            paramsDevice.deviceName = model.name
+                            paramsDevice.addressDevice = model.addr
+                            WifiController.sendParamsDevice(paramsDevice)
+                        }
+                    }
+                }
+            }
+
+            ListItemsContainer {
+                id: discoveryList
+                sizeOfModel: WifiDiscoveryModel.count
+                headerText: "OTHER NETWORKS"
+                visible: WifiController.wifiOn
+                isVisibleLoadingAnimation: true
+
+                anchors {
+                    horizontalCenter: parent.horizontalCenter
+                    top: pairedList.bottom
+                    topMargin: 50
+                }
+
+                listContainer: ListView {
+                    model: WifiDiscoveryModel
+                    width: 500
+                    height: 55 * WifiPairedModel.count
+                    interactive: false
+                    delegate: DeviceItem {
+                        width: 500
+                        height: 55
+                        underlineVisible: model.index !== WifiDiscoveryModel.count - 1
+                        textStr: model.name
+
+                        onDeviceClicked: {
+                            WifiController.testSendData(paramsWifiDevice)
+                            if (model.name === WifiController.connectedName)
+                                return
+
+                            WifiController.connectDevice(model.addr)
+                        }
+
+                        onDeviceInfoClicked: {
+                            paramsDevice.typeDeviceConnect = 2
+                            paramsDevice.deviceName = model.name
+                            paramsDevice.addressDevice = model.addr
+                            WifiController.sendParamsDevice(paramsDevice)
+                        }
+                    }
+                }
+            }
+        }
+
+        Component.onCompleted: {
+            WifiController.startDiscovery()
+        }
     }
 }

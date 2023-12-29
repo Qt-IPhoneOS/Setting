@@ -3,11 +3,13 @@ import QtQuick.Layouts 1.15
 import QtQuick.Controls 2.15
 import '../Components'
 import QML.Components
+import Enums 1.0
+import QML.Constants
 
 Rectangle {
     id: deviceItem
 
-    color: "transparent"
+    color: UIColors.transparent
 
     property bool isWifi: true
     property bool isConnected: false
@@ -17,6 +19,15 @@ Rectangle {
     property string textStr: ""
 
     signal deviceClicked()
+    signal deviceInfoClicked()
+
+    QtObject {
+        id: constant
+        property string lockIcon: "qrc:/Assets/lock.png"
+        property string strongWifiIcon: "qrc:/Assets/wifi-strong.png"
+        property string connectedWifiIcon: "qrc:/Assets/connected.png"
+        property string cicleIcon: "qrc:/Assets/circle-i.png"
+    }
 
     Icon {
         x: 15
@@ -24,7 +35,7 @@ Rectangle {
         height: 20
         visible: isWifi && isConnected
         anchors.verticalCenter: parent.verticalCenter
-        source: "qrc:/Assets/connected.png"
+        source: constant.connectedWifiIcon
     }
 
     LoadingAnimation {
@@ -46,7 +57,7 @@ Rectangle {
 
         Text {
             id: text
-            color: "#000"
+            color: UIColors.black
             Layout.fillHeight: true
             Layout.fillWidth: true
             text: textStr
@@ -62,7 +73,7 @@ Rectangle {
             Layout.preferredHeight: 20
             Layout.preferredWidth: 20
             visible: isWifi
-            source: "qrc:/Assets/lock.png"
+            source: constant.lockIcon
         }
 
         Icon {
@@ -70,21 +81,12 @@ Rectangle {
             Layout.preferredHeight: 45
             Layout.preferredWidth: 45
             visible: isWifi
-            source: "qrc:/Assets/wifi-strong.png"
-        }
-
-        Icon {
-            id: circle
-            Layout.preferredHeight: 25
-            Layout.preferredWidth: 25
-            visible: isWifi
-            source: "qrc:/Assets/circle-i.png"
-            z: 10
+            source: constant.strongWifiIcon
         }
 
         Item {
-            Layout.preferredHeight: 5
-            Layout.preferredWidth: 5
+            Layout.preferredHeight: 35
+            Layout.preferredWidth: 35
         }
     }
 
@@ -98,8 +100,27 @@ Rectangle {
     MouseArea {
         id: mouseArea
         anchors.fill: parent
-        z: 1
+        onClicked: {
+            deviceClicked()
+        }
+    }
 
-        onClicked: deviceClicked()
+    Icon {
+        id: circle
+        width: 25
+        height: 25
+        visible: isWifi
+        anchors {
+            verticalCenter: parent.verticalCenter
+            right: parent.right
+            rightMargin: 10
+        }
+        source: constant.cicleIcon
+        MouseArea {
+            anchors.fill: parent
+            onClicked: {
+                deviceItem.deviceInfoClicked()
+            }
+        }
     }
 }

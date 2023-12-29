@@ -6,6 +6,8 @@ import Enums 1.0
 import QML.Components
 import './Common/Components'
 import './Common/Items'
+import QML.Components
+import QML.Constants
 
 RootScreen {
     id: rootItem
@@ -13,6 +15,13 @@ RootScreen {
     property bool isActiveAirplaneMode: SystemSettingController.isAirplaneModeActive
 
     contentHeight: networkService.height
+
+    QtObject {
+        id: constant
+        property string nameUser: "Monkey D. Luffy"
+        property string avatarUserImgSrc: "qrc:/Assets/avartarUser.jpg"
+
+    }
 
     Item {
         width: parent.width - 70
@@ -45,7 +54,7 @@ RootScreen {
                 horizontalCenter: parent.horizontalCenter
                 topMargin: 10
             }
-            color: "white"
+            color: UIColors.white
             radius: 15
 
             Item {
@@ -59,12 +68,12 @@ RootScreen {
                         Layout.fillWidth: true
                     }
 
-                    Avatar {
-                        id: avatarUser
-                        width: 65
-                        height: 65
-                        sourceImg: "qrc:/Assets/avartarUser.jpg"
-                    }
+//                    Avata {
+//                        id: avatarUser
+//                        width: 65
+//                        height: 65
+//                        sourceImg: "qrc:/Assets/avartarUser.jpg"
+//                    }
 
                     Item {
                         Layout.preferredWidth: 360
@@ -73,7 +82,7 @@ RootScreen {
                             id: nameRect
                             width: parent.width
                             height: 40
-                            text: "Monkey D. Luffy"
+                            text: constant.nameUser
                             anchors.top: parent.top
                             anchors.topMargin: 25
                             font.pixelSize: 20
@@ -86,7 +95,6 @@ RootScreen {
                             text: "Apple ID, iCloud, Media & Purchases"
                             font.pixelSize: 10
                         }
-
                     }
                     Icon {
                         Layout.preferredWidth: 20
@@ -125,7 +133,7 @@ RootScreen {
                     backgrBeginIconColor: model.brgColor
                     labelItemText: model.labelText
                     isHasSwitchButton: model.switchBtn
-                    switchOn: rootItem.isActiveAirplaneMode
+                    switchOn: rooItem.isActiveAirplaneMode
                     marginLeft: 80
                     underlineVisible: model.index < myModel.count - 1
 
