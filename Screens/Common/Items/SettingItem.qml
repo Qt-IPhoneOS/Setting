@@ -3,6 +3,7 @@ import QtQuick.Layouts 1.15
 import QtQuick.Controls 2.15
 import "../Components"
 import QML.Components
+import QML.Constants
 
 Rectangle {
     id: rootItem
@@ -10,7 +11,7 @@ Rectangle {
     width: 500
     height: 55
     anchors.horizontalCenter: parent.horizontalCenter
-    color: "transparent"
+    color: UIColors.transparent
 
     property string beginIconSource: ""
     property string colorTitleText: ""
@@ -66,8 +67,9 @@ Rectangle {
             Layout.fillHeight: true
             Layout.fillWidth: true
             visible: rootItem.titleItemText != ""
-            color: rootItem.colorTitleText
+            fontSize: UIFonts.medium_pixel
             textStr: rootItem.titleItemText
+            color: rootItem.colorTitleText
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignLeft
             enableAnimation: true
@@ -80,6 +82,7 @@ Rectangle {
             Layout.fillWidth: true
             visible: rootItem.labelItemText != ""
             textStr: rootItem.labelItemText
+            fontSize: UIFonts.medium_pixel
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignRight
             enableAnimation: true
@@ -111,7 +114,7 @@ Rectangle {
                     width: 9
                     height: 9
                     radius: 4.5
-                    color: "gray"
+                    color: UIColors.grey
                 }
             }
         }
@@ -133,7 +136,6 @@ Rectangle {
     Underline {
         marginValue: marginLeft
         visible: underlineVisible
-
         anchors.top: row.bottom
     }
 
@@ -141,7 +143,6 @@ Rectangle {
         id: mouseArea
         anchors.fill: parent
         enabled: !isHasSwitchButton
-
         onClicked: rootItem.clicked()
     }
 }

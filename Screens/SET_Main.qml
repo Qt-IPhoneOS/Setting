@@ -18,9 +18,8 @@ RootScreen {
 
     QtObject {
         id: constant
-        property string nameUser: "Monkey D. Luffy"
-        property string avatarUserImgSrc: "qrc:/Assets/avartarUser.jpg"
-
+        readonly property string nameUser: "Monkey D. Luffy"
+        readonly property string avatarUserImgSrc: "qrc:/Assets/avartarUser.jpg"
     }
 
     Item {
@@ -68,12 +67,12 @@ RootScreen {
                         Layout.fillWidth: true
                     }
 
-//                    Avata {
-//                        id: avatarUser
-//                        width: 65
-//                        height: 65
-//                        sourceImg: "qrc:/Assets/avartarUser.jpg"
-//                    }
+                    Avatar {
+                        id: avatarUser
+                        width: 65
+                        height: 65
+                        sourceImg: "qrc:/Assets/avartarUser.jpg"
+                    }
 
                     Item {
                         Layout.preferredWidth: 360
@@ -133,7 +132,7 @@ RootScreen {
                     backgrBeginIconColor: model.brgColor
                     labelItemText: model.labelText
                     isHasSwitchButton: model.switchBtn
-                    switchOn: rooItem.isActiveAirplaneMode
+                    switchOn: rootItem.isActiveAirplaneMode
                     marginLeft: 80
                     underlineVisible: model.index < myModel.count - 1
 

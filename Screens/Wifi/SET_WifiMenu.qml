@@ -11,14 +11,11 @@ Rectangle {
    id: rootItem
    color: UIColors.screen_background
 
-   property bool isUnderLineVisible: false
-
     HeaderScreen {
         id: headerWifi
         z: 10
         backBtnText: "Setting"
         headerText: "Wi-Fi"
-        isFlick: rootItem.isUnderLineVisible
         onBack: AppEngine.backScreen()
     }
 
@@ -33,14 +30,6 @@ Rectangle {
         property bool isFlicked: false
 
         contentHeight: itemContainer.childrenRect.height + 50
-
-        onVerticalVelocityChanged: {
-            if (visibleArea.yPosition > 0) {
-                rootItem.isUnderLineVisible = true
-            } else {
-                rootItem.isUnderLineVisible = false
-            }
-        }
 
         QtObject {
             id: paramsDevice
@@ -178,7 +167,6 @@ Rectangle {
                         textStr: model.name
 
                         onDeviceClicked: {
-                            WifiController.testSendData(paramsWifiDevice)
                             if (model.name === WifiController.connectedName)
                                 return
 
