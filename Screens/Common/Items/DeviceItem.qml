@@ -23,10 +23,10 @@ Rectangle {
 
     QtObject {
         id: constant
-        property string lockIcon: "qrc:/Assets/lock.png"
-        property string strongWifiIcon: "qrc:/Assets/wifi-strong.png"
-        property string connectedWifiIcon: "qrc:/Assets/connected.png"
-        property string cicleIcon: "qrc:/Assets/circle-i.png"
+        readonly property string lockIcon: "qrc:/Assets/lock.png"
+        readonly property string strongWifiIcon: "qrc:/Assets/wifi-strong.png"
+        readonly property string connectedWifiIcon: "qrc:/Assets/connected.png"
+        readonly property string cicleIcon: "qrc:/Assets/circle-i.png"
     }
 
     Icon {

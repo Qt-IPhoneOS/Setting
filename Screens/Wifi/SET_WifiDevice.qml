@@ -20,8 +20,6 @@ Rectangle {
         property string addressDevice: ""
     }
 
-    property bool isUnderLineVisible: false
-
     Component.onCompleted: {
         // Set information for the device
         __infoDevice.deviceName = WifiController.singleDeviceObject.deviceName
@@ -37,7 +35,6 @@ Rectangle {
     HeaderScreen {
         id: headerContainer
         backBtnText: "Wi-Fi"
-        isFlick: rootItem.isUnderLineVisible
         headerText: __infoDevice.deviceName
         z: 10
         onBack: {
@@ -51,14 +48,6 @@ Rectangle {
         height: parent.height - headerContainer.height
         anchors.top: headerContainer.bottom
         contentHeight: itemContainer.implicitHeight
-
-        onVerticalVelocityChanged: {
-            if (visibleArea.yPosition > 0) {
-                rootItem.isUnderLineVisible = true
-            } else {
-                rootItem.isUnderLineVisible = false
-            }
-        }
 
         ColumnLayout {
             id: itemContainer
