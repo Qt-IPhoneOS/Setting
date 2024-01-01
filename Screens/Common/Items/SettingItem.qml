@@ -95,9 +95,7 @@ Rectangle {
             Layout.preferredHeight: 36
             Layout.preferredWidth: 66
             switchOn: rootItem.switchOn
-            onSwitched: {
-                SystemSettingController.setNewValueAirplaneMode(!rootItem.switchOn)
-            }
+            onSwitched: rootItem.switchBtn()
         }
 
         Item {
