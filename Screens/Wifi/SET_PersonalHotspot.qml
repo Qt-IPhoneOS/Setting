@@ -45,6 +45,7 @@ Rectangle {
                 model: 2
                 delegate: SettingItem {
                     isHasSwitchButton: model.index === 0 ? true : false
+                    underlineVisible: model.index !== 1
                     titleItemText: model.index === 0 ? "Allow Others to Join" : "Wi-Fi Password"
                     labelItemText: model.index === 1 ? __privCtlItem.password : ""
                     onSwitchBtn: SIMController.setEnableOthersJoinNetwork(!__privCtlItem.isEnableJoinNetwork)
@@ -53,24 +54,17 @@ Rectangle {
             }
         }
 
-        ListItemsContainer {
+        SettingItem {
             anchors {
                 horizontalCenter: parent.horizontalCenter
                 top: parent.top
-                topMargin: 140
+                topMargin: 170
             }
-            sizeOfModel: 1
-            listContainer: ListView {
-                interactive: false
-                model: 1
-                delegate: SettingItem {
-
-                    onSwitchBtn: SIMController.setMaximizeCompatibility(!__privCtlItem.isMaximizeCompa)
-                    switchOn: __privCtlItem.isMaximizeCompa
-                    isHasSwitchButton: true
-                    titleItemText: "Maximize Compatibility"
-                }
-            }
+            isOnlyOneItem: true
+            onSwitchBtn: SIMController.setMaximizeCompatibility(!__privCtlItem.isMaximizeCompa)
+            switchOn: __privCtlItem.isMaximizeCompa
+            isHasSwitchButton: true
+            titleItemText: "Maximize Compatibility"
         }
     }
 }
