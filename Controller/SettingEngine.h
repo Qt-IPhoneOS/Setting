@@ -6,6 +6,7 @@
 #include <ScreenManager/ScreenQueue.h>
 #include "Wifi/WifiController.h"
 #include "SystemSetting/SystemSettingController.h"
+#include "SIM/SIMController.h"
 
 
 class SettingEngine : public QObject
@@ -27,6 +28,7 @@ private:
     WifiController*                 mWifiController             {nullptr};
     SystemSettingController*        mSystemSettingController    {nullptr};
     uicommon::ScreenQueue*          mScreenQueue                {nullptr};
+    SIMController*                  mSIMController              {nullptr};
 };
 
 #endif // SETTINGENGINE_H

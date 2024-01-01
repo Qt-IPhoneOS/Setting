@@ -6,6 +6,7 @@ SettingEngine::SettingEngine(QObject *parent) : QObject(parent)
     mWifiController = new WifiController();
     mScreenQueue = uicommon::ScreenQueue::instance();
     mSystemSettingController = new SystemSettingController();
+    mSIMController = new SIMController();
 }
 
 SettingEngine::~SettingEngine()
@@ -44,6 +45,7 @@ void SettingEngine::registerContextProperty()
     mScreenQueue->getViewer()->rootContext()->setContextProperty("WifiPairedModel", mWifiController->getPairedDeviceModel().get());
     mScreenQueue->getViewer()->rootContext()->setContextProperty("WifiDiscoveryModel", mWifiController->getDiscoveryDeviceModel().get());
     mScreenQueue->getViewer()->rootContext()->setContextProperty("SystemSettingController", mSystemSettingController);
+    mScreenQueue->getViewer()->rootContext()->setContextProperty("SIMController", mSIMController);
 }
 
 void SettingEngine::registerEnumType()

@@ -17,8 +17,8 @@ Rectangle {
     QtObject {
         id: __privCtlItem
         property string password: "11119999"
-        property bool isEnableJoinNetwork: SystemSettingController.isEnableJoinNetwork
-        property bool isMaximizeCompa: SystemSettingController.isMaximizeCompatibility
+        property bool isEnableJoinNetwork: SIMController.isEnableJoinNetwork
+        property bool isMaximizeCompa: SIMController.isMaximizeCompatibility
     }
 
     HeaderScreen {
@@ -47,7 +47,7 @@ Rectangle {
                     isHasSwitchButton: model.index === 0 ? true : false
                     titleItemText: model.index === 0 ? "Allow Others to Join" : "Wi-Fi Password"
                     labelItemText: model.index === 1 ? __privCtlItem.password : ""
-                    onSwitchBtn: SystemSettingController.setEnableOthersJoinNetwork(!__privCtlItem.isEnableJoinNetwork)
+                    onSwitchBtn: SIMController.setEnableOthersJoinNetwork(!__privCtlItem.isEnableJoinNetwork)
                     switchOn: __privCtlItem.isEnableJoinNetwork
                 }
             }
@@ -64,7 +64,8 @@ Rectangle {
                 interactive: false
                 model: 1
                 delegate: SettingItem {
-                    onSwitchBtn: SystemSettingController.setMaximizeCompatibility(!__privCtlItem.isMaximizeCompa)
+
+                    onSwitchBtn: SIMController.setMaximizeCompatibility(!__privCtlItem.isMaximizeCompa)
                     switchOn: __privCtlItem.isMaximizeCompa
                     isHasSwitchButton: true
                     titleItemText: "Maximize Compatibility"
