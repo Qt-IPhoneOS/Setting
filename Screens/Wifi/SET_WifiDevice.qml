@@ -94,11 +94,11 @@ Rectangle {
                         underlineVisible: model.index === 0
                         isShowArrowIcon: false
                         titleItemText: {
-                            if (model.index == 0) return "Auto-Join"
+                            if (model.index === 0) return "Auto-Join"
                             else return "Password"
                         }
-                        isHasSwitchButton: model.index == 0
-                        isPasswordItem: model.index == 1
+                        isHasSwitchButton: model.index === 0
+                        isPasswordItem: model.index === 1
                     }
                 }
             }
@@ -132,14 +132,14 @@ Rectangle {
                         underlineVisible: model.index === 0
                         isShowArrowIcon: false
                         titleItemText: {
-                            if (model.index == 0) return "Private Wi-Fi Address"
+                            if (model.index === 0) return "Private Wi-Fi Address"
                             else return "Wi-Fi Address"
                         }
                         labelItemText: {
-                            if (model.index == 1) return __infoDevice.addressDevice
+                            if (model.index === 1) return __infoDevice.addressDevice
                             else return ""
                         }
-                        isHasSwitchButton: model.index == 0
+                        isHasSwitchButton: model.index === 0
                     }
                 }
             }

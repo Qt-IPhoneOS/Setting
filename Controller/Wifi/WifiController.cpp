@@ -135,7 +135,6 @@ void WifiController::startDiscovery()
 
 void WifiController::sendParamsDevice(QObject* params)
 {
-    qWarning() << "WifiController::sendParamsDevice -- nameDevice: " << params->property("deviceName").toString() << " -- type: " << params->property("typeDeviceConnect").toInt();
     if (params == nullptr) return;
     setSingleDeviceObject(params);
 }

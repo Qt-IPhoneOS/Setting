@@ -14,7 +14,9 @@ public:
         SET_Main,
         // Wifi
         SET_WifiMenu,
-        SET_WifiDevice
+        SET_WifiDevice,
+        // Personal Hotspot
+        SET_PersonalHotspot
     };
 
     enum WifiState {

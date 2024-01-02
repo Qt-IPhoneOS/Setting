@@ -114,7 +114,11 @@ RootScreen {
             sizeOfModel: myModel.count
             width: parent.width
 
-            property int wifiType: 1
+            QtObject {
+                id: __nameIndex
+                readonly property int wifi_type: 1
+                readonly property int personal_hotspot_type: 4
+            }
 
             anchors {
                 horizontalCenter: parent.horizontalCenter
@@ -135,11 +139,12 @@ RootScreen {
                     switchOn: rootItem.isActiveAirplaneMode
                     marginLeft: 80
                     underlineVisible: model.index < myModel.count - 1
-
+                    onSwitchBtn: SystemSettingController.setNewValueAirplaneMode(!rootItem.isActiveAirplaneMode)
                     onClicked: {
-                        if (model.index === networkService.wifiType)
-                        {
-                            AppEngine.showScreen(Enums.SET_WifiMenu)
+                        if (model.index === __nameIndex.wifi_type) {
+                           AppEngine.showScreen(Enums.SET_WifiMenu)
+                        } else if (model.index === __nameIndex.personal_hotspot_type) {
+                           AppEngine.showScreen(Enums.SET_PersonalHotspot)
                         }
                     }
                 }

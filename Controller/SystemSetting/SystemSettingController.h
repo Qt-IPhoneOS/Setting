@@ -2,34 +2,33 @@
 #define SYSTEMSETTINGCONTROLLER_H
 
 #include <QObject>
-#include <memory>
 #include <SystemSetting/SystemSettingAdapter.h>
-#include <QDebug>
-#include <QSharedPointer>
+#include <SIM/SIMAdapter.h>
 
 class SystemSettingController : public QObject {
     Q_OBJECT
     Q_PROPERTY(bool isAirplaneModeActive READ isAirplaneModeActive WRITE setIsAirplaneModeActive NOTIFY isAirplaneModeActiveChanged)
+
 public:
     explicit SystemSettingController(QObject* parent = nullptr);
     ~SystemSettingController();
 
 public slots:
-    bool isAirplaneModeActive() const;
-    void setIsAirplaneModeActive(bool newIsAirplaneModeActive);
-
-    void handleUpdateAirplaneMode(const midlayer::SystemSettingAdapter::AirplaneModeEnums&);
+    void handleUpdateDataSystemSetting(midlayer::SystemSettingAdapter::ID_CALLBACK idEvent, const int& dataEvent);
 
 public:
     Q_INVOKABLE void setNewValueAirplaneMode(const bool&);
+
+    bool isAirplaneModeActive() const;
+    void setIsAirplaneModeActive(bool newIsAirplaneModeActive);
 
 signals:
     void isAirplaneModeActiveChanged();
 
 private:
     midlayer::SystemSettingAdapter& mSysAdapter;
+    uicommon::Connect mUpdateDataSystemSetting;
 
-    uicommon::Connect mUpdateAirplaneMode;
     bool m_isAirplaneModeActive {false};
 };
 

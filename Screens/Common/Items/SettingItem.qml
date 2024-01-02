@@ -7,11 +7,15 @@ import QML.Constants
 
 Rectangle {
     id: rootItem
-
     width: 500
     height: 55
+
+    property bool isOnlyOneItem: false
+
+    radius: rootItem.isOnlyOneItem ? 15 : 0
+    color: rootItem.isOnlyOneItem ? UIColors.white : UIColors.transparent
+
     anchors.horizontalCenter: parent.horizontalCenter
-    color: UIColors.transparent
 
     property string beginIconSource: ""
     property string colorTitleText: ""
@@ -67,13 +71,11 @@ Rectangle {
             Layout.fillHeight: true
             Layout.fillWidth: true
             visible: rootItem.titleItemText != ""
-            fontSize: UIFonts.medium_pixel
             textStr: rootItem.titleItemText
+            fontWeight: UIFonts.medium_weight
             color: rootItem.colorTitleText
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignLeft
-            enableAnimation: true
-            visibleAnimation: true
         }
 
         CustomText {
@@ -82,11 +84,10 @@ Rectangle {
             Layout.fillWidth: true
             visible: rootItem.labelItemText != ""
             textStr: rootItem.labelItemText
-            fontSize: UIFonts.medium_pixel
+            fontWeight: UIFonts.medium_weight
+            color: UIColors.grey
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignRight
-            enableAnimation: true
-            visibleAnimation: true
         }
 
         SwitchButton {
@@ -95,9 +96,7 @@ Rectangle {
             Layout.preferredHeight: 36
             Layout.preferredWidth: 66
             switchOn: rootItem.switchOn
-            onSwitched: {
-                SystemSettingController.setNewValueAirplaneMode(!rootItem.switchOn)
-            }
+            onSwitched: rootItem.switchBtn()
         }
 
         Item {

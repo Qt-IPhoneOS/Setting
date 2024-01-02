@@ -1,12 +1,14 @@
 #include "SystemSettingController.h"
 #include <QDebug>
 
+#define CHECK_VALID_QVARIANT(A) (true == A.isValid() && false == A.isNull())
+
 SystemSettingController::SystemSettingController(QObject* parent)
     : QObject(parent)
     , mSysAdapter(midlayer::SystemSettingAdapter::instance())
 {
-    mUpdateAirplaneMode = mSysAdapter.notifyUpdateAirplaneMode.connect([this](const midlayer::SystemSettingAdapter::AirplaneModeEnums& _airplaneMode) {
-        QMetaObject::invokeMethod(this, "handleUpdateAirplaneMode", Q_ARG(midlayer::SystemSettingAdapter::AirplaneModeEnums, _airplaneMode));
+    mUpdateDataSystemSetting = mSysAdapter.notifyUpdateDataSystemSeting.connect([this](const midlayer::SystemSettingAdapter::ID_CALLBACK idEvent, const int& dataEvent){
+        QMetaObject::invokeMethod(this, "handleUpdateDataSystemSetting", Q_ARG(midlayer::SystemSettingAdapter::ID_CALLBACK, idEvent), Q_ARG(int, dataEvent));
     });
 }
 
@@ -14,16 +16,16 @@ SystemSettingController::~SystemSettingController() {
     
 }
 
-void SystemSettingController::handleUpdateAirplaneMode(const midlayer::SystemSettingAdapter::AirplaneModeEnums& _newAirplaneMode) {
-    switch(_newAirplaneMode) {
-    case midlayer::SystemSettingAdapter::AirplaneModeEnums::Inactive:
-        setIsAirplaneModeActive(false);
-        break;
-    case midlayer::SystemSettingAdapter::AirplaneModeEnums::Active:
-        setIsAirplaneModeActive(true);
+void SystemSettingController::handleUpdateDataSystemSetting(midlayer::SystemSettingAdapter::ID_CALLBACK eventID, const int& dataEvent)
+{
+    if (eventID == midlayer::SystemSettingAdapter::ID_CALLBACK::None)
+        return;
+
+    switch (eventID) {
+    case midlayer::SystemSettingAdapter::ID_CALLBACK::Airplane_Mode:
+        setIsAirplaneModeActive(static_cast<bool>(dataEvent));
         break;
     default:
-        setIsAirplaneModeActive(false);
         break;
     }
 }
@@ -44,3 +46,5 @@ void SystemSettingController::setIsAirplaneModeActive(bool newIsAirplaneModeActi
     m_isAirplaneModeActive = newIsAirplaneModeActive;
     emit isAirplaneModeActiveChanged();
 }
+
+

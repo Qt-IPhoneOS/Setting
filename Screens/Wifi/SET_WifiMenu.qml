@@ -61,7 +61,11 @@ Rectangle {
                 height: WifiController.wifiOn ? 110 : 55
                 radius: 15
                 y: 100
-                anchors.horizontalCenter: parent.horizontalCenter
+                anchors {
+                    horizontalCenter: parent.horizontalCenter
+                    top: parent.top
+                    topMargin: 20
+                }
 
                 Column {
                     width: parent.width
@@ -110,7 +114,12 @@ Rectangle {
                 id: pairedList
                 y: 260
                 sizeOfModel: WifiPairedModel.count
-                anchors.horizontalCenter: parent.horizontalCenter
+                anchors {
+                    horizontalCenter: parent.horizontalCenter
+                    top: connectedArea.bottom
+                    topMargin: 20
+                }
+
                 headerText: "MY NETWORKS"
                 visible: WifiController.wifiOn && sizeOfModel > 0
 
@@ -128,7 +137,6 @@ Rectangle {
                         onDeviceClicked: {
                             if (model.name === WifiController.connectedName)
                                 return
-
                             WifiController.connectDevice(model.addr)
                         }
 
@@ -148,7 +156,6 @@ Rectangle {
                 headerText: "OTHER NETWORKS"
                 visible: WifiController.wifiOn
                 isVisibleLoadingAnimation: true
-
                 anchors {
                     horizontalCenter: parent.horizontalCenter
                     top: pairedList.bottom
@@ -169,7 +176,6 @@ Rectangle {
                         onDeviceClicked: {
                             if (model.name === WifiController.connectedName)
                                 return
-
                             WifiController.connectDevice(model.addr)
                         }
 

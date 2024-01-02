@@ -12,6 +12,7 @@
         <file>Screens/Wifi/SET_WifiMenu.qml</file>
         <file>Screens/Wifi/SET_WifiDevice.qml</file>
         <file>Screens/Common/Components/RootScreen.qml</file>
+        <file>Screens/Wifi/SET_PersonalHotspot.qml</file>
     </qresource>
     <qresource prefix="/QML_RESOUCES"/>
 </RCC>
