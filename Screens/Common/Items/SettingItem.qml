@@ -55,6 +55,23 @@ Rectangle {
         }
     }
 
+    CustomText {
+        id: textTitleWithoutIcon
+        width: 200
+        height: parent.height
+        anchors {
+            left: parent.left
+            leftMargin: 24
+            verticalCenter: rootItem.verticalCenter
+        }
+        visible: rootItem.beginIconSource == ""
+        textStr: rootItem.titleItemText
+        fontWeight: UIFonts.medium_weight
+        color: rootItem.colorTitleText
+        verticalAlignment: Text.AlignVCenter
+        horizontalAlignment: Text.AlignLeft
+    }
+
     RowLayout {
         id: row
         width: parent.width - marginLeft
@@ -70,6 +87,7 @@ Rectangle {
             id: titleItemText
             Layout.fillHeight: true
             Layout.fillWidth: true
+            opacity: rootItem.beginIconSource == "" ? 0 : 1
             visible: rootItem.titleItemText != ""
             textStr: rootItem.titleItemText
             fontWeight: UIFonts.medium_weight
