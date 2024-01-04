@@ -2,10 +2,9 @@ import QtQuick 2.15
 import QtQuick.Controls 2.15
 import Enums 1.0
 import QML.Components
+import QML.Constants
 import '../Common/Components'
 import '../Common/Items'
-import QML.Components
-import QML.Constants
 
 Rectangle {
    id: rootItem
@@ -70,6 +69,7 @@ Rectangle {
                 Column {
                     width: parent.width
                     height: parent.height
+                    spacing: WifiController.wifiOn ? 0 : 10
 
                     SettingItem {
                         id: wifiSwitch
@@ -101,6 +101,19 @@ Rectangle {
                             WifiController.sendParamsDevice(paramsDevice)
                         }
                     }
+
+                    CustomText {
+                        id: textDescription
+                        text: "AirDrop, AirPlay, Notify When Left Behind, and improved location\naccuracy require Wi-Fi."
+                        width: 460
+                        horizontalAlignment: Text.AlignLeft
+                        visible: !WifiController.wifiOn
+                        wrapMode: Text.WordWrap
+                        color: UIColors.grey
+                        fontSize: UIFonts.smallest_pixel
+                        anchors.horizontalCenter: parent.horizontalCenter
+
+                    }
                 }
             }
 
@@ -117,7 +130,7 @@ Rectangle {
                 anchors {
                     horizontalCenter: parent.horizontalCenter
                     top: connectedArea.bottom
-                    topMargin: 20
+                    topMargin: 50
                 }
 
                 headerText: "MY NETWORKS"
@@ -165,7 +178,7 @@ Rectangle {
                 listContainer: ListView {
                     model: WifiDiscoveryModel
                     width: 500
-                    height: 55 * WifiPairedModel.count
+                    height: 55 * WifiDiscoveryModel.count
                     interactive: false
                     delegate: DeviceItem {
                         width: 500

@@ -105,17 +105,16 @@ Rectangle {
         }
     }
 
-    Icon {
+    InfoButton {
         id: circle
-        width: 25
-        height: 25
+        width: 20
+        height: 20
         visible: isWifi
         anchors {
             verticalCenter: parent.verticalCenter
             right: parent.right
-            rightMargin: 10
+            rightMargin: 20
         }
-        source: constant.cicleIcon
         MouseArea {
             anchors.fill: parent
             onClicked: {

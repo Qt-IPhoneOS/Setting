@@ -20,6 +20,13 @@ Rectangle {
         property string addressDevice: ""
     }
 
+    QtObject {
+        id: privDevice
+        property bool isAutoJoin: false
+        property bool isLowDataMode: false
+        property bool isPrivateWifiAddress: false
+    }
+
     Component.onCompleted: {
         // Set information for the device
         __infoDevice.deviceName = WifiController.singleDeviceObject.deviceName
@@ -65,7 +72,7 @@ Rectangle {
                 }
             }
             Item {
-                Layout.preferredHeight: 20
+                Layout.preferredHeight: 12
                 Layout.preferredWidth: parent.width
             }
             ListItemsContainer {
@@ -80,8 +87,9 @@ Rectangle {
                 }
             }
             Item {
-                Layout.preferredHeight: 20
+                Layout.preferredHeight: 12
                 Layout.preferredWidth: parent.width
+                visible: __infoDevice.typeDeviceConnect == 0 || __infoDevice.typeDeviceConnect == 1
             }
             ListItemsContainer {
                 visible: __infoDevice.typeDeviceConnect != 2
@@ -99,12 +107,14 @@ Rectangle {
                         }
                         isHasSwitchButton: model.index === 0
                         isPasswordItem: model.index === 1
+                        onSwitchBtn: privDevice.isAutoJoin = !privDevice.isAutoJoin
+                        switchOn: privDevice.isAutoJoin
                     }
                 }
             }
             Item {
                 visible: __infoDevice.typeDeviceConnect != 2
-                Layout.preferredHeight: 20
+                Layout.preferredHeight: 12
                 Layout.preferredWidth: parent.width
             }
             ListItemsContainer {
@@ -116,10 +126,12 @@ Rectangle {
                     isShowArrowIcon: false
                     isHasSwitchButton: true
                     titleItemText: "Low Data Mode"
+                    onSwitchBtn: privDevice.isLowDataMode = !privDevice.isLowDataMode
+                    switchOn: privDevice.isLowDataMode
                 }
             }
             Item {
-                Layout.preferredHeight: 20
+                Layout.preferredHeight: 12
                 Layout.preferredWidth: parent.width
             }
             ListItemsContainer {
@@ -140,6 +152,8 @@ Rectangle {
                             else return ""
                         }
                         isHasSwitchButton: model.index === 0
+                        onSwitchBtn: privDevice.isPrivateWifiAddress = !privDevice.isPrivateWifiAddress
+                        switchOn: privDevice.isPrivateWifiAddress
                     }
                 }
             }
@@ -152,7 +166,6 @@ Rectangle {
                 Layout.alignment: Qt.AlignHCenter
                 headerText: "IPV4 ADDRESS"
                 sizeOfModel: 1
-                visible: __infoDevice.typeDeviceConnect == 2
                 listContainer: ListView {
                     interactive: false
                     model: 1
@@ -170,7 +183,6 @@ Rectangle {
             ListItemsContainer {
                 Layout.alignment: Qt.AlignHCenter
                 headerText: "DSN"
-                visible: __infoDevice.typeDeviceConnect == 2
                 sizeOfModel: 1
                 listContainer: ListView {
                     interactive: false

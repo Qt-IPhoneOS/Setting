@@ -15,6 +15,7 @@ Item {
 
     property bool isVisibleLoadingAnimation: false
 
+
     QtObject {
         id: constantListItemContainer
 
@@ -27,7 +28,7 @@ Item {
         textStr: headerText
         visible: headerText !== ""
         font {
-            pixelSize: 16
+            pixelSize: 15
             weight: Font.Light
         }
     }
@@ -47,7 +48,7 @@ Item {
         color: UIColors.white
         anchors {
             top: text.bottom
-            topMargin: 15
+            topMargin: 12
         }
 
         Loader {
