@@ -14,6 +14,8 @@ Rectangle {
 
     property bool isUnderLineVisible: false
 
+    property string nameDivce: "Nho em chieu thu 7"
+
     QtObject {
         id: __privCtlItem
         property string password: "11119999"
@@ -34,10 +36,26 @@ Rectangle {
         height: parent.height - headerItem.height
         anchors.top: headerItem.bottom
 
-        ListItemsContainer {
+        CustomText {
+            id: firstTitle
+            textStr: "Personal Hotspot on your iPhone can provide Internet access to other devices signed into your iCloud account without requiring you to enter the password."
+            width: 460
+            horizontalAlignment: Text.AlignLeft
+            wrapMode: Text.WordWrap
+            color: UIColors.grey
+            fontSize: UIFonts.smallest_pixel
             anchors {
                 horizontalCenter: parent.horizontalCenter
                 top: parent.top
+                topMargin: 10
+            }
+        }
+
+        ListItemsContainer {
+            anchors {
+                horizontalCenter: parent.horizontalCenter
+                top: firstTitle.bottom
+                topMargin: -10
             }
             sizeOfModel: 2
             listContainer: ListView {
@@ -54,11 +72,26 @@ Rectangle {
             }
         }
 
+        CustomText {
+            id: secondTitle
+            textStr: "Allow other users or devices not signed into iCloud to look for your shared network '" + rootItem.nameDivce + "' when you are in Personal Hotspot settings or when you turn it on in Control Center."
+            width: 460
+            wrapMode: Text.WordWrap
+            color: UIColors.grey
+            horizontalAlignment: Text.AlignLeft
+            fontSize: UIFonts.smallest_pixel
+            anchors {
+                horizontalCenter: parent.horizontalCenter
+                top: parent.top
+                topMargin: 200
+            }
+        }
+
         SettingItem {
             anchors {
                 horizontalCenter: parent.horizontalCenter
                 top: parent.top
-                topMargin: 170
+                topMargin: 280
             }
             isOnlyOneItem: true
             onSwitchBtn: SIMController.setMaximizeCompatibility(!__privCtlItem.isMaximizeCompa)

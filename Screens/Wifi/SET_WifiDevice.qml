@@ -20,6 +20,13 @@ Rectangle {
         property string addressDevice: ""
     }
 
+    QtObject {
+        id: privDevice
+        property bool isAutoJoin: false
+        property bool isLowDataMode: false
+        property bool isPrivateWifiAddress: false
+    }
+
     Component.onCompleted: {
         // Set information for the device
         __infoDevice.deviceName = WifiController.singleDeviceObject.deviceName
@@ -99,6 +106,8 @@ Rectangle {
                         }
                         isHasSwitchButton: model.index === 0
                         isPasswordItem: model.index === 1
+                        onSwitchBtn: privDevice.isAutoJoin = !privDevice.isAutoJoin
+                        switchOn: privDevice.isAutoJoin
                     }
                 }
             }
@@ -116,6 +125,8 @@ Rectangle {
                     isShowArrowIcon: false
                     isHasSwitchButton: true
                     titleItemText: "Low Data Mode"
+                    onSwitchBtn: privDevice.isLowDataMode = !privDevice.isLowDataMode
+                    switchOn: privDevice.isLowDataMode
                 }
             }
             Item {
@@ -140,6 +151,8 @@ Rectangle {
                             else return ""
                         }
                         isHasSwitchButton: model.index === 0
+                        onSwitchBtn: privDevice.isPrivateWifiAddress = !privDevice.isPrivateWifiAddress
+                        switchOn: privDevice.isPrivateWifiAddress
                     }
                 }
             }

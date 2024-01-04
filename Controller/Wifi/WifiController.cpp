@@ -67,6 +67,8 @@ void WifiController::handleUpdateEnableWifi(bool enable)
 
 void WifiController::handleAddDiscoveryDevice(midlayer::WifiDevice* device)
 {
+
+    qWarning() << "--> THAIVD --- name: " << device->getDeviceInfo().mName;
     mDiscoveryModel->appendDevice(device);
 }
 

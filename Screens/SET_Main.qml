@@ -51,60 +51,54 @@ RootScreen {
             anchors {
                 top: searchContainer.bottom
                 horizontalCenter: parent.horizontalCenter
-                topMargin: 10
+                topMargin: 25
             }
             color: UIColors.white
             radius: 15
+            RowLayout {
+                anchors.fill: parent
+                Item {
+                    Layout.fillHeight: true
+                    Layout.fillWidth: true
+                }
 
-            Item {
-                height: 100
-                width: parent.width
-                anchors.top: parent.top
-                RowLayout {
-                    anchors.fill: parent
-                    Item {
-                        Layout.fillHeight: true
-                        Layout.fillWidth: true
-                    }
+                Avatar {
+                    id: avatarUser
+                    width: 65
+                    height: 65
+                    sourceImg: "qrc:/Assets/avartarUser.jpg"
+                }
 
-                    Avatar {
-                        id: avatarUser
-                        width: 65
-                        height: 65
-                        sourceImg: "qrc:/Assets/avartarUser.jpg"
+                Item {
+                    Layout.preferredWidth: 360
+                    Layout.preferredHeight: parent.height
+                    Text {
+                        id: nameRect
+                        width: parent.width
+                        height: 40
+                        text: constant.nameUser
+                        anchors.top: parent.top
+                        anchors.topMargin: 25
+                        font.pixelSize: 20
                     }
-
-                    Item {
-                        Layout.preferredWidth: 360
-                        Layout.preferredHeight: parent.height
-                        Text {
-                            id: nameRect
-                            width: parent.width
-                            height: 40
-                            text: constant.nameUser
-                            anchors.top: parent.top
-                            anchors.topMargin: 25
-                            font.pixelSize: 20
-                        }
-                        Text {
-                            id: content
-                            width: parent.width
-                            height: 20
-                            anchors.top: nameRect.bottom
-                            text: "Apple ID, iCloud, Media & Purchases"
-                            font.pixelSize: 10
-                        }
+                    Text {
+                        id: content
+                        width: parent.width
+                        height: 20
+                        anchors.top: nameRect.bottom
+                        text: "Apple ID, iCloud, Media & Purchases"
+                        font.pixelSize: 10
                     }
-                    Icon {
-                        Layout.preferredWidth: 20
-                        Layout.preferredHeight: 20
-                        x: 525
-                        source: "qrc:/Assets/arrow_right.png"
-                    }
-                    Item {
-                        Layout.fillHeight: true
-                        Layout.fillWidth: true
-                    }
+                }
+                Icon {
+                    Layout.preferredWidth: 20
+                    Layout.preferredHeight: 20
+                    x: 525
+                    source: "qrc:/Assets/arrow_right.png"
+                }
+                Item {
+                    Layout.fillHeight: true
+                    Layout.fillWidth: true
                 }
             }
         }
@@ -123,6 +117,7 @@ RootScreen {
             anchors {
                 horizontalCenter: parent.horizontalCenter
                 top: inforSettingContainer.bottom
+                topMargin: -12
             }
 
             listContainer: ListView {
