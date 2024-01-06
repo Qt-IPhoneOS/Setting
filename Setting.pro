@@ -2,23 +2,23 @@ QT += quick virtualkeyboard
 CONFIG += c++20
 TARGET = Setting
 
-LIBS += -L$$PWD/../../Executable \
+LIBS += -L$$PWD/../../executable \
         -lmiddlewarelayer \
         -luicommon \
         -lservice
 
-INCLUDEPATH += $$PWD/../../MiddlewareLayer \
-               $$PWD/../../MiddlewareLayer/Common \
-               $$PWD/../../MiddlewareLayer/Wifi \
-               $$PWD/../../MiddlewareLayer/SystemSetting \
-               $$PWD/../UICommon \
-               $$PWD/../UICommon/Feature \
+INCLUDEPATH += $$PWD/../../libs/MiddlewareLayer \
+               $$PWD/../../libs/MiddlewareLayer/Common \
+               $$PWD/../../libs/MiddlewareLayer/Wifi \
+               $$PWD/../../libs/MiddlewareLayer/SystemSetting \
+               $$PWD/../../libs/UICommon \
+               $$PWD/../../libs/UICommon/Feature \
                $$PWD/Controller \
-               $$PWD/../../Services/include \
-               $$PWD/../../Services/include/Common \
-               $$PWD/../../Services/include/Wifi \
-               $$PWD/../../Services/include/SystemSetting \
-               $$PWD/../../Services/include/SIM \
+               $$PWD/../../libs/Services/include \
+               $$PWD/../../libs/Services/include/Common \
+               $$PWD/../../libs/Services/include/Wifi \
+               $$PWD/../../libs/Services/include/SystemSetting \
+               $$PWD/../../libs/Services/include/SIM \
 
 SOURCES += \
         Controller/SettingEngine.cpp \
@@ -28,7 +28,7 @@ SOURCES += \
         Controller/SIM/SIMController.cpp \
         main.cpp
 
-QML_IMPORT_PATH += $$PWD/../UICommon
+QML_IMPORT_PATH += $$PWD/../../libs/UICommon
 
 RESOURCES += \
     Setting.qrc \
