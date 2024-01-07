@@ -63,7 +63,7 @@ Rectangle {
             text: textStr
             verticalAlignment: Text.AlignVCenter
             font {
-                pixelSize: 20
+                pixelSize: UIFonts.small_pixel
                 weight: Font.Light
             }
         }
