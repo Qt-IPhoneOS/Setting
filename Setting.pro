@@ -1,8 +1,10 @@
-QT += quick virtualkeyboard
+QT += quick virtualkeyboard appman_launcher-private
+TEMPLATE=app
 CONFIG += c++20
 TARGET = Setting
+DESTDIR = $$PWD/../../build/apps/Setting
 
-LIBS += -L$$PWD/../../executable \
+LIBS += -L$$PWD/../../build/executable \
         -lmiddlewarelayer \
         -luicommon \
         -lservice
@@ -20,6 +22,14 @@ INCLUDEPATH += $$PWD/../../libs/MiddlewareLayer \
                $$PWD/../../libs/Services/include/SystemSetting \
                $$PWD/../../libs/Services/include/SIM \
 
+HEADERS += \
+    Controller/Enums.h \
+    Controller/SettingEngine.h \
+    Controller/Wifi/WifiController.h \
+    Model/WifiDeviceModel.h \
+    Controller/SystemSetting/SystemSettingController.h \
+    Controller/SIM/SIMController.h
+
 SOURCES += \
         Controller/SettingEngine.cpp \
         Controller/Wifi/WifiController.cpp \
@@ -33,14 +43,4 @@ QML_IMPORT_PATH += $$PWD/../../libs/UICommon
 RESOURCES += \
     Setting.qrc \
     Images.qrc
-
-HEADERS += \
-    Controller/Enums.h \
-    Controller/SettingEngine.h \
-    Controller/Wifi/WifiController.h \
-    Model/WifiDeviceModel.h \
-    Controller/SystemSetting/SystemSettingController.h \
-    Controller/SIM/SIMController.h
-
-DISTFILES +=
 
